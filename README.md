@@ -4,6 +4,6 @@ Idea: Convert sequence of words to capture relational representation between sec
 
 # reading status
 placeholder - Read but not summarised  
-➗ read %
+➗ read %  
 a folder collect papers read but not mapped or summarised.
 
