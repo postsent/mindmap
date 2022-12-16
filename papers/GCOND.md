@@ -13,6 +13,7 @@ Aims to minimize the performance gap between GNN models trained on a synthetic, 
 
 **Objective:** **Bi-level problem**  
 i.e. minimise the model's loss on the original dataset and select the optimal parameters that minimise the loss on sythetic dataset
+
 $$
 \mathop{\operatorname*{min}}_{\mathcal{S}}\mathcal{L}\left(\mathrm{GNN}_{\mathcal{\theta}}(\mathbf{A},\mathbf{X}),\mathbf{Y}\right)\quad\mathrm{s.t}\quad\mathcal{\theta}_{\mathcal{S}}=\mathop{\mathrm{argmin}}_{\mathcal{\theta}}(\mathrm{GNN}_{\theta}(\mathbf{A}^{\prime},\mathbf{X}^{\prime}),\mathbf{Y}^{\prime})
 $$  
