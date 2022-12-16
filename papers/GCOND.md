@@ -20,7 +20,9 @@ $$
 
 
 **Bypass the bi-level optimization & generalisation**   
-(since expensive), match the parameter gradient  $D\left(\boldsymbol{\theta}_{t}^{\mathcal S},\boldsymbol{\theta}_{t}^{\mathcal T}\right)$, $D$  is the distinace formula e.g. cos sim:  
+(since expensive), match the parameter gradient  
+$D\left(\boldsymbol{\theta}_{t}^{\mathcal S},\boldsymbol{\theta}_{t}^{\mathcal T}\right)$, $D$  
+is the distinace formula e.g. cos sim:  
 
 $$
 \underset{\mathcal{S}}{\operatorname*{min}\operatorname{E}_{\boldsymbol{\theta}_0}\sim P_{\boldsymbol{\theta}_0}}\left[\sum_{t=0}^{T-1}D\left(\nabla_{\boldsymbol{\theta}}\mathcal{L}\left(\operatorname{GNN}_{\boldsymbol{\theta}_t}(\mathbf{A}',\mathbf{X}'),\mathbf{Y}^{\prime}\right),\nabla_{\boldsymbol{\theta}}\mathcal{L}\left(\operatorname{GNN}_{\boldsymbol{\theta}_t}(\mathbf{A},\mathbf{X}),\mathbf{Y}\right)\right)\right]
