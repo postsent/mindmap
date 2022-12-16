@@ -25,6 +25,7 @@ $$
 $$
 D\left(\boldsymbol{\theta}_{t}^{\mathcal S},\boldsymbol{\theta}_{t}^{\mathcal T}\right)
 $$
+
 , 
 $D$ is the distinace formula e.g. cos sim:  
 
