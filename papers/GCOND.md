@@ -20,16 +20,17 @@ $$
 
 **Bypass the bi-level optimization & generalisation**   
 (since expensive), match the parameter gradient $D\left(\boldsymbol{\theta}_{t}^{\mathcal S},\boldsymbol{\theta}_{t}^{\mathcal T}\right)$, $D$ is the distinace formula e.g. cos sim:  
+
 $$
 \underset{\mathcal{S}}{\operatorname*{min}\operatorname{E}_{\boldsymbol{\theta}_0}\sim P_{\boldsymbol{\theta}_0}}\left[\sum_{t=0}^{T-1}D\left(\nabla_{\boldsymbol{\theta}}\mathcal{L}\left(\operatorname{GNN}_{\boldsymbol{\theta}_t}(\mathbf{A}',\mathbf{X}'),\mathbf{Y}^{\prime}\right),\nabla_{\boldsymbol{\theta}}\mathcal{L}\left(\operatorname{GNN}_{\boldsymbol{\theta}_t}(\mathbf{A},\mathbf{X}),\mathbf{Y}\right)\right)\right]
 $$
 
 **Model graph as a function of node features**  
-1\) so that the correlation between the graph and node features are also modelled, rather treating them independently. 2) avoiding jointly learning $O(N^2)$ parameters - less risk of overfitting as $N'$ gets larger.
+1\) so that the correlation between the graph and node features are also modelled, rather treating them independently. 2) avoiding jointly learning $O(N^2)$ parameters - less risk of overfitting as $N'$ gets larger.  
 
 $$
 \mathbf{A}'=g_{\Phi}(\mathbf{X}'),\quad\text{with A}'_{ij}=\mathbf{Sigmod}\left(\dfrac{\mathbf{ML}\mathbf{P}_{\Phi}([\mathbf{x}'_i;\mathbf{x}'_j])+\mathbf{M}\mathbf{L}\mathbf{P}_{\Phi}([\mathbf{x}'_j;\mathbf{x}'_i])}{2}\right)
-$$
+$$  
 
 $$
 \operatorname*{min}_{\mathbf{X}^{\prime},\Phi}\operatorname{E}_{\boldsymbol{\theta}_{0}\sim P_{\theta_{0}}}\left[\sum_{t=0}^{T-1}D\left(\nabla_{\boldsymbol{\theta}}\mathcal{L}\left(\mathrm{GNN}_{\boldsymbol{\theta}},(g_{\boldsymbol{\Phi}}(\mathbf{X}^{\prime}),\mathbf{X}^{\prime}),\mathbf{Y}^{\prime}\right),\mathbf{\nabla}_{\boldsymbol{\theta}}\mathcal{L}\left(\mathrm{GNN}_{\boldsymbol{\theta}_{t}}(\mathbf{A},\mathbf{X}),\mathbf{Y}\right)\right)\right]
