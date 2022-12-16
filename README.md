@@ -1,6 +1,6 @@
 # mindmap
-Mindmap for study notes.  
-Idea: Convert sequence of words to capture relational representation between sections.
+``Mindmap`` and ``markdown`` files for study notes.  
+Idea: Convert sequence of words to capture relational representation between sections + NLU by summarising and reinterpreting.
 
 # reading status
 placeholder - Read but not summarised  
