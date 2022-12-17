@@ -15,22 +15,15 @@ Aims to minimize the performance gap between GNN models trained on a synthetic, 
 i.e. minimise the model's loss on the original dataset and select the optimal parameters that minimise the loss on sythetic dataset
 
 $$
-\mathop{\operatorname*{min}}_{\mathcal{S}}\mathcal{L}\left(\mathrm{GNN}_{\mathcal{\theta}}(\mathbf{A},\mathbf{X}),\mathbf{Y}\right)\quad\mathrm{s.t}\quad\mathcal{\theta}_{\mathcal{S}}=\mathop{\mathrm{argmin}}_{\mathcal{\theta}}(\mathrm{GNN}_{\theta}(\mathbf{A}^{\prime},\mathbf{X}^{\prime}),\mathbf{Y}^{\prime})
+\underset{\mathcal{S}}{\text{min}}\mathcal{L}(\text{GNN}_{\boldsymbol{\theta}_{\mathcal{S}}}(\mathbf{A},\mathbf{X}),\mathbf{Y})\quad\text{s.t}\quad\boldsymbol{\theta}_{\mathcal{S}}=\underset{\boldsymbol{\theta}}{\text{arg}\text{min}}\mathcal{L}(\text{GNN}_{\boldsymbol{\theta}}(\mathbf{A}',\mathbf{X}'),\mathbf{Y}')
 $$  
 
 
 **Bypass the bi-level optimization & generalisation**   
-(since expensive), match the parameter gradient  
+(since expensive), we match the parameter gradient instead $D\left(\boldsymbol{\theta}_{t}^{\mathcal S},\boldsymbol{\theta}_{t}^{\mathcal T}\right)$ , $D$ is the distinace formula e.g. cosine simarily.
 
 $$
-D\left(\boldsymbol{\theta}_{t}^{\mathcal S},\boldsymbol{\theta}_{t}^{\mathcal T}\right)
-$$
-
-, 
-$D$ is the distinace formula e.g. cos sim:  
-
-$$
-\underset{\mathcal{S}}{\operatorname*{min}\operatorname{E}_{\boldsymbol{\theta}_0}\sim P_{\boldsymbol{\theta}_0}}\left[\sum_{t=0}^{T-1}D\left(\nabla_{\boldsymbol{\theta}}\mathcal{L}\left(\operatorname{GNN}_{\boldsymbol{\theta}_t}(\mathbf{A}',\mathbf{X}'),\mathbf{Y}^{\prime}\right),\nabla_{\boldsymbol{\theta}}\mathcal{L}\left(\operatorname{GNN}_{\boldsymbol{\theta}_t}(\mathbf{A},\mathbf{X}),\mathbf{Y}\right)\right)\right]
+\underset{S}{\operatorname*{min}}\operatorname{E}_{\boldsymbol{\theta}_{0}\sim P_{\boldsymbol{\theta}_{0}}}\left[\sum_{t=0}^{T-1}D\left(\nabla_{\boldsymbol{\theta}}\mathcal{L}\left(\operatorname{GNN}_{\boldsymbol{\theta}_{t}}(\mathbf{A}',\mathbf{X}^{\prime}),\mathbf{Y}^{\prime}\right),\nabla_{\boldsymbol{\theta}}\mathcal{L}\left(\operatorname{GNN}_{\boldsymbol{\theta}_{t}}(\mathbf{A},\mathbf{X}),\mathbf{Y}\right)\right)\right]
 $$
 
 **Model graph as a function of node features**  
