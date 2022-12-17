@@ -1,0 +1,3 @@
+The choice of using mindmap now only apply to lecture content since it does not work really in for papers as they are already quite concise.  
+
+The reason  why latex is not showing when on same line as text is that it interprets the underscore the wrongly, to fix this: escape the underscore. source from: https://stackoverflow.com/questions/73671158/github-markdown-render-is-not-equivalent-to-vs-code
