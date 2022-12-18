@@ -20,7 +20,7 @@ $$
 
 
 $$
-\min_{\text{A}', \text{X}'}\underset{\theta_0\rightarrow P_{\theta_0}}{\mathbb{E}}\left[\sum_{t=0}^{T-1}D\left(\nabla_{\theta}\ell\left(f_{\theta_t}(\text{A}',\text{X}'),\text{Y}'\right),\nabla_{\theta}\ell\left(f_{\theta_t}(\text{T}),\text{Y}\right)\right)\right]\\ \text{s.t.}\theta_{t+1}=\operatorname{opt}_{\theta}(\theta_t,\text{S})
+\min_{\text{A}', \text{X}'}\underset{\theta_0\rightarrow P_{\theta_0}}{\mathbb{E}}\left[\sum_{t=0}^{T-1}D\left(\nabla_{\theta}\ell\left(f_{\theta_t}(\text{A}',\text{X}'),\mathcal{Y}'\right),\nabla_{\theta}\ell\left(f_{\theta_t}(\text{T}),\mathcal{Y}\right)\right)\right]\\ \text{s.t.}\theta_{t+1}=\operatorname{opt}_{\theta}(\theta_t,\text{S})
 $$
 
 
