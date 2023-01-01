@@ -10,21 +10,40 @@ Previously: GCOND. bi-level problem that is **computationally expensive** to opt
 
 To produce **discrete values**, we model the graph structure as a probabilistic graph model and optimize the discrete structures in a differentiable manner
 
-**Image setting**.  
+**Image setting**
 
 $$
 \begin{aligned}\min\limits_S\underset{\theta_0\sim P_{\theta_0}}{\mathbb{E}}\left[\sum\limits_{t=0}^{T-1}D\left(\nabla_\theta\ell\left(f_{\theta_t}(\mathcal{S}),\mathcal{Y}'\right),\nabla_\theta\ell\left(f_{\theta_t}(\mathcal{T}),\mathcal{Y})\right)\right)\right],\\ \text{s.t.}\theta_{t+1}=\text{opt}_\theta(\theta_t,\mathcal{S}).\end{aligned}
 $$
 
-**graph setting**  
+**Graph setting**  
 
 
 $$
 \min_{\text{A}', \text{X}'}\underset{\theta_0\rightarrow P_{\theta_0}}{\mathbb{E}}\left[\sum_{t=0}^{T-1}D\left(\nabla_{\theta}\ell\left(f_{\theta_t}(\text{A}',\text{X}'),\mathcal{Y}'\right),\nabla_{\theta}\ell\left(f_{\theta_t}(\text{T}),\mathcal{Y}\right)\right)\right]\\ \text{s.t.}\theta_{t+1}=\operatorname{opt}_{\theta}(\theta_t,\text{S})
 $$
 
-
 to learn both graph structure A′ and node features X′, requires a function that outputs **binary values**.
+
+**Model the graph structure as a probabilistic graph model with Bernoulli distribution**
+
+$$
+\operatorname*{min}_{\Omega,X^{\prime}}\underset{\theta\rightarrow P_{\theta_{0}}}{\mathbb{E}}\left[\underset{\alpha\mathrm{-Uniform}(0,1)}{\mathbb{E}}\left[\ell(\mathbf{A}^{\prime}(\Omega),\mathbf{X}^{\prime},\theta_{0})\right]\right] = 
+$$
+
+$$
+\underset{\theta_{0}}{\mathbb{E}}\left[\underset{a}{\mathbb{E}}\left[\sum_{t=0}^{T-1}D\left(\nabla_{\theta}\ell\left(f_{\theta_{t}}(\mathbf{A}^{\prime}(\Omega),\mathbf{X}^{\prime}),\mathbf{Y}^{\prime}\right),\nabla_{\theta}\ell\left(f_{\theta_{t}}(\mathcal{T}),\mathbf{Y}^{\prime}\right)\right)\right]\right]
+$$
+
+$$
+\text{s.t.}\theta_{t+1}=\text{opt}_{\theta}(\theta_t,\mathcal S).
+$$
+
+**One step gradient matching**
+
+$$
+\underset{\theta_{0}}{\mathbb{E}}\left[\underset{a}{\mathbb{E}}\left[D\left(\nabla_{\theta}\ell\left(f_{\theta_{t}}(\mathbf{A}^{\prime}(\Omega),\mathbf{X}^{\prime}),\mathbf{Y}^{\prime}\right),\nabla_{\theta}\ell\left(f_{\theta_{t}}(\mathcal{T}),\mathbf{Y}^{\prime}\right)\right)\right]\right]
+$$
 
 # Takeaway
 
