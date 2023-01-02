@@ -1,6 +1,17 @@
 # What did the authors tried to accomplished?
 
-A **training set synehtsis technioque** called **data condensation** that learns to condense **large dataset** into a **small set** of informative synthetic samples.
+**Main idea.** A training set synehtsis  technioque called **data condensation** that learns to condense **large** dataset into a **small** set of informative synthetic samples.
+
+**Goal.**
+1. highest generalization performance - trained on synethic comparable to the original dataset 
+2. 
+
+**Previous problems.** Relies on 
+1. **heuristics** (e.g. picking cluster centers) that does not guarantee any optimal solution for the downstream task (e.g. image classification)
+2. presence of **representative samples**, which is neither guaranteed.
+
+**Motivation.** 
+1. Dataset Distillation (DD)
 
 # Key elements of the approach
 
@@ -11,6 +22,10 @@ A **training set synehtsis technioque** called **data condensation** that learns
 - i) compress a large image classification dataset into a small synthetic set, ii) train an image classification model on the synthetic set that can be further used to classify real images, iii) learn a single set of synthetic images that can be used to train different neural network architectures?
 
 # Other references to follow
+
+**first paper**
+1. Dataset Distillation (DD) - 
+   
 
 define **criterion** (e.g. diversity) **for representativeness**:
 1. coreset construction (classical data selection methods, clustering problems)
