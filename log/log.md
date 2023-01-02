@@ -5,3 +5,7 @@ The reason  why latex is not showing when on same line as text is that it interp
 how many papers per week - reddit threads: https://www.reddit.com/r/labrats/comments/7ebwjp/how_many_papers_do_you_read_per_week_and_what_is/
 
 > Assist Prof - I read about 30-50 or so abstracts a week and then fully read maybe 5-15 of those a week. When I'm starting a project, writing a paper or a grant, those numbers go way up. This is just baseline "keeping up with the field."
+
+``mindmap`` is good for overview, but still need to write down in ``sequential`` manner for detailed undestanding.
+
+\#marked 2023.1.3 - if I didnt push commits to here, I did not read papers or only a little bit.

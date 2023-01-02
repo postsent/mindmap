@@ -46,6 +46,8 @@ $$
 - gradient matching loss as the condensation objective
 - strategy of parameterizing the condensed features as free parameters and model the synthetic graph structure as a function of features, which takes advantage of the implicit relationship between structure and node features, consumes less number of parameters and offers better performance
 
+**Remarks.** For the gradient matching method part, very similar to GC paper.
+
 Training
 
 - **Alternating Optimization Schema.** Jointly optimizing X′ and Φ is often challenging as they are directly affecting each other  

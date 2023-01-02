@@ -2,38 +2,77 @@
 
 **Main idea.** A training set synehtsis  technioque called **data condensation** that learns to condense **large** dataset into a **small** set of informative synthetic samples.
 
+**How it different ?**. 1) Different to Generative Adversarial Networks & Variational AutoEncoders that synthesize high-fidelity samples by capturing the data distribution, generate informative samples for training deep neural networks rather than to produce “**real-looking**” samples. 2) differerent to image reconstruction and recovery, they synthesize a set of condensed training images not to recover the original or missing training images.
+
 **Goal.**
-1. highest generalization performance - trained on synethic comparable to the original dataset 
-2. 
+1. **Compress** large to small in image classiciation
+2. highest **generalization** performance - trained on synethic comparable to the original dataset 
+3. applicable to **different architectures**
 
 **Previous problems.** Relies on 
 1. **heuristics** (e.g. picking cluster centers) that does not guarantee any optimal solution for the downstream task (e.g. image classification)
 2. presence of **representative samples**, which is neither guaranteed.
 
-**Motivation.** 
-1. Dataset Distillation (DD)
+**Motivation.** Dataset Distillation (DD).
 
 # Key elements of the approach
 
-1. formulate as gradient matching problem between the gradients of deep neural network weights that are trained on the original and our synthetic data.
+1. formulate as **gradient matching problem** between the gradients of deep neural network weights that are trained on the original and our synthetic data.
+
+**DD method - computational expensive, nested loop**
+
+pose the parameters $\boldsymbol{\theta}^{\mathcal{S}}$ as a function of the synthetic data $\mathcal{S}$. (Bi-level optimisation, **nested loop** optimization).     
+
+- **Aim**: find the optimum set of synthetic images S∗ such that the model φθS trained on them minimizes the training loss over the original data.
+$$
+\mathcal{S}^{\ast}=\underset{\mathcal{S}}{\operatorname*{arg}\min}\mathcal{L}^{\mathcal{T}}(\boldsymbol{\theta}^{\mathcal{S}}(\mathcal{S}))\quad\text{subject to}\quad\ \boldsymbol{\theta^S}(\mathcal{S})=\underset{\boldsymbol{\theta}}{\text{arg}\min}\mathcal{L^S}(\boldsymbol{\theta})
+$$
+
+**Parameter Matching for one model**
+
+**Aim**: 
+1. The performance is similar to the original dataset
+2. The learnt parameters are similar to the one trained on original.
+
+**Explanation** similar weights $\theta^{\mathcal S},\theta^{\mathcal T}$ imply similar mappings in a local neighborhood and thus generalization performance
+$$
+\underset{\mathcal S}{\min}D(\theta^{\mathcal S},\theta^{\mathcal T})\quad\text{subject to}\quad\theta^{\mathcal S}(\mathcal S)=\underset{\theta}{\arg\min}\mathcal L^{\mathcal S}(\theta)
+$$
+
+**Ensure works for mulitple random initialisation $P\_{\boldsymbol{\theta}\_{0}}$**
+
 
 # Takeaway
 
-- i) compress a large image classification dataset into a small synthetic set, ii) train an image classification model on the synthetic set that can be further used to classify real images, iii) learn a single set of synthetic images that can be used to train different neural network architectures?
+- 
 
 # Other references to follow
 
-**first paper**
-1. Dataset Distillation (DD) - 
+1. Dataset Distillation (DD) (Wang) - **first paper**
+2. knowledge distillation (KD) - (Hinton et al., 2015)
+3. Generative Adversarial Networks
+4. Variational AutoEncoders
+5. projecting the **feature activations** back to the input pixel space (Zeiler & Fergus, 2014)
+6. **reconstruct** the input image by matching the **feature activations** (Mahendran & Vedaldi, 2015),
+7. **recover** private training images for given training **gradients**
+8. synthesize features from semantic embeddings for zero-shot learning
    
 
-define **criterion** (e.g. diversity) **for representativeness**:
+Define **criterion** (e.g. diversity) **for representativeness**:
 1. coreset construction (classical data selection methods, clustering problems)
 2. continual learning
 3. active learning
 
+Extension of the original paper (DD):
+- Sucholutsky & Schonlau, 2019; Bohdal et al., 2020; Such et al., 2020
 
 # Results (Good or Bad)
 
 - does not rely on the presence of representative samples as the synthesized data are directly optimized for the downstream task
-- outperforms the state-of-the-art methods e.g. **coreset construction**
+- outperforms (Wang et al., 2018) and coreset methods with a wide margin in multiple computer vision benchmarks.  
+- significantly smaller (2-3 orders of magnitude)
+ 
+domain
+
+- outperforms popular data selection methods by providing more informative training samples in **continual learning**
+- **neural architecture search** : be used to train numerous network architectures extremely efficiently
