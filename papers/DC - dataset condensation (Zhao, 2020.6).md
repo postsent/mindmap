@@ -19,7 +19,7 @@
 
 1. formulate as **gradient matching problem** between the gradients of deep neural network weights that are trained on the original and our synthetic data.
 
-**DD method - computational expensive, nested loop**
+> DD method - computational expensive, nested loop
 
 pose the parameters $\boldsymbol{\theta}^{\mathcal{S}}$ as a function of the synthetic data $\mathcal{S}$. (Bi-level optimisation, **nested loop** optimization).     
 
@@ -29,7 +29,7 @@ $$
 \mathcal{S}^{\ast}=\underset{\mathcal{S}}{\operatorname*{arg}\min}\mathcal{L}^{\mathcal{T}}(\boldsymbol{\theta}^{\mathcal{S}}(\mathcal{S}))\quad\text{subject to}\quad\ \boldsymbol{\theta^S}(\mathcal{S})=\underset{\boldsymbol{\theta}}{\text{arg}\min}\mathcal{L^S}(\boldsymbol{\theta})
 $$
 
-**Parameter Matching but for only one model**
+> Parameter Matching but for only one model
 
 **Aim**: 
 1. The performance is similar to the original dataset
@@ -41,14 +41,15 @@ $$
 \underset{\mathcal S}{\min}D(\theta^{\mathcal S},\theta^{\mathcal T})\quad\text{subject to}\quad\theta^{\mathcal S}(\mathcal S)=\underset{\theta}{\arg\min}\mathcal L^{\mathcal S}(\theta)
 $$
 
-**Generalise formula - works for different random initialisation $P\_{\boldsymbol{\theta}\_{0}}$**
+> Generalise formula - works for different random initialisation $P\_{\boldsymbol{\theta}\_{0}}$
 
 
 $$
 \underset{\mathcal S}{\operatorname*{min}}\operatorname{E}_{\boldsymbol{\theta}_0\sim P_{\boldsymbol{\theta}_0}}[D(\boldsymbol{\theta}^{\mathcal S}(\boldsymbol{\theta}_0),\boldsymbol{\theta}^{\mathcal T}(\boldsymbol{\theta}_0))] \quad\text{subject to} \quad \boldsymbol{\theta^{\mathcal S}}(\mathcal S)=\underset{\boldsymbol{\theta}}{\text{arg}\min}\mathcal L^{\mathcal S}(\boldsymbol{\theta}(\boldsymbol{\theta}_0))
 $$
 
-**Curriculum gradient matching**  
+> Curriculum gradient matching  
+  
 Address **problems** of 1) inner optimisation 2) tradeoff of alternative back-optimization approach to inner opt.  
 **Key idea:** $\boldsymbol{\theta}^{\mathcal{S}}$ to be close to not only the final $\boldsymbol{\theta}^{\mathcal{T}}$ but also to follow a similar path to $\boldsymbol{\theta}^{\mathcal{T}}$ throughout the optimization
 
@@ -58,7 +59,7 @@ $$
 \begin{aligned}\theta^{\mathcal S}(\mathcal S)=&\text{opt-a}\operatorname{l}g_{\boldsymbol\theta}(\mathcal L^{\mathcal S}(\boldsymbol\theta),\varsigma)\end{aligned}
 $$
 
-It restricts the **optimization dynamics** (fixed steps) for $\theta$, but enables a more guided (follow similar opt path) optimization and effective use of the incomplete optimizer (less computation).
+It restricts the **optimization dynamics** (fixed steps) for $\theta$, but enables a more **guided** (follow similar opt path) optimization and effective use of the **incomplete optimizer** (less computation).
 
 $$
 \min_{\mathcal{S}}\operatorname{E}_{\boldsymbol{\theta}_0\sim P_{\boldsymbol{\theta}_0}}[\sum_{t=0}^{T-1}D(\boldsymbol{\theta}_t^{\mathcal{S}},\boldsymbol{\theta}_t^{\mathcal{T}})] \quad
@@ -96,8 +97,10 @@ Extension of the original paper (DD):
 
 # Results (Good or Bad)
 
-- does not rely on the presence of representative samples as the synthesized data are directly optimized for the downstream task
-- outperforms (Wang et al., 2018) and coreset methods with a wide margin in multiple computer vision benchmarks.  
+- This approximation - **single step SGD** over nested opt, has the key advantage over (Wang et al., 2018) and eq. (5) that it does not require the expensive unrolling of the recursive computation graph over the previous parameters {θ0, . . . , θt−1}. The important consequence is that the optimization is significantly faster, memory efficient and thus scales up to the state-of-the-art deep neural networks (e.g. ResNet (He et al., 2016)).
+
+- does not rely on the presence of **representative samples** as the synthesized data are directly optimized for the downstream task
+- outperforms **DD** (Wang et al., 2018) and **coreset methods** with a wide margin in multiple computer vision benchmarks.  
 - significantly smaller (2-3 orders of magnitude)
  
 domain
