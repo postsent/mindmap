@@ -2,7 +2,7 @@
 
 **Main idea.** A training set synehtsis  technioque called **data condensation** that learns to condense **large** dataset into a **small** set of informative synthetic samples.
 
-**How it different ?**. 1) Different to Generative Adversarial Networks & Variational AutoEncoders that synthesize high-fidelity samples by capturing the data distribution, generate informative samples for training deep neural networks rather than to produce “**real-looking**” samples. 2) differerent to image reconstruction and recovery, they synthesize a set of condensed training images not to recover the original or missing training images.
+**How it different ?**. 1) Different to **Generative Adversarial Networks** & **Variational AutoEncoders** that synthesize high-fidelity samples by capturing the data distribution, generate informative samples for training deep neural networks rather than to produce “**real-looking**” samples. 2) differerent to **image reconstruction and recovery**, they synthesize a set of condensed training images not to recover the original or missing training images.
 
 **Goal.**
 1. **Compress** large to small in image classiciation
@@ -19,36 +19,36 @@
 
 1. formulate as **gradient matching problem** between the gradients of deep neural network weights that are trained on the original and our synthetic data.
 
-> DD method - computational expensive, nested loop
+💎 **DD method - computational expensive, nested loop**
 
 pose the parameters $\boldsymbol{\theta}^{\mathcal{S}}$ as a function of the synthetic data $\mathcal{S}$. (Bi-level optimisation, **nested loop** optimization).     
 
-- **Aim**: find the optimum set of synthetic images $\mathcal{S}^{\ast}$ such that the model $\phi_{\boldsymbol{\theta}s}$ trained on them minimizes the training loss over the original data.
-- 
+**Aim**: find the optimum set of synthetic images $\mathcal{S}^{\ast}$ such that the model $\phi_{\boldsymbol{\theta}s}$ trained on them minimizes the training loss over the original data.
+  
 $$
 \mathcal{S}^{\ast}=\underset{\mathcal{S}}{\operatorname*{arg}\min}\mathcal{L}^{\mathcal{T}}(\boldsymbol{\theta}^{\mathcal{S}}(\mathcal{S}))\quad\text{subject to}\quad\ \boldsymbol{\theta^S}(\mathcal{S})=\underset{\boldsymbol{\theta}}{\text{arg}\min}\mathcal{L^S}(\boldsymbol{\theta})
 $$
 
-> Parameter Matching but for only one model
+💎 **Parameter Matching but for only one model**
 
 **Aim**: 
 1. The performance is similar to the original dataset
 2. The learnt parameters are similar to the one trained on original.
 
-**Explanation** similar weights $\theta^{\mathcal S},\theta^{\mathcal T}$ imply similar mappings in a local neighborhood and thus generalization performance
+**Explanation.** similar weights $\theta^{\mathcal S},\theta^{\mathcal T}$ imply similar mappings in a local neighborhood and thus generalization performance
 
 $$
 \underset{\mathcal S}{\min}D(\theta^{\mathcal S},\theta^{\mathcal T})\quad\text{subject to}\quad\theta^{\mathcal S}(\mathcal S)=\underset{\theta}{\arg\min}\mathcal L^{\mathcal S}(\theta)
 $$
 
-> Generalise formula - works for different random initialisation $P\_{\boldsymbol{\theta}\_{0}}$
+💎 **Generalise formula - works for different random initialisation $P\_{\boldsymbol{\theta}\_{0}}$**
 
 
 $$
 \underset{\mathcal S}{\operatorname*{min}}\operatorname{E}_{\boldsymbol{\theta}_0\sim P_{\boldsymbol{\theta}_0}}[D(\boldsymbol{\theta}^{\mathcal S}(\boldsymbol{\theta}_0),\boldsymbol{\theta}^{\mathcal T}(\boldsymbol{\theta}_0))] \quad\text{subject to} \quad \boldsymbol{\theta^{\mathcal S}}(\mathcal S)=\underset{\boldsymbol{\theta}}{\text{arg}\min}\mathcal L^{\mathcal S}(\boldsymbol{\theta}(\boldsymbol{\theta}_0))
 $$
 
-> Curriculum gradient matching  
+💎 **Curriculum gradient matching**
   
 Address **problems** of 1) inner optimisation 2) tradeoff of alternative back-optimization approach to inner opt.  
 **Key idea:** $\boldsymbol{\theta}^{\mathcal{S}}$ to be close to not only the final $\boldsymbol{\theta}^{\mathcal{T}}$ but also to follow a similar path to $\boldsymbol{\theta}^{\mathcal{T}}$ throughout the optimization
