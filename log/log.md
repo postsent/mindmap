@@ -9,3 +9,5 @@ how many papers per week - reddit threads: https://www.reddit.com/r/labrats/comm
 ``mindmap`` is good for overview, but still need to write down in ``sequential`` manner for detailed undestanding.
 
 \#marked 2023.1.3 - if I didnt push commits to here, I did not read papers or only a little bit.
+
+For detailed read, rather retype e.g. the formula to understand better than just skip; can learn some latex on the way as well.

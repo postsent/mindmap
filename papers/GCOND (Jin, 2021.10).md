@@ -46,8 +46,6 @@ $$
 - gradient matching loss as the condensation objective
 - strategy of parameterizing the condensed features as free parameters and model the synthetic graph structure as a function of features, which takes advantage of the implicit relationship between structure and node features, consumes less number of parameters and offers better performance
 
-**Remarks.** For the gradient matching method part, very similar to GC paper.
-
 Training
 
 - **Alternating Optimization Schema.** Jointly optimizing X′ and Φ is often challenging as they are directly affecting each other  
@@ -63,7 +61,9 @@ More
 - sample a fixed-size set of neighbors on the original graph in each aggregation layer of GNNs and adopt a mini-batch training strategy because forward pass of GNNs involves the aggregation of enormous neighboring nodes i.e. **expensive**
 - calculate the gradient matching loss for nodes from different classes separately to further **reduce memory usage and ease optimization**
 - treating **A′ and X′ as independent** parameters overlooks the implicit correlations between graph structure and features
-  
+
+**Remarks.** For the gradient matching method part, very similar to GC paper & Less detailed compare to the DC paper.
+
 # Other references to follow
 
 1. dataset distillation (Wang et al., 2018)

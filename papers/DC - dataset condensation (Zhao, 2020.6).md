@@ -23,28 +23,56 @@
 
 pose the parameters $\boldsymbol{\theta}^{\mathcal{S}}$ as a function of the synthetic data $\mathcal{S}$. (Bi-level optimisation, **nested loop** optimization).     
 
-- **Aim**: find the optimum set of synthetic images S∗ such that the model φθS trained on them minimizes the training loss over the original data.
+- **Aim**: find the optimum set of synthetic images $\mathcal{S}^{\ast}$ such that the model $\phi_{\boldsymbol{\theta}s}$ trained on them minimizes the training loss over the original data.
+- 
 $$
 \mathcal{S}^{\ast}=\underset{\mathcal{S}}{\operatorname*{arg}\min}\mathcal{L}^{\mathcal{T}}(\boldsymbol{\theta}^{\mathcal{S}}(\mathcal{S}))\quad\text{subject to}\quad\ \boldsymbol{\theta^S}(\mathcal{S})=\underset{\boldsymbol{\theta}}{\text{arg}\min}\mathcal{L^S}(\boldsymbol{\theta})
 $$
 
-**Parameter Matching for one model**
+**Parameter Matching but for only one model**
 
 **Aim**: 
 1. The performance is similar to the original dataset
 2. The learnt parameters are similar to the one trained on original.
 
 **Explanation** similar weights $\theta^{\mathcal S},\theta^{\mathcal T}$ imply similar mappings in a local neighborhood and thus generalization performance
+
 $$
 \underset{\mathcal S}{\min}D(\theta^{\mathcal S},\theta^{\mathcal T})\quad\text{subject to}\quad\theta^{\mathcal S}(\mathcal S)=\underset{\theta}{\arg\min}\mathcal L^{\mathcal S}(\theta)
 $$
 
-**Ensure works for mulitple random initialisation $P\_{\boldsymbol{\theta}\_{0}}$**
+**Generalise formula - works for different random initialisation $P\_{\boldsymbol{\theta}\_{0}}$**
+
+
+$$
+\underset{\mathcal S}{\operatorname*{min}}\operatorname{E}_{\boldsymbol{\theta}_0\sim P_{\boldsymbol{\theta}_0}}[D(\boldsymbol{\theta}^{\mathcal S}(\boldsymbol{\theta}_0),\boldsymbol{\theta}^{\mathcal T}(\boldsymbol{\theta}_0))] \quad\text{subject to} \quad \boldsymbol{\theta^{\mathcal S}}(\mathcal S)=\underset{\boldsymbol{\theta}}{\text{arg}\min}\mathcal L^{\mathcal S}(\boldsymbol{\theta}(\boldsymbol{\theta}_0))
+$$
+
+**Curriculum gradient matching**  
+Address **problems** of 1) inner optimisation 2) tradeoff of alternative back-optimization approach to inner opt.  
+**Key idea:** $\boldsymbol{\theta}^{\mathcal{S}}$ to be close to not only the final $\boldsymbol{\theta}^{\mathcal{T}}$ but also to follow a similar path to $\boldsymbol{\theta}^{\mathcal{T}}$ throughout the optimization
+
+**Back-optimization approach** to approximate inner loop optimisation - use a limited number of optimization steps as a tradeoff between speed and accuracy i.e. may not be optimal.
+
+$$
+\begin{aligned}\theta^{\mathcal S}(\mathcal S)=&\text{opt-a}\operatorname{l}g_{\boldsymbol\theta}(\mathcal L^{\mathcal S}(\boldsymbol\theta),\varsigma)\end{aligned}
+$$
+
+It restricts the **optimization dynamics** (fixed steps) for $\theta$, but enables a more guided (follow similar opt path) optimization and effective use of the incomplete optimizer (less computation).
+
+$$
+\min_{\mathcal{S}}\operatorname{E}_{\boldsymbol{\theta}_0\sim P_{\boldsymbol{\theta}_0}}[\sum_{t=0}^{T-1}D(\boldsymbol{\theta}_t^{\mathcal{S}},\boldsymbol{\theta}_t^{\mathcal{T}})] \quad
+\text{subject to}
+$$
 
 
 # Takeaway
 
 - 
+
+More
+- **Local smoothness** is frequently used to obtain explicit first-order local approximations in deep networks
+- back-optimization approach to solve inner optimiastion since inner does not scale
 
 # Other references to follow
 
