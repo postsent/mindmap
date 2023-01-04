@@ -1,3 +1,5 @@
+\#log
+
 The choice of using mindmap now only apply to lecture content since it does not work really in for papers as they are already quite concise.  
 
 The reason  why latex is not showing when on same line as text is that it interprets the underscore the wrongly, to fix this: escape the underscore. source from: https://stackoverflow.com/questions/73671158/github-markdown-render-is-not-equivalent-to-vs-code
@@ -11,3 +13,7 @@ how many papers per week - reddit threads: https://www.reddit.com/r/labrats/comm
 \#marked 2023.1.3 - if I didnt push commits to here, I did not read papers or only a little bit.
 
 For detailed read, rather retype e.g. the formula to understand better than just skip; can learn some latex on the way as well.
+
+Thinking if I cannot make it clear here to summarise the paper then prob I did not understand it properly.
+
+when get bored, try different angles to read the paper e.g. openreview, author's presentation.

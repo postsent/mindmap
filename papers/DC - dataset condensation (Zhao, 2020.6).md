@@ -1,3 +1,11 @@
+- [What did the authors tried to accomplished?](#what-did-the-authors-tried-to-accomplished)
+- [Key elements of the approach](#key-elements-of-the-approach)
+- [Takeaway](#takeaway)
+- [Other references to follow](#other-references-to-follow)
+- [Results (Good or Bad)](#results-good-or-bad)
+- [More](#more)
+
+
 # What did the authors tried to accomplished?
 
 **Main idea.** A training set synehtsis  technioque called **data condensation** that learns to condense **large** dataset into a **small** set of informative synthetic samples.
@@ -51,31 +59,65 @@ $$
 💎 **Curriculum gradient matching**
   
 Address **problems** of 1) inner optimisation 2) tradeoff of alternative back-optimization approach to inner opt.  
-**Key idea:** $\boldsymbol{\theta}^{\mathcal{S}}$ to be close to not only the final $\boldsymbol{\theta}^{\mathcal{T}}$ but also to follow a similar path to $\boldsymbol{\theta}^{\mathcal{T}}$ throughout the optimization
+**Key idea:** $\boldsymbol{\theta}^{\mathcal{S}}$ to be close to not only the final $\boldsymbol{\theta}^{\mathcal{T}}$ but also to follow a **similar path** to $\boldsymbol{\theta}^{\mathcal{T}}$ throughout the optimization
 
 **Back-optimization approach** to approximate inner loop optimisation - use a limited number of optimization steps as a tradeoff between speed and accuracy i.e. may not be optimal. It re-defines $\boldsymbol{\theta}^{\mathcal{S}}$ as the output of an **incomplete optimization**
 
 $$
-\begin{aligned}\theta^{\mathcal S}(\mathcal S)=&\text{opt-a}\operatorname{l}g_{\boldsymbol\theta}(\mathcal L^{\mathcal S}(\boldsymbol\theta),\varsigma)\end{aligned}
+\begin{aligned}\theta^{\mathcal S}(\mathcal S)=&\text{opt-alg}_{\boldsymbol\theta}(\mathcal L^{\mathcal S}(\boldsymbol\theta),\varsigma)\end{aligned}
 $$
 
 It restricts the **optimization dynamics** (fixed steps) for $\theta$, but enables a more **guided** (follow similar opt path) optimization and effective use of the **incomplete optimizer** (less computation).
 
 $$
 \min_{\mathcal{S}}\operatorname{E}_{\boldsymbol{\theta}_0\sim P_{\boldsymbol{\theta}_0}}[\sum_{t=0}^{T-1}D(\boldsymbol{\theta}_t^{\mathcal{S}},\boldsymbol{\theta}_t^{\mathcal{T}})] \quad
-\text{subject to} \quad \begin{aligned}\theta^{\mathcal S}_{t+1}(\mathcal S)&=\text{opt-a1}g_{\boldsymbol\theta}(\mathcal L^{\mathcal S}(\boldsymbol\theta^{\mathcal S}_t),\varsigma^{\mathcal S})\end{aligned} \quad \text{and} \quad \begin{aligned}\theta^{\mathcal t}_{t+1}&=\text{opt-a1}g_{\boldsymbol\theta}(\mathcal L^{\mathcal t}(\boldsymbol\theta^{\mathcal t}_t),\varsigma^{\mathcal t})\end{aligned}
+\text{subject to} \quad \begin{aligned}\theta^{\mathcal S}_{t+1}(\mathcal S)&=\text{opt-alg}_{\boldsymbol\theta}(\mathcal L^{\mathcal S}(\boldsymbol\theta^{\mathcal S}_t),\varsigma^{\mathcal S})\end{aligned} \quad \text{and} \quad \begin{aligned}\theta^{\mathcal t}_{t+1}&=\text{opt-alg}_{\boldsymbol\theta}(\mathcal L^{\mathcal t}(\boldsymbol\theta^{\mathcal t}_t),\varsigma^{\mathcal t})\end{aligned}
 $$
+
+💎 **Use one step SGD to simplify incomeple optimisation (curriculm based) & obs that parameters similarity is 1**
+
+Update rule for **one step SGD** as $\text{opt-alg}$:
+$$
+\theta^{\mathcal S}_{t+1}\leftarrow\theta^{\mathcal S}_t-\eta_{\boldsymbol{\theta}}\nabla_{\boldsymbol{\theta}}\mathcal L^{\mathcal S}(\theta^{\mathcal S}_t) \quad \text{and} \quad \theta^{\mathcal T}_{t+1}\leftarrow\theta^{\mathcal T}_t-\eta_{\boldsymbol{\theta}}\nabla_{\boldsymbol{\theta}}\mathcal L^{\mathcal T}(\theta^{\mathcal T}_t)
+$$
+
+**Observation**: $(D(\boldsymbol{\theta}\_{t}^{\mathcal{S}},\boldsymbol{\theta}\_{t}^{\mathcal{T}})\approx0)$ and so **Curriculum formula** above is rewritten as below: (note the step symbol $\varsigma$ disappear, the term inside $\mathcal{L}$ is w.r.t $\theta$ i.e. $\theta^{\mathcal S}$, the $\nabla$ is also)
+
+$$
+\operatorname*{min}_{\mathcal{S}}\operatorname{E}_{\boldsymbol{\theta}_{0}\sim P_{\boldsymbol{\theta}_{0}}}[\sum_{t=0}^{T-1}D(\nabla_{\boldsymbol{\theta}}{\mathcal{L}}^{\mathcal{S}}(\boldsymbol{\theta}_{t}),\nabla_{\boldsymbol{\theta}}{\mathcal{L}}^{T}(\boldsymbol{\theta}_{t}))]
+$$
+
+- This enables they reduce the goal to matching the gradients for the real and synthetic training loss w.r.t. θ via **updating the condensed samples**.
+- key advantage over (Wang et al., 2018) and eq. (5) that it does not require the **expensive unrolling** of the **recursive** computation graph over the previous parameters {θ0, . . . , θt−1}.
+
+💎 **Algorithm**
+
+![](imgs/DC_algo.png)
+
+💎 **Gradient matching loss**
+
 
 
 # Takeaway
 
-- 
+- synthetic data for **each class are separately** (or parallelly) updated at each iteration
+  - i) this **reduces memory** use at train time
+  - ii) imitating the mean gradients w.r.t. the data from single class is **easier** compared to those of multiple classes.
 
-More
+**More**  
+
 - **Local smoothness** is frequently used to obtain explicit first-order local approximations in deep networks
 - back-optimization approach to solve inner optimiastion since inner does not scale
 
 # Other references to follow
+
+**More explanation**:
+- By corresponding author: https://www.youtube.com/watch?v=4Pgx-dIz2O4&ab_channel=METUImageLab
+
+**Openreview**
+- https://openreview.net/forum?id=mSAKhLYLSsl
+
+**papers**  
 
 1. Dataset Distillation (DD) (Wang) - **first paper**
 2. knowledge distillation (KD) - (Hinton et al., 2015)
@@ -107,3 +149,7 @@ domain
 
 - outperforms popular data selection methods by providing more informative training samples in **continual learning**
 - **neural architecture search** : be used to train numerous network architectures extremely efficiently
+
+
+# More
+
