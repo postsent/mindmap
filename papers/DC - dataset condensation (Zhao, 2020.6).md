@@ -3,8 +3,13 @@
 - [Takeaway](#takeaway)
 - [Other references to follow](#other-references-to-follow)
 - [Results (Good or Bad)](#results-good-or-bad)
+- [Openreview](#openreview)
 - [More](#more)
 
+**Keywords**:
+
+- Dataset distillation (DC), dataset condensation (DD) 
+- gradient matching loss, distance metric
 
 # What did the authors tried to accomplished?
 
@@ -150,6 +155,15 @@ domain
 - outperforms popular data selection methods by providing more informative training samples in **continual learning**
 - **neural architecture search** : be used to train numerous network architectures extremely efficiently
 
+# Openreview
+
+**Strength:**
+
+- The authors also show that these synthetic images are not architecture dependent and can be used to train different deep neural networks
+
+**Weakness**
+
+- 
 
 # More
 
