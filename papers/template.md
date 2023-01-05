@@ -27,7 +27,13 @@
 
 (from conclusion)
 
-# Others
+# More
 
 Template based on:
 - Stanford CS230: Deep Learning | Autumn 2018 | Lecture 8 - Career Advice / Reading Research Papers
+
+- openreview
+- author's presentation
+- youtube videos from other uni student
+- reddit discussion
+- twitter discussion

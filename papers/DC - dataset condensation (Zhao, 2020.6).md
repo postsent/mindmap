@@ -9,7 +9,7 @@
 **Keywords**:
 
 - Dataset distillation (DC), dataset condensation (DD) 
-- gradient matching loss, distance metric
+- gradient matching loss, gradient distance metric
 
 # What did the authors tried to accomplished?
 
@@ -105,9 +105,11 @@ $$
 
 # Takeaway
 
-- synthetic data for **each class are separately** (or parallelly) updated at each iteration
+- synthetic data for **each class are separately** (or parallelly) updated at each iteration 
   - i) this **reduces memory** use at train time
   - ii) imitating the mean gradients w.r.t. the data from single class is **easier** compared to those of multiple classes.
+
+- effectiveness and robustness of the proposed gradient distance metric - gradient matching loss
 
 **More**  
 
@@ -118,7 +120,7 @@ $$
 
 **More explanation**:
 - By corresponding author: https://www.youtube.com/watch?v=4Pgx-dIz2O4&ab_channel=METUImageLab
-
+- By author, ICML poster pre 2021 : https://slideslive.com/38953510/dataset-condensation-with-gradient-matching?ref=recommended
 **Openreview**
 - https://openreview.net/forum?id=mSAKhLYLSsl
 
@@ -157,12 +159,18 @@ domain
 
 # Openreview
 
-**Strength:**
+**Pros:**
 
 - The authors also show that these synthetic images are not architecture dependent and can be used to train different deep neural networks
 
-**Weakness**
+**Cons**
 
+- **overfitting** on other (possibly "heavier") architectures due to small data (apply substantial data augmentation (crop, scale and rotate) to avoid overfitting)
+  - just limiting the number of training step?
+  - heavy data augmentation?
+  -  multiple synthetic sets in practice?
+- the synethic and real data **sampling process** in the algo is not clear
+- lack experiments on larger dataset
 - 
 
 # More
