@@ -89,7 +89,7 @@ $$
 - **Motivation:**   Expected similar optimisation throughout the optimsation.  
 - **Address the problems:**
   1. avoid nested-loop optimisation  
-  2. provide **denser supervision** in the learning process (since match gradient i.e. **learning trajectory** then **model parameters**, "it includes many sub targets in the learning steps")
+  2. provide **denser supervision** in the learning process (since match gradient i.e. **learning trajectory** over **model parameters**, "it includes many sub targets in the learning steps")
   3. tradeoff of alternative back-optimization approach to inner opt.  
 **Key idea:** $\boldsymbol{\theta}^{\mathcal{S}}$ to be close to not only the final $\boldsymbol{\theta}^{\mathcal{T}}$ but also to follow a **similar path** to $\boldsymbol{\theta}^{\mathcal{T}}$ throughout the optimization
 
@@ -115,6 +115,7 @@ $$
 ## Use one step SGD to simplify incomeple optimisation (curriculm based) & obs that parameters similarity is 1
 
 Update rule for **one step SGD** as $\text{opt-alg}$:
+
 $$
 \theta^{\mathcal S}_{t+1}\leftarrow\theta^{\mathcal S}_t-\eta_{\boldsymbol{\theta}}\nabla_{\boldsymbol{\theta}}\mathcal L^{\mathcal S}(\theta^{\mathcal S}_t) \quad \text{and} \quad \theta^{\mathcal T}_{t+1}\leftarrow\theta^{\mathcal T}_t-\eta_{\boldsymbol{\theta}}\nabla_{\boldsymbol{\theta}}\mathcal L^{\mathcal T}(\theta^{\mathcal T}_t)
 $$
@@ -138,10 +139,25 @@ $$
 
 ## Gradient matching loss 
 
+Pros of **layerwise losses**:
+- enables using a **single learning rate** across all layers
+- In contrast to (Lopez-Paz et al., 2017; Aljundi et al., 2019; Zhu et al., 2019) that ignore the **layer-wise structure** by flattening tensors over all layers to one vector and then computing the distance between two vectors, we **group them for each output node**
+  
+sum of **layerwise losses** as
 
+$$
+D(\nabla_{\boldsymbol{\theta}}\mathcal{L}^{\mathcal{S}},\nabla_{\boldsymbol{\theta}}\mathcal{L}^{\mathcal{T}})=\sum_{l=1}^L d(\nabla_{\boldsymbol{\theta}^{(l)}}\mathcal{L}^{\mathcal{S}},\nabla_{\boldsymbol{\theta}^{(l)}}\mathcal{L}^{\mathcal{T}})
+$$
+
+and
+
+$$
+\begin{aligned}d(\mathbf{A},\mathbf{B})=\sum_{i=1}^{\text{out}}\left(1-\frac{\mathbf{A_i.}\cdot\mathbf{B_i.}}{\|\mathbf{A_i.}\|\|\mathbf{B_i.}\|}\right)\end{aligned}
+$$
 
 # Takeaway
 
+- Gradient matching loss - **layer-wise**
 - synthetic data for **each class are separately** (or parallelly) updated at each iteration 
   - i) this **reduces memory** use at train time
   - ii) imitating the mean gradients w.r.t. the data from single class is **easier** compared to those of multiple classes.
@@ -207,7 +223,7 @@ domain
 
 **Cons**
 
-- **overfitting** on other (possibly "heavier") architectures due to small data (apply substantial data augmentation (crop, scale and rotate) to avoid overfitting)
+- **overfitting** on other (possibly "heavier") architectures due to small data (apply substantial **data augmentation** (crop, scale and rotate) to avoid overfitting)
   - just limiting the number of training step?
   - heavy data augmentation?
   -  multiple synthetic sets in practice?
