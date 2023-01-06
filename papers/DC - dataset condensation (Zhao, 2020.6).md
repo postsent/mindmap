@@ -33,13 +33,13 @@
 2. highest **generalization** performance - trained on synethic comparable to the original dataset 
 3. applicable to **different architectures**
 
-![](imgs/DC/DC-goal.png)
+<img src="imgs/DC/DC-goal.png" width="500"/>
 
 **Previous problems.** Relies on 
 1. **heuristics** (e.g. picking cluster centers) that does not guarantee any optimal solution for the downstream task (e.g. image classification)
 2. presence of **representative samples**, which is neither guaranteed.
 
-![](imgs/DC/DC-coreset-selection.png)
+<img src="imgs/DC/DC-coreset-selection.png" width="500"/>
 
 **Motivation.** Dataset Distillation (DD).  
    
@@ -59,7 +59,8 @@ dataset (eg hyperparameter search, **neural architecture search**)
 - **DD Problems:**: 
   - nested-loop optimisation - hard to optimise
   - need to unroll the recusive computation graph - not scalable
-![](imgs/DC/DC-DD.png)
+  
+<img src="imgs/DC/DC-DD.png" width="500"/>
 
 - **Aim**: find the optimum set of synthetic images $\mathcal{S}^{\ast}$ such that the model $\phi_{\boldsymbol{\theta}s}$ trained on them minimizes the training loss over the original data.
   
@@ -84,7 +85,7 @@ $$
 \underset{\mathcal S}{\min}D(\theta^{\mathcal S},\theta^{\mathcal T})\quad\text{subject to}\quad\theta^{\mathcal S}(\mathcal S)=\underset{\theta}{\arg\min}\mathcal L^{\mathcal S}(\theta)
 $$
 
-![](imgs/DC/DC-parameter-matching.png)
+<img src="imgs/DC/DC-parameter-matching.png" width="500"/>
 
 
 ## Generalise formula - works for different random initialisation $P\_{\boldsymbol{\theta}\_{0}}$
@@ -115,7 +116,7 @@ $$
   1. match gradient loss between synethic set and large dataset
   2. update synethic set
    
-![](imgs/DC/curriculumn-gradient-matching.png)
+<img src="imgs/DC/curriculumn-gradient-matching.png" width="600"/>
 
 $$
 \min_{\mathcal{S}}\operatorname{E}_{\boldsymbol{\theta}_0\sim P_{\boldsymbol{\theta}_0}}[\sum_{t=0}^{T-1}D(\boldsymbol{\theta}_t^{\mathcal{S}},\boldsymbol{\theta}_t^{\mathcal{T}})] \quad
@@ -147,7 +148,7 @@ $$
   - synethic data - by distaince metric
   - model - by standard loss on sythetic dataset
 
-![](imgs/DC/DC_algo.png)
+<img src="imgs/DC/DC_algo.png" width="600"/>
 
 ## Gradient matching loss 
 
@@ -173,7 +174,7 @@ Decompose
 - Fully-connected layer: out x (in)
 - Convolutional layer: out x (in x hx w).
 
-![](imgs/DC/layerwise-loss.png)
+<img src="imgs/DC/layerwise-loss.png" width="500"/>
 
 # Takeaway
 
