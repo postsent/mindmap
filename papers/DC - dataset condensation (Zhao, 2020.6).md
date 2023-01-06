@@ -33,13 +33,13 @@
 2. highest **generalization** performance - trained on synethic comparable to the original dataset 
 3. applicable to **different architectures**
 
-<img src="imgs/DC/DC-goal.png" width="500"/>
+<img src="imgs/DC/DC-goal.png" width="600"/>
 
 **Previous problems.** Relies on 
 1. **heuristics** (e.g. picking cluster centers) that does not guarantee any optimal solution for the downstream task (e.g. image classification)
 2. presence of **representative samples**, which is neither guaranteed.
 
-<img src="imgs/DC/DC-coreset-selection.png" width="500"/>
+<img src="imgs/DC/DC-coreset-selection.png" width="600"/>
 
 **Motivation.** Dataset Distillation (DD).  
    
@@ -60,7 +60,7 @@ dataset (eg hyperparameter search, **neural architecture search**)
   - nested-loop optimisation - hard to optimise
   - need to unroll the recusive computation graph - not scalable
   
-<img src="imgs/DC/DC-DD.png" width="500"/>
+<img src="imgs/DC/DC-DD.png" width="600"/>
 
 - **Aim**: find the optimum set of synthetic images $\mathcal{S}^{\ast}$ such that the model $\phi_{\boldsymbol{\theta}s}$ trained on them minimizes the training loss over the original data.
   
@@ -85,7 +85,7 @@ $$
 \underset{\mathcal S}{\min}D(\theta^{\mathcal S},\theta^{\mathcal T})\quad\text{subject to}\quad\theta^{\mathcal S}(\mathcal S)=\underset{\theta}{\arg\min}\mathcal L^{\mathcal S}(\theta)
 $$
 
-<img src="imgs/DC/DC-parameter-matching.png" width="500"/>
+<img src="imgs/DC/DC-parameter-matching.png" width="600"/>
 
 
 ## Generalise formula - works for different random initialisation $P\_{\boldsymbol{\theta}\_{0}}$
@@ -174,7 +174,7 @@ Decompose
 - Fully-connected layer: out x (in)
 - Convolutional layer: out x (in x hx w).
 
-<img src="imgs/DC/layerwise-loss.png" width="500"/>
+<img src="imgs/DC/layerwise-loss.png" width="600"/>
 
 # Takeaway
 
