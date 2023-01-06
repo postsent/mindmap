@@ -14,18 +14,19 @@
 
 (from method)
 
-# Takeaway
+# Results (Good or Bad)
 
-(what can be used in my part)
+(from conclusion)
 
 # Other references to follow
 
 (By category, from introduction, related work)
 
+# Related work
 
-# Results (Good or Bad)
+# Takeaway
 
-(from conclusion)
+(what can be used in my part)
 
 # More
 
@@ -33,7 +34,7 @@ Template based on:
 - Stanford CS230: Deep Learning | Autumn 2018 | Lecture 8 - Career Advice / Reading Research Papers
 
 - openreview
-- author's presentation
+- author's conference presentation
 - youtube videos from other uni student
 - reddit discussion
 - twitter discussion

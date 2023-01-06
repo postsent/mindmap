@@ -1,3 +1,5 @@
+\#GNN
+
 **inductive learning.** all the nodes are labeled and test nodes are unseen during training.  
 **transductive setting.**   
 
