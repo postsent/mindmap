@@ -1,10 +1,16 @@
 - [What did the authors tried to accomplished?](#what-did-the-authors-tried-to-accomplished)
 - [Key elements of the approach](#key-elements-of-the-approach)
+  - [DD method - computational expensive, nested loop](#dd-method---computational-expensive-nested-loop)
+  - [Parameter Matching Method (only for one model)](#parameter-matching-method-only-for-one-model)
+  - [Generalise formula - works for different random initialisation $P\_{\boldsymbol{\theta}\_{0}}$](#generalise-formula---works-for-different-random-initialisation-p_boldsymboltheta_0)
+  - [Curriculum gradient matching](#curriculum-gradient-matching)
+  - [Use one step SGD to simplify incomeple optimisation (curriculm based) & obs that parameters similarity is 1](#use-one-step-sgd-to-simplify-incomeple-optimisation-curriculm-based--obs-that-parameters-similarity-is-1)
+  - [Algorithm](#algorithm)
+  - [Gradient matching loss](#gradient-matching-loss)
 - [Takeaway](#takeaway)
 - [Other references to follow](#other-references-to-follow)
 - [Results (Good or Bad)](#results-good-or-bad)
 - [Openreview](#openreview)
-- [Related work](#related-work)
 
 **Keywords**:
 
@@ -15,9 +21,7 @@
 
 **Main idea.** A training set synehtsis  technioque called **data condensation** that learns to condense **large** dataset into a **small** set of informative synthetic samples. Expected comparable performance on the original and the sythetic one.
 
-TODO goal
-
-**How it different ?**. 1) Different to **Generative Adversarial Networks** & **Variational AutoEncoders** that synthesize high-fidelity samples by capturing the data distribution, generate informative samples for training deep neural networks rather than to produce “real-looking” samples. 2) differerent to **image reconstruction and recovery**, they synthesize a set of condensed training images not to recover the original or missing training images.
+**How it different ?**. 1) Different to **Generative Adversarial Networks** & **Variational AutoEncoders** that synthesize high-fidelity samples by capturing the data distribution, generate informative samples for training deep neural networks rather than to produce “real-looking” samples. 2) differerent to **image reconstruction and recovery**, they synthesize a set of condensed training images to recover the original or missing training images (not here).
 
 **Goal.**
 1. **Compress** large to small in image classiciation
@@ -38,7 +42,7 @@ TODO goal
 
 1. formulate as **gradient matching problem** between the gradients of deep neural network weights that are trained on the original and our synthetic data.
 
-💎 **DD method - computational expensive, nested loop**
+## DD method - computational expensive, nested loop
 
 - pose the parameters $\boldsymbol{\theta}^{\mathcal{S}}$ as a function of the synthetic data $\mathcal{S}$. (Bi-level optimisation, **nested loop** optimization).     
 
@@ -47,21 +51,20 @@ TODO goal
   - need to unroll the recusive computation graph - not scalable
 ![](imgs/DC/DC-DD.png)
 
-**Aim**: find the optimum set of synthetic images $\mathcal{S}^{\ast}$ such that the model $\phi_{\boldsymbol{\theta}s}$ trained on them minimizes the training loss over the original data.
+- **Aim**: find the optimum set of synthetic images $\mathcal{S}^{\ast}$ such that the model $\phi_{\boldsymbol{\theta}s}$ trained on them minimizes the training loss over the original data.
   
 $$
 \mathcal{S}^{\ast}=\underset{\mathcal{S}}{\operatorname*{arg}\min}\mathcal{L}^{\mathcal{T}}(\boldsymbol{\theta}^{\mathcal{S}}(\mathcal{S}))\quad\text{subject to}\quad\ \boldsymbol{\theta^S}(\mathcal{S})=\underset{\boldsymbol{\theta}}{\text{arg}\min}\mathcal{L^S}(\boldsymbol{\theta})
 $$
 
-💎 **Parameter Matching** but for only one model
+## Parameter Matching Method (only for one model)
 
 - **Motivation**: 
 Expect models trained on the large dataset and small have
    1. similar **performance** 
    2. similar solution in the **parameter space**.
-   3. Formulate as a constrained satisfaction problem
 
-- **Explanation.** similar weights $\theta^{\mathcal S},\theta^{\mathcal T}$ imply similar mappings in a local neighborhood and thus generalization performance
+- **Explanation.** similar weights $\theta^{\mathcal S},\theta^{\mathcal T}$ imply similar mappings in a local neighborhood and thus generalization performance. (Formulate as a constrained satisfaction problem)
 
 - **Problems**
   - involve many **local minima** traps (since distance are large) in the parameter space - hard to optimise
@@ -74,14 +77,14 @@ $$
 ![](imgs/DC/DC-goal_.png)
 
 
-💎 **Generalise formula - works for different random initialisation $P\_{\boldsymbol{\theta}\_{0}}$**
+## Generalise formula - works for different random initialisation $P\_{\boldsymbol{\theta}\_{0}}$
 
 
 $$
 \underset{\mathcal S}{\operatorname*{min}}\operatorname{E}_{\boldsymbol{\theta}_0\sim P_{\boldsymbol{\theta}_0}}[D(\boldsymbol{\theta}^{\mathcal S}(\boldsymbol{\theta}_0),\boldsymbol{\theta}^{\mathcal T}(\boldsymbol{\theta}_0))] \quad\text{subject to} \quad \boldsymbol{\theta^{\mathcal S}}(\mathcal S)=\underset{\boldsymbol{\theta}}{\text{arg}\min}\mathcal L^{\mathcal S}(\boldsymbol{\theta}(\boldsymbol{\theta}_0))
 $$
 
-💎 **Curriculum gradient matching**
+## Curriculum gradient matching
 
 - **Motivation:**   Expected similar optimisation throughout the optimsation.  
 - **Address the problems:**
@@ -109,7 +112,7 @@ $$
 \text{subject to} \quad \begin{aligned}\theta^{\mathcal S}_{t+1}(\mathcal S)&=\text{opt-alg}_{\boldsymbol\theta}(\mathcal L^{\mathcal S}(\boldsymbol\theta^{\mathcal S}_t),\varsigma^{\mathcal S})\end{aligned} \quad \text{and} \quad \begin{aligned}\theta^{\mathcal t}_{t+1}&=\text{opt-alg}_{\boldsymbol\theta}(\mathcal L^{\mathcal t}(\boldsymbol\theta^{\mathcal t}_t),\varsigma^{\mathcal t})\end{aligned}
 $$
 
-💎 **Use one step SGD to simplify incomeple optimisation (curriculm based) & obs that parameters similarity is 1**
+## Use one step SGD to simplify incomeple optimisation (curriculm based) & obs that parameters similarity is 1
 
 Update rule for **one step SGD** as $\text{opt-alg}$:
 $$
@@ -125,7 +128,7 @@ $$
 - This enables they reduce the goal to matching the gradients for the real and synthetic training loss w.r.t. θ via **updating the condensed samples**.
 - key advantage over (Wang et al., 2018) and eq. (5) that it does not require the **expensive unrolling** of the **recursive** computation graph over the previous parameters {θ0, . . . , θt−1}.
 
-💎 **Algorithm**
+## Algorithm
 
 - Updates
   - synethic data - by distaince metric
@@ -133,7 +136,7 @@ $$
 
 ![](imgs/DC/DC_algo.png)
 
-💎 **Gradient matching loss**
+## Gradient matching loss 
 
 
 
@@ -211,8 +214,6 @@ domain
 - the synethic and real data **sampling process** in the algo is not clear
 - lack experiments on larger dataset
 - 
-
-# Related work
 
 
 

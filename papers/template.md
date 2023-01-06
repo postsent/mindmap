@@ -22,8 +22,6 @@
 
 (By category, from introduction, related work)
 
-# Related work
-
 # Takeaway
 
 (what can be used in my part)
