@@ -180,8 +180,12 @@ $$
 - By **corresponding author**: https://www.youtube.com/watch?v=4Pgx-dIz2O4&ab_channel=METUImageLab
 - ✅ By **author**, ICML poster pre 2021 : https://iclr.cc/virtual/2021/oral/3391
 
--**Openreview:** https://openreview.net/forum?id=mSAKhLYLSsl
+- **Openreview:** https://openreview.net/forum?id=mSAKhLYLSsl
 
+**Extended related works**
+- Variations of Dataset Distillation
+- Zero-shot Knowledge Distillation
+- Data Privacy & Federated Learning
 
 **More papers**
 
