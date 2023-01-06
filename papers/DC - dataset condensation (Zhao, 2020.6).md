@@ -1,3 +1,6 @@
+# Dataset condensation with gradient matching
+
+- [Dataset condensation with gradient matching](#dataset-condensation-with-gradient-matching)
 - [What did the authors tried to accomplished?](#what-did-the-authors-tried-to-accomplished)
 - [Key elements of the approach](#key-elements-of-the-approach)
   - [DD method - computational expensive, nested loop](#dd-method---computational-expensive-nested-loop)
@@ -10,7 +13,9 @@
 - [Takeaway](#takeaway)
 - [Other references to follow](#other-references-to-follow)
 - [Results (Good or Bad)](#results-good-or-bad)
-- [Openreview](#openreview)
+- [More](#more)
+  - [Openreview](#openreview)
+  - [youtube video](#youtube-video)
 
 **Keywords**:
 
@@ -28,6 +33,8 @@
 2. highest **generalization** performance - trained on synethic comparable to the original dataset 
 3. applicable to **different architectures**
 
+![](imgs/DC/DC-goal.png)
+
 **Previous problems.** Relies on 
 1. **heuristics** (e.g. picking cluster centers) that does not guarantee any optimal solution for the downstream task (e.g. image classification)
 2. presence of **representative samples**, which is neither guaranteed.
@@ -36,7 +43,10 @@
 
 **Motivation.** Dataset Distillation (DD).  
    
-
+**why & when**  
+- Problems that require **training multiple models for multiple times** on the same
+dataset (eg hyperparameter search, **neural architecture search**)
+- Problems with limited bụdget on **memory** (eg **continual learning**)
 
 # Key elements of the approach
 
@@ -74,7 +84,7 @@ $$
 \underset{\mathcal S}{\min}D(\theta^{\mathcal S},\theta^{\mathcal T})\quad\text{subject to}\quad\theta^{\mathcal S}(\mathcal S)=\underset{\theta}{\arg\min}\mathcal L^{\mathcal S}(\theta)
 $$
 
-![](imgs/DC/DC-goal_.png)
+![](imgs/DC/DC-parameter-matching.png)
 
 
 ## Generalise formula - works for different random initialisation $P\_{\boldsymbol{\theta}\_{0}}$
@@ -120,10 +130,12 @@ $$
 \theta^{\mathcal S}_{t+1}\leftarrow\theta^{\mathcal S}_t-\eta_{\boldsymbol{\theta}}\nabla_{\boldsymbol{\theta}}\mathcal L^{\mathcal S}(\theta^{\mathcal S}_t) \quad \text{and} \quad \theta^{\mathcal T}_{t+1}\leftarrow\theta^{\mathcal T}_t-\eta_{\boldsymbol{\theta}}\nabla_{\boldsymbol{\theta}}\mathcal L^{\mathcal T}(\theta^{\mathcal T}_t)
 $$
 
-**Observation**: $(D(\boldsymbol{\theta}\_{t}^{\mathcal{S}},\boldsymbol{\theta}\_{t}^{\mathcal{T}})\approx0)$ and so **Curriculum formula** above is rewritten as below: (note the step symbol $\varsigma$ disappear, the term inside $\mathcal{L}$ is w.r.t $\theta$ i.e. $\theta^{\mathcal S}$, the $\nabla$ is also)
+**Observation**: $(D(\boldsymbol{\theta}\_{t}^{\mathcal{S}},\boldsymbol{\theta}\_{t}^{\mathcal{T}})\approx0)$ 
+
+Thus, **Curriculum formula** above is rewritten as below: (note the step symbol $\varsigma$ disappear, the term inside $\mathcal{L}$ is w.r.t $\theta$ i.e. $\theta^{\mathcal S}$, the $\nabla$ is also)
 
 $$
-\operatorname*{min}_{\mathcal{S}}\operatorname{E}_{\boldsymbol{\theta}_{0}\sim P_{\boldsymbol{\theta}_{0}}}[\sum_{t=0}^{T-1}D(\nabla_{\boldsymbol{\theta}}{\mathcal{L}}^{\mathcal{S}}(\boldsymbol{\theta}_{t}),\nabla_{\boldsymbol{\theta}}{\mathcal{L}}^{T}(\boldsymbol{\theta}_{t}))]
+\operatorname*{min}_{\mathcal{S}}\operatorname{E}_{\boldsymbol{\theta}_{0}\sim P_{\boldsymbol{\theta}_{0}}}[\sum_{t=0}^{T-1}D(\nabla_{\boldsymbol{\theta}}{\mathcal{L}}^{\mathcal{S}}(\boldsymbol{\theta}_{t}),\nabla_{\boldsymbol{\theta}}{\mathcal{L}}^{T}(\boldsymbol{\theta}_{t}))] \quad \text{s.t.} \quad \theta_{t+1}\leftarrow\theta_t-\eta_{\boldsymbol{\theta}}\nabla_{\boldsymbol{\theta}}\mathcal L(\theta_t) 
 $$
 
 - This enables they reduce the goal to matching the gradients for the real and synthetic training loss w.r.t. θ via **updating the condensed samples**.
@@ -155,6 +167,14 @@ $$
 \begin{aligned}d(\mathbf{A},\mathbf{B})=\sum_{i=1}^{\text{out}}\left(1-\frac{\mathbf{A_i.}\cdot\mathbf{B_i.}}{\|\mathbf{A_i.}\|\|\mathbf{B_i.}\|}\right)\end{aligned}
 $$
 
+Decompose
+- gradients into layers (with weights)
+- each **layerwise** gradient into smaller groups which are connected to every **output neuron** in every layer and then vectorize each group.
+- Fully-connected layer: out x (in)
+- Convolutional layer: out x (in x hx w).
+
+![](imgs/DC/layerwise-loss.png)
+
 # Takeaway
 
 - Gradient matching loss - **layer-wise**
@@ -174,10 +194,14 @@ $$
 **Relevant papers**  
 
 1. Dataset Distillation (DD) (Wang) - **first paper**
-2. Dataset Condensation with Differentiable Siamese Augmentation
+2. Dataset Condensation with Differentiable Siamese Augmentation - **data agumentation** with condensed images
+3. Soft-label dataset distillation and text dataset distillation. (Sucholutsky et. al. arXiv 2019)
+4.  Flexible dataset distillation: Learm labels instead of images. (Bohdal et. al. NeurlPs Workshops 2020.)
+5. Generative teaching networks Acceterating neural architecture search by learning to generate synthetic training data.
+(Such et. al. 1CML 2020.)
 
 **More explanation**:
-- By **corresponding author**: https://www.youtube.com/watch?v=4Pgx-dIz2O4&ab_channel=METUImageLab
+- skim✅ By  **corresponding author**: https://www.youtube.com/watch?v=4Pgx-dIz2O4&ab_channel=METUImageLab
 - ✅ By **author**, ICML poster pre 2021 : https://iclr.cc/virtual/2021/oral/3391
 
 - **Openreview:** https://openreview.net/forum?id=mSAKhLYLSsl
@@ -208,6 +232,8 @@ Extension of the original paper (DD):
 
 # Results (Good or Bad)
 
+**Pros**  
+
 - This approximation - **single step SGD** over nested opt, has the key advantage over (Wang et al., 2018) and eq. (5) that it does not require the expensive unrolling of the recursive computation graph over the previous parameters {θ0, . . . , θt−1}. The important consequence is that the optimization is significantly faster, memory efficient and thus scales up to the state-of-the-art deep neural networks (e.g. ResNet (He et al., 2016)).
 
 - does not rely on the presence of **representative samples** as the synthesized data are directly optimized for the downstream task
@@ -219,7 +245,9 @@ domain
 - outperforms popular data selection methods by providing more informative training samples in **continual learning**
 - **neural architecture search** : be used to train numerous network architectures extremely efficiently
 
-# Openreview
+# More
+
+## Openreview
 
 **Pros:**
 
@@ -235,5 +263,16 @@ domain
 - lack experiments on larger dataset
 - 
 
+## youtube video
+
+- if novel dataset is provided and the model is not optimal, still have some performance
+- gradient matching - **underfitting**
+- the model trained on the small set can **overfit**
+- in gradient matching, do not update the weight of parameters but the synthetic set which is dynamic and so cannot overfit to this set.
+- importance of different layer is different, is it good to give various weight to differnet gradient errors at different layers?
+  - hard to adjust these parameters
+  - use cosine similarity on matching gradient
+    - euclidean distance is more sensitive to the weight of different loss function
+    - **normalisation with the cosine similarity** enables them to use one global parameters for all the layers
 
 
