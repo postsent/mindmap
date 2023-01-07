@@ -52,6 +52,9 @@
 dataset (eg hyperparameter search, **neural architecture search**)
 - Problems with limited bụdget on **memory** (eg **continual learning**)
 
+**Future work**
+- more diverse and thus challenging datasets like **ImageNet** that contain higher resolution images with larger variations in appearance and pose of objects, background
+
 # Key elements of the approach
 
 1. formulate as **gradient matching problem** between the gradients of deep neural network weights that are trained on the original and our synthetic data.

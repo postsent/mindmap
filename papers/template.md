@@ -1,13 +1,22 @@
 # Title: TODO
 
+- [Title: TODO](#title-todo)
+- [What did the authors tried to accomplished?](#what-did-the-authors-tried-to-accomplished)
+- [Key elements of the approach](#key-elements-of-the-approach)
+- [Results (Good or Bad)](#results-good-or-bad)
+- [Other references to follow](#other-references-to-follow)
+- [Takeaway](#takeaway)
+- [More](#more)
+
 **Keywords**:
 - TODO
 
 # What did the authors tried to accomplished?
 
 **Main idea.**  TODO  
+**Motivation.** TODO  
 **Previous problems.** TODO  
-**Motivation.** TODO
+
 
 # Key elements of the approach
 
@@ -24,6 +33,12 @@
 
 (By category, from introduction, related work)
 
+**More explanation**
+
+**More papers**
+
+
+
 # Takeaway
 
 (what can be used in my part)
@@ -38,3 +53,4 @@ Template based on:
 - youtube videos from other uni student
 - reddit discussion
 - twitter discussion
+
