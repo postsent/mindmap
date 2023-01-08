@@ -8,7 +8,7 @@
 - [Results (Good or Bad)](#results-good-or-bad)
 - [Other references to follow](#other-references-to-follow)
 - [Takeaway](#takeaway)
-- [More](#more)
+- [openreview](#openreview)
 
 **Keywords**:
 - Dataset Distillation (DC)
@@ -50,7 +50,32 @@ In short:
 
 ## Optimise distilled data
 
+From standard minibatch stochastic gradient descent 
 
+$$
+\begin{aligned}\theta_{t+1}&=\theta_t-\eta\nabla_{\theta_t}\ell(\textbf{x}_t,\theta_t),\end{aligned}
+$$
+
+(often takes tens of thousands or even millions of update steps to converge)
+
+to 
+
+$$
+\theta_1=\theta_0-\tilde{\eta}\nabla_{\theta_0}\ell(\tilde{\textbf{x}},\theta_0)
+$$
+
+(derive the new **weights** $\theta\_1$ as **a function of distilled data** $\tilde{x}$) 
+
+to 
+
+$$
+\tilde{\mathbf x}^*,\tilde\eta^*=\underset{\tilde{\mathbf x},\tilde\eta}{\operatorname{arg}\operatorname*{min}}\mathcal L(\tilde{\mathbf x},\tilde\eta;\theta_0)=\underset{\tilde{\mathbf x},\tilde\eta}{\operatorname{arg}\operatorname*{min}}\ell(\mathbf x,\theta_1)=\underset{\tilde{\mathbf x},\tilde\eta}{\operatorname{arg}\operatorname*{min}}\ell(\textbf{x},\theta_0-\tilde{\eta}\nabla_{\theta_0}\ell(\tilde{\textbf{x}},\theta_0))
+$$
+
+
+- **Aim**
+  - learn a tiny set of synthetic distilled training data so that **a single GD step** like above using these learned synthetic data $\tilde{x}$ can greatly boost the performance on the real test set.
+  - optimise $\theta_0$ same as optimise $\theta\_1$
 
 ## 
 
@@ -63,13 +88,20 @@ In short:
 
 # Other references to follow
 
+
+**More explanation**
+- **Author**'s project site: https://www.tongzhouwang.info/dataset_distillation/
+
 **papers**
 - network distillation (Hinton et al., 2015)
+- Geoffrey Hinton, Oriol Vinyals, and Jeff Dean. "**Distilling the Knowledge** in a Neural Network", in NIPS Deep Learning Workshop 2014.
+- Dougal Maclaurin, David Duvenaud, and Ryan Adams. "**Gradient-based hyperparameter optimization** through reversible learning", in ICML 2015.
+- Antonio Torralba and Alexei A Efros. "Unbiased look at dataset bias", in CVPR 2011.
+- Agata Lapedriza, Hamed Pirsiavash, Zoya Bylinskii, and Antonio Torralba. "Are all training examples equally valuable?", in arXiv preprint 2013.
+
 - Dataset pruning, core-set construction, and instance selection
-- gradient-based hyperparameter optimization 
 
 **More papers**
-
 
 - ensemble learning (Radosavovic et al., 2018)
 - model compression (Ba & Caruana, 2014; Romero et al., 2015; Howard et al., 2017)
@@ -82,13 +114,8 @@ In short:
 - extend our method to compressing **large-scale** visual datasets such as ImageNet and **other types** of data (e.g., audio and text)
 - investigate other initialization strategies since **sensitive** to the **distribution of initializations**
 - 
-# More
 
-Template based on:
-- Stanford CS230: Deep Learning | Autumn 2018 | Lecture 8 - Career Advice / Reading Research Papers
+# openreview
 
-- openreview
-- author's conference presentation
-- youtube videos from other uni student
-- reddit discussion
-- twitter discussion
+**GD Steps and Epochs**
+- Each step is associated with a different batch of distilled data. All steps are sequentially cycled over for #epochs times. We clarified this in Sec. 3.4.
