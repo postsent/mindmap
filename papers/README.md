@@ -5,16 +5,18 @@
 🔲 - TO READ
 
 Note
-- Add submitted data if different to conference year
+- Add submitted date if different to conference year
+- Paper list ordered by APA reference date
 
 # Data Distillation
 
 | Title | Authors | Date | status | Description | Comments |
-| --- | --- | --- |--- | --- |--- |
+| --- | --- | --- | --- | --- |--- |
 | Dataset Distillation (DD) | Tongzhou Wang | 2018 | ☑️ | First formal paper introduces the concept of dataset distillation, inspired by Knowldege distillation | --- |
 | Dataset Condensation with gradient matching (DC) | Bo Zhao |2020, ICLR 2021 | ✅ | Improve DD with Gradient surrogate objective (faster, efficient) | --- |
-| Dataset Condensation with Distribution Matching |  Bo Zhao | 2021, WACV 2023  | 🔲 | Distribution Matching Surrogate Objective | --- |
-| Dataset Condensation with Differentiable Siamese Augmentation (DSM) | Bo Zhao | 2021, ICML 2021 | 🔲 | Improve DC with data augmentation techniques tailored to sythetic data since the traditional ones give poor performance gain |
+| Dataset Condensation with Distribution Matching (DCDM) |  Bo Zhao | 2021, WACV 2023  | 🔲 | Distribution Matching Surrogate Objective | --- |
+| Dataset Condensation with Differentiable Siamese Augmentation (DSM) | Bo Zhao | 2021, ICML 2021 | 🔲 | Improve DC with data augmentation techniques tailored to sythetic data  | Traditional ones give poor performance gain | 
+| Dataset Distillation by Matching Training Trajectories | George Cazenavette, Tongzhou Wang (2nd) | 2022, CVPR 2022 | 🔲 | Large-scale datasets, long-range training dynamics, match segments of pre-recorded trajectories from models trained on real data | Prior works either computational expensive or short range (single training step) approximation |
 
 # Graph Distillation
 
@@ -45,5 +47,3 @@ GNN paper list - https://github.com/GRAND-Lab/Awesome-Graph-Neural-Networks
 - [Lee et al., ICML 2022]: careful scheduling of class-wise and class-collective objectives.
 - [Such et al., ICML 2020]: training a generator that outputs good synthetic trianing data, with application in Neural Architecture Search.
 - [Deng et al., 2022]: new reparametrization that improves distillation via simple backpropagation through optimization steps, with application in continual learning.
-- G. Cazenavette, T. Wang, A. Torralba, A. A. Efros, J. Y. Zhu. "Dataset Distillation by Matching Training Trajectories". CVPR 2022.
-- G. Cazenavette, T. Wang, A. Torralba, A. A. Efros, J. Y. Zhu. "Wearable ImageNet: Synthesizing Tileable Textures via Dataset Distillation". Workshop on Computer Vision for Fashion, Art, and Design at CVPR 2022.

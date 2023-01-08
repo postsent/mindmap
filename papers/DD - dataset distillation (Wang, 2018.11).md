@@ -92,6 +92,10 @@ $$
 **More explanation**
 - **Author**'s project site: https://www.tongzhouwang.info/dataset_distillation/
 
+**openreview**
+- ICLR2019 - https://openreview.net/forum?id=Sy4lojC9tm
+- ICLR2020 - https://openreview.net/forum?id=ryxO3gBtPB
+
 **papers**
 - network distillation (Hinton et al., 2015)
 - Geoffrey Hinton, Oriol Vinyals, and Jeff Dean. "**Distilling the Knowledge** in a Neural Network", in NIPS Deep Learning Workshop 2014.
