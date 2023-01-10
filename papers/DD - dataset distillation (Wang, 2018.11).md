@@ -99,7 +99,7 @@ to
   - crucial for $l(x, ·)$ to share **similar local conditions** (e.g., output values, gradient magnitudes) over initializations  $\theta_0$ sampled from $p(\theta_0)$
   
 $$
-\tilde{\mathbf{x}}^*,\tilde{\eta}^*=\underset{\tilde{\mathbf{x}},\tilde{\eta}}{\operatorname*{arg}\operatorname*{min}}\mathbb{E}_{\theta_0\sim p(\theta_0)}\mathcal{L}(\tilde{\mathbf{x}},\tilde{\eta};\theta_0)
+\tilde{\mathbf{x}}^{*},\tilde{\eta}^{*}=\underset{\tilde{\mathbf{x}},\tilde{\eta}}{\operatorname*{arg}\operatorname*{min}}\mathbb{E}_{\theta_0\sim p(\theta_0)}\mathcal{L}(\tilde{\mathbf{x}},\tilde{\eta};\theta_0)
 $$
 
 where the network initialization $\theta_0$ is randomly sampled from a distribution $p(\theta_0)$
@@ -108,6 +108,7 @@ where the network initialization $\theta_0$ is randomly sampled from a distribut
 
 - The lower bound M ≥ D where M is the size of synthetic images and D is the dimension of the weigh
 - This analysis motivates us to focus on p($\theta_0$) distributions that yield similar local conditions.
+  
 ## Algo
 **Steps**
 1. Initialise synethic images randomly 

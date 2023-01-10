@@ -16,6 +16,10 @@ For **detailed read**, rather retype e.g. the formula to understand better than 
 
 Thinking if I cannot make it clear here to summarise the paper then prob I did not understand it properly.
 
-when get bored, try different angles to read the paper e.g. openreview, author's presentation.
+
 
 2023 resolution: consistency, progressive descent
+
+\#quality-of-paper if have code and openreview, high quality paper, especially code with great comments +1M thumbs up
+
+if the a part of the paper is confusing then blame the poor explanation and move on.
