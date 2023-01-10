@@ -9,7 +9,7 @@
   - [Algo](#algo)
   - [3.4 Multiple GD steps & epochs](#34-multiple-gd-steps--epochs)
   - [3.5 Distillation with different initilisation](#35-distillation-with-different-initilisation)
-  - [Distillation with different objectives](#distillation-with-different-objectives)
+  - [Distillation with different objectives - data poisoning](#distillation-with-different-objectives---data-poisoning)
 - [Results (Good or Bad)](#results-good-or-bad)
 - [Other references to follow](#other-references-to-follow)
 - [Observation & Takeaway](#observation--takeaway)
@@ -23,7 +23,7 @@
 
 **TLDR;**
 - First paper explores the possibility of distillating images, inspired by Knowledge distillation
-- It uses 
+- Update sythetic data to udpate the model by treat model update as a function of data update (see [Algo](#algo))
 - To improve the cross-architectures generalisation, it uses different initialisation to train
 - It shows two applications: 
   1. adapting pre-trained models to new datasets with the distilled data 
@@ -96,12 +96,13 @@ to
 - **Solution** 
   - form distilled images that work for networks with random initializations from **a specific distribution**
   - In practice, we observe that the final distilled data generalize well to **unseen initializations**
-  - crucial for $l(x, ·)$ to share **similar local conditions** (e.g., output values, gradient magnitudes) over initializations  $\theta_0$ sampled from p( $\theta_0$)
+  - crucial for $l(x, ·)$ to share **similar local conditions** (e.g., output values, gradient magnitudes) over initializations  $\theta_0$ sampled from $p(\theta_0)$
   
 $$
 \tilde{\mathbf{x}}^*,\tilde{\eta}^*=\underset{\tilde{\mathbf{x}},\tilde{\eta}}{\operatorname*{arg}\operatorname*{min}}\mathbb{E}_{\theta_0\sim p(\theta_0)}\mathcal{L}(\tilde{\mathbf{x}},\tilde{\eta};\theta_0)
 $$
-where the network initialization $\theta_0$ is randomly sampled from a distribution p($\theta_0$)
+
+where the network initialization $\theta_0$ is randomly sampled from a distribution $p(\theta_0)$
 
 ## 3.3 Analysis of simple linear case
 
@@ -112,7 +113,10 @@ where the network initialization $\theta_0$ is randomly sampled from a distribut
 1. Initialise synethic images randomly 
 2. For each training steps
    1. sample from real data
-   2. sample different initialisation
+   2. sample different network initialisation
+   3. For each network
+      1. update model param based on sythetic data
+      2. update sythetic data based on model loss on real data
 
 **Notes**
 - optimised learning rate because ``optim.lr_scheduler.StepLR``
@@ -140,16 +144,25 @@ Experiments with
 - "Such learned distilled data essentially fine-tune weights pre-trained on one dataset to perform well for a new dataset"
 - Adapt a model to another task / domain using the distilled data from the target dataset
 
-## Distillation with different objectives
+## Distillation with different objectives - data poisoning
 
 **Distillation for malicious data poisoning**. 
+- a **single GD step** is applied with our synthetic adversarial data
+- **Target attack** by distilling the knowledge of a specific category into data. 
+
+$$
+\tilde{\mathbf{x}}^*, \tilde{\eta}^*=\underset{\tilde{\mathbf{x}}, \tilde{\eta}}{\arg \min } \mathbb{E}_{\theta_0 \sim p\left(\theta_0\right)} \mathcal{L}_{K \rightarrow T}\left(\tilde{\mathbf{x}}, \tilde{\eta} ; \theta_0\right)
+$$
+
 
 # Results (Good or Bad)
 
 - a handful of distilled images can be used to train a model with a fixed initialization to achieve surprisingly high performance
-- For networks pre-trained on other tasks, our method can find distilled images for **fast model fine-tuning**
-
 - **E.g.** possible to compress 60, 000 MNIST training images into just 10 synthetic distilled images (one per class) and achieve close to original performance with only a few gradient descent steps
+- application
+  - malicious data poisoning - For networks pre-trained on other tasks, our method can find distilled images for **fast model fine-tuning**
+  - our method attacks the model training in one iteration and with only a few data
+
 
 # Other references to follow
 
