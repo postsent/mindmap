@@ -7,6 +7,7 @@
 - [Other references to follow](#other-references-to-follow)
 - [Takeaway](#takeaway)
 - [More](#more)
+- [Code Analysis](#code-analysis)
 
 **Keywords**:
 - TODO
@@ -48,9 +49,13 @@
 Template based on:
 - Stanford CS230: Deep Learning | Autumn 2018 | Lecture 8 - Career Advice / Reading Research Papers
 
+**To understand better**
 - openreview
 - author's conference presentation
 - youtube videos from other uni student
 - reddit discussion
 - twitter discussion
 
+# Code Analysis
+
+(main file logic and key implementation details)

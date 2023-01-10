@@ -47,3 +47,5 @@ GNN paper list - https://github.com/GRAND-Lab/Awesome-Graph-Neural-Networks
 - [Lee et al., ICML 2022]: careful scheduling of class-wise and class-collective objectives.
 - [Such et al., ICML 2020]: training a generator that outputs good synthetic trianing data, with application in Neural Architecture Search.
 - [Deng et al., 2022]: new reparametrization that improves distillation via simple backpropagation through optimization steps, with application in continual learning.
+- Synthesizing Informative Training Samples with GAN - https://openreview.net/forum?id=frAv0jtUMfS
+

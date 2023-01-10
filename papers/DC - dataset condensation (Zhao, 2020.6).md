@@ -16,6 +16,7 @@
 - [More](#more)
   - [Openreview](#openreview)
   - [youtube video](#youtube-video)
+- [Code Analysis](#code-analysis)
 
 **Keywords**:
 
@@ -165,6 +166,23 @@ $$
   <img src="imgs/DC/DC_algo.png" width="600"/>
 </p>
 
+```py
+for c in range(num_classes):
+
+    ...
+
+    output_real = net(img_real)
+    loss_real = criterion(output_real, lab_real)
+    gw_real = torch.autograd.grad(loss_real, net_parameters)
+    gw_real = list((_.detach().clone() for _ in gw_real))
+
+    output_syn = net(img_syn)
+    loss_syn = criterion(output_syn, lab_syn)
+    gw_syn = torch.autograd.grad(loss_syn, net_parameters, create_graph=True)
+
+    loss += match_loss(gw_syn, gw_real, args)
+```
+
 ## Gradient matching loss 
 
 Pros of **layerwise losses**:
@@ -183,6 +201,42 @@ $$
 \begin{aligned}d(\mathbf{A},\mathbf{B})=\sum_{i=1}^{\text{out}}\left(1-\frac{\mathbf{A_i.}\cdot\mathbf{B_i.}}{\|\mathbf{A_i.}\|\|\mathbf{B_i.}\|}\right)\end{aligned}
 $$
 
+```py
+def match_loss(gw_syn, gw_real, args):
+    dis = torch.tensor(0.0).to(args.device)
+
+    if args.dis_metric == 'ours':
+        for ig in range(len(gw_real)):
+            gwr = gw_real[ig]
+            gws = gw_syn[ig]
+            dis += distance_wb(gwr, gws)
+
+    elif args.dis_metric == 'mse':
+        gw_real_vec = []
+        gw_syn_vec = []
+        for ig in range(len(gw_real)):
+            gw_real_vec.append(gw_real[ig].reshape((-1)))
+            gw_syn_vec.append(gw_syn[ig].reshape((-1)))
+        gw_real_vec = torch.cat(gw_real_vec, dim=0)
+        gw_syn_vec = torch.cat(gw_syn_vec, dim=0)
+        dis = torch.sum((gw_syn_vec - gw_real_vec)**2)
+
+    elif args.dis_metric == 'cos':
+        gw_real_vec = []
+        gw_syn_vec = []
+        for ig in range(len(gw_real)):
+            gw_real_vec.append(gw_real[ig].reshape((-1)))
+            gw_syn_vec.append(gw_syn[ig].reshape((-1)))
+        gw_real_vec = torch.cat(gw_real_vec, dim=0)
+        gw_syn_vec = torch.cat(gw_syn_vec, dim=0)
+        dis = 1 - torch.sum(gw_real_vec * gw_syn_vec, dim=-1) / (torch.norm(gw_real_vec, dim=-1) * torch.norm(gw_syn_vec, dim=-1) + 0.000001)
+
+    else:
+        exit('unknown distance function: %s'%args.dis_metric)
+
+    return dis
+```
+
 Decompose
 - gradients into layers (with weights)
 - each **layerwise** gradient into smaller groups which are connected to every **output neuron** in every layer and then vectorize each group.
@@ -193,6 +247,26 @@ Decompose
   <img src="imgs/DC/layerwise-loss.png" width="600"/>
 </p>
 
+```py
+def distance_wb(gwr, gws):
+    shape = gwr.shape
+    if len(shape) == 4: # conv, out*in*h*w
+        gwr = gwr.reshape(shape[0], shape[1] * shape[2] * shape[3])
+        gws = gws.reshape(shape[0], shape[1] * shape[2] * shape[3])
+    elif len(shape) == 3:  # layernorm, C*h*w
+        gwr = gwr.reshape(shape[0], shape[1] * shape[2])
+        gws = gws.reshape(shape[0], shape[1] * shape[2])
+    elif len(shape) == 2: # linear, out*in
+        tmp = 'do nothing'
+    elif len(shape) == 1: # batchnorm/instancenorm, C; groupnorm x, bias
+        gwr = gwr.reshape(1, shape[0])
+        gws = gws.reshape(1, shape[0])
+        return torch.tensor(0, dtype=torch.float, device=gwr.device)
+
+    dis_weight = torch.sum(1 - torch.sum(gwr * gws, dim=-1) / (torch.norm(gwr, dim=-1) * torch.norm(gws, dim=-1) + 0.000001))
+    dis = dis_weight
+    return dis
+```
 # Takeaway
 
 - Gradient matching loss - **layer-wise**
@@ -208,6 +282,9 @@ Decompose
 - back-optimization approach to solve inner optimiastion since inner does not scale
 
 # Other references to follow
+
+**code**
+- https://github.com/VICO-UoE/DatasetCondensation
 
 **Relevant papers**  
 
@@ -292,5 +369,22 @@ domain
   - use cosine similarity on matching gradient
     - euclidean distance is more sensitive to the weight of different loss function
     - **normalisation with the cosine similarity** enables them to use one global parameters for all the layers
+
+# Code Analysis
+
+``main.py``
+- Get & Sample original images per class
+- initialize the synthetic data 
+- for exp in range(args.num_exp):
+  - training 
+  - for it in range(args.Iteration+1):
+    - Evaluate synthetic data 
+      - for model_eval in model_eval_pool
+    - Train synthetic data
+      - get a random model
+      - for ol in range(args.outer_loop):
+        - freeze the running mu and sigma for BatchNorm layers, Synthetic data batch, e.g. only 1 image/batch, is too small to obtain stable mu and sigma.
+        - update synthetic data
+          - **loss += match_loss(gw_syn, gw_real, args)**
 
 
