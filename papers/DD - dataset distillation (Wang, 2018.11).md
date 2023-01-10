@@ -80,7 +80,7 @@ $$
 to 
 
 $$
-\tilde{\mathbf x}^{*},\tilde\eta^{*}=\underset{\tilde{\mathbf x},\tilde\eta}{\operatorname{arg}\operatorname{min}}\mathcal L(\tilde{\mathbf x},\tilde\eta;\theta_0)=\underset{\tilde{\mathbf x},\tilde\eta}{\operatorname{arg}\operatorname*{min}}\ell(\mathbf x,\theta_1)=\underset{\tilde{\mathbf x},\tilde\eta}{\operatorname{arg}\operatorname*{min}}\ell(\textbf{x},\theta_0-\tilde{\eta}\nabla_{\theta_0}\ell(\tilde{\textbf{x}},\theta_0))
+\tilde{\mathbf x}^{*},\tilde\eta^{*}=\underset{\tilde{\mathbf x},\tilde\eta}{\operatorname{arg}\operatorname{min}}\mathcal L(\tilde{\mathbf x},\tilde\eta;\theta_0)=\underset{\tilde{\mathbf x},\tilde\eta}{\operatorname{arg}\operatorname{min}}\ell(\mathbf x,\theta_1)=\underset{\tilde{\mathbf x},\tilde\eta}{\operatorname{arg}\operatorname{min}}\ell(\textbf{x},\theta_0-\tilde{\eta}\nabla_{\theta_0}\ell(\tilde{\textbf{x}},\theta_0))
 $$
 
 
