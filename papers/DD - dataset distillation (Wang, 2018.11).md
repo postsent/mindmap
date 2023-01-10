@@ -152,7 +152,7 @@ Experiments with
 - **Target attack** by distilling the knowledge of a specific category into data. 
 
 $$
-\tilde{\mathbf{x}}^*, \tilde{\eta}^*=\underset{\tilde{\mathbf{x}}, \tilde{\eta}}{\arg \min } \mathbb{E}_{\theta_0 \sim p\left(\theta_0\right)} \mathcal{L}_{K \rightarrow T}\left(\tilde{\mathbf{x}}, \tilde{\eta} ; \theta_0\right)
+\tilde{\mathbf{x}}^{*}, \tilde{\eta}^{*}=\underset{\tilde{\mathbf{x}}, \tilde{\eta}}{\arg \min } \mathbb{E}_{\theta_0 \sim p\left(\theta_0\right)} \mathcal{L}_{K \rightarrow T}\left(\tilde{\mathbf{x}}, \tilde{\eta} ; \theta_0\right)
 $$
 
 
