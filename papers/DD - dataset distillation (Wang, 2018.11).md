@@ -75,12 +75,12 @@ $$
 \theta_1=\theta_0-\tilde{\eta}\nabla_{\theta_0}\ell(\tilde{\textbf{x}},\theta_0)
 $$
 
-(derive the new **weights** $\theta\_1$ as **a function of distilled data** $\tilde{x}$) 
+(derive the new **weights** $\theta_1$ as **a function of distilled data** $\tilde{x}$) 
 
 to 
 
 $$
-\tilde{\mathbf{x}}^*, \tilde{\eta}^*=\underset{\tilde{\mathbf{x}}, \tilde{\eta}}{\arg \min } \mathcal{L}\left(\tilde{\mathbf{x}}, \tilde{\eta} ; \theta_0\right)=\underset{\tilde{\mathbf{x}}, \tilde{\eta}}{\arg \min } \ell\left(\mathbf{x}, \theta_1\right)=\underset{\tilde{\mathbf{x}}, \tilde{\eta}}{\arg \min } \ell\left(\mathbf{x}, \theta_0-\tilde{\eta} \nabla_{\theta_0} \ell\left(\tilde{\mathbf{x}}, \theta_0\right)\right)
+\tilde{\mathbf{x}}^{*}, \tilde{\eta}^{*}=\underset{\tilde{\mathbf{x}}, \tilde{\eta}}{\arg \min } \mathcal{L}\left(\tilde{\mathbf{x}}, \tilde{\eta} ; \theta_0\right)=\underset{\tilde{\mathbf{x}}, \tilde{\eta}}{\arg \min } \ell\left(\mathbf{x}, \theta_1\right)=\underset{\tilde{\mathbf{x}}, \tilde{\eta}}{\arg \min } \ell\left(\mathbf{x}, \theta_0-\tilde{\eta} \nabla_{\theta_0} \ell\left(\tilde{\mathbf{x}}, \theta_0\right)\right)
 $$
 
 
@@ -88,7 +88,7 @@ $$
 
 - **Aim**
   - learn a tiny set of synthetic distilled training data so that **a single GD step** like above using these learned synthetic data $\tilde{x}$ can greatly boost the performance on the real test set.
-  - optimise $\theta_0$ same as optimise $\theta\_1$
+  - optimise $\theta_0$ same as optimise $\theta_1$
 
 ## 3.2 Distillation for random initialisation
 
