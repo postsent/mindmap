@@ -12,6 +12,9 @@
 **Keywords**:
 - TODO
 
+**TLDR**
+(my summary of the paper)
+
 # What did the authors tried to accomplished?
 
 **Main idea.**  TODO  

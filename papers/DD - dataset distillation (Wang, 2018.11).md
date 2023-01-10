@@ -9,6 +9,7 @@
   - [Algo](#algo)
   - [3.4 Multiple GD steps & epochs](#34-multiple-gd-steps--epochs)
   - [3.5 Distillation with different initilisation](#35-distillation-with-different-initilisation)
+  - [Distillation with different objectives](#distillation-with-different-objectives)
 - [Results (Good or Bad)](#results-good-or-bad)
 - [Other references to follow](#other-references-to-follow)
 - [Observation & Takeaway](#observation--takeaway)
@@ -19,6 +20,8 @@
 - Dataset pruning, core-set construction, and instance selection
 - Gradient-based hyperparameter optimization
 - Understanding datasets
+
+**TLDR;**
 
 
 # What did the authors tried to accomplished?
@@ -111,8 +114,24 @@ where the network initialization $\theta_0$ is randomly sampled from a distribut
 ## 3.4 Multiple GD steps & epochs
 
 - To address the limitation of using a single GD step, they extend the method to **multiple GD steps**
+- for each epoch, our method cycles through all GD steps, where each step is associated with a batch of distilled data (**before**: one step i.e. use one batch to update one initialisation and iterative until all batches - my understanding)
+
 
 ## 3.5 Distillation with different initilisation
+
+Experiments with
+- Random initialization
+- Fixed initialization
+- Random pre-trained weights
+- Fixed pre-trained weights:
+
+**Distillation with pre-trained weights.** 
+- "Such learned distilled data essentially fine-tune weights pre-trained on one dataset to perform well for a new dataset"
+- Adapt a model to another task / domain using the distilled data from the target dataset
+
+## Distillation with different objectives
+
+**Distillation for malicious data poisoning**. 
 
 # Results (Good or Bad)
 
@@ -160,9 +179,13 @@ where the network initialization $\theta_0$ is randomly sampled from a distribut
 
 - extend our method to compressing **large-scale** visual datasets such as ImageNet and **other types** of data (e.g., audio and text)
 - investigate other initialization strategies since **sensitive** to the **distribution of initializations**
-- 
+- D**omain mismatch** and **dataset bias**
+
+**Takeaway**
+- Distillation with pre-trained weights
 
 # openreview
 
 **GD Steps and Epochs**
 - Each step is associated with a different batch of distilled data. All steps are sequentially cycled over for #epochs times. We clarified this in Sec. 3.4.
+  
