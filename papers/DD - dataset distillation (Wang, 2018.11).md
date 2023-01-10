@@ -22,7 +22,12 @@
 - Understanding datasets
 
 **TLDR;**
-
+- First paper explores the possibility of distillating images, inspired by Knowledge distillation
+- It uses 
+- To improve the cross-architectures generalisation, it uses different initialisation to train
+- It shows two applications: 
+  1. adapting pre-trained models to new datasets with the distilled data 
+  2. data-poisoning attack by training model with the distilled data with e.g. one step.
 
 # What did the authors tried to accomplished?
 
@@ -103,7 +108,13 @@ where the network initialization $\theta_0$ is randomly sampled from a distribut
 - The lower bound M ≥ D where M is the size of synthetic images and D is the dimension of the weigh
 - This analysis motivates us to focus on p($\theta_0$) distributions that yield similar local conditions.
 ## Algo
+**Steps**
+1. Initialise synethic images randomly 
+2. For each training steps
+   1. sample from real data
+   2. sample different initialisation
 
+**Notes**
 - optimised learning rate because ``optim.lr_scheduler.StepLR``
 - **line 6** - **one step** gradient descent
   
