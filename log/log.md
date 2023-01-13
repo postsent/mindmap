@@ -2,7 +2,10 @@
 
 **mindmap** - The choice of using mindmap now only apply to lecture content since it does not work really in for papers as they are already quite concise.  
 
-**github** - The reason  why latex is not showing when on same line as text is that it interprets the underscore the wrongly, to fix this: escape the underscore. source from: https://stackoverflow.com/questions/73671158/github-markdown-render-is-not-equivalent-to-vs-code
+**github** 
+- The reason  why latex is not showing when on same line as text is that it interprets the underscore the wrongly, to fix this: escape the underscore. source from: https://stackoverflow.com/questions/73671158/github-markdown-render-is-not-equivalent-to-vs-code
+- use ``math to replace $$ if not render superscript properly
+
 
 how many **papers** per week - reddit threads: https://www.reddit.com/r/labrats/comments/7ebwjp/how_many_papers_do_you_read_per_week_and_what_is/
 

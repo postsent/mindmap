@@ -7,3 +7,6 @@ placeholder - Read but not summarised
 ➗ read %  
 a folder collect papers read but not mapped or summarised.
 
+# Goal
+
+- at least 1hr reading even when the day is full.
