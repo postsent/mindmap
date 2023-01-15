@@ -21,7 +21,10 @@
 - [Other references to follow](#other-references-to-follow)
 - [Results (Good or Bad)](#results-good-or-bad)
 - [More](#more)
+  - [Openreview](#openreview)
+  - [More investigation](#more-investigation)
   - [Notations](#notations)
+  - [my questions](#my-questions)
 
 **Keywords**:
 - Dataset Distillation (DC), Dataset condensation (DC)
@@ -34,6 +37,13 @@
 - different to image setting
   1. batch of **node features** over images
   2. **MLP model** (model graph structure (adjacency matrix) as a function of node features)
+- contribution
+  - develop tricks that is unique in the graph domain
+    - **Modeling the dependencies** between nodes. by parameterization of graph structure as node features
+    - **optimization** scheme
+      - training the graph structure and node features alternatively
+    - **sampling** strategies
+    - **sparsification** strategy. remove low value entries 
 
 <p align="center">
   <img src="imgs/GCOND/res.png" width="600"/>
@@ -136,6 +146,7 @@ $$
   - GNNs are often trained in a **full-batch** manner
 - **solutions.**
   - mini-batch training strategy
+  - sample a fixed-size set of neighbors on the original graph in each aggregation layer of GNNs
 
 ## 3.2 Model Condensed Graph data
 
@@ -164,11 +175,13 @@ $$
 
 - pros
   - the number of **parameters** for modeling graph structure no longer depends on the number of **nodes**
-    - avoiding jointly learning $O(N^2)$ parameters - less risk of overfitting as $N'$ gets larger.  
+    - avoiding jointly learning $O(N^2)$ parameters (i.e. the graph structure adjacency matrix) - less risk of overfitting as $N'$ gets larger.  
+    - number of parameters for modeling graph structure no longer depends on the **number of nodes** (but the node features)
   - **grow** the synthetic graph by adding more synthetic nodes condensed from real graph
     - only need to learn their features
     - the trained MLPΦ can be employed to **infer the connections** of new synthetic nodes
   
+Formula
 
 $$
 \operatorname*{min}_{\mathbf{X}^{\prime},\Phi}\operatorname{E}_{\boldsymbol{\theta}_{0}\sim P_{\theta_{0}}}\left[\sum_{t=0}^{T-1}D\left(\nabla_{\boldsymbol{\theta}}\mathcal{L}\left(\mathrm{GNN}_{\boldsymbol{\theta}},(g_{\boldsymbol{\Phi}}(\mathbf{X}^{\prime}),\mathbf{X}^{\prime}),\mathbf{Y}^{\prime}\right),\mathbf{\nabla}_{\boldsymbol{\theta}}\mathcal{L}\left(\mathrm{GNN}_{\boldsymbol{\theta}_{t}}(\mathbf{A},\mathbf{X}),\mathbf{Y}\right)\right)\right]
@@ -179,9 +192,11 @@ $$
 - Alternating Optimization Schema
   - **Motivation.** Jointly optimizing X′ and Φ is often challenging as they are directly affecting each other
   - alternatively optimize X′ and Φ: we update Φ for the first τ1 epochs and then update X′ for τ2 epochs; then repeat until crition met
+  - pros
+    -  resembles the real scenarios where node features affect the connectivities and then the connectivities also affect the node features in turn
 
 - Sparsification
-  - remove small value entries less than threshold $δ$ in the matrix
+  - remove small value entries less than threshold $δ$ in the adjacency matrix 
     - the learned condensed adjacency matrix A′ may have small values which have **little effect** on the aggregation process in GNNs but **cost storage** (e.g. 4 bytes per float)
   - promote sparsity of the learned A′
     - do not degrade performance a lot
@@ -193,7 +208,23 @@ $$
 - use a fixed identity matrix I as the condensed graph structure
 - **Aim.** match the gradients of GNN parameters on the large-real data $(A, X)$ and small-synthetic data $(I, X′)$
 
+Table
+- DC-Graph shows difference in **condensation** using with / without graph  
+- GCOND-X shows the  difference in **training** with / without graph
+
+$$
+\begin{array}{lllll}
+\hline & \text { DC } & \text { DC-Graph } & \text { GCoND-X } & \text { GCoND } \\
+\hline \text { Condensation } & \mathbf{X}_{\text {train }} & \mathbf{X}_{\text {train }} & \mathbf{A}_{\text {train }}, \mathbf{X}_{\text {train }} & \mathbf{A}_{\text {train }}, \mathbf{X}_{\text {train }} \\
+\hline \text { Training } & \mathbf{X}^{\prime} & \mathbf{X}^{\prime} & \mathbf{X}^{\prime} & \mathbf{A}^{\prime}, \mathbf{X}^{\prime} \\
+\text { Test } & \mathbf{X}_{\text {test }} & \mathbf{A}_{\text {test }}, \mathbf{X}_{\text {test }} & \mathbf{A}_{\text {test }}, \mathbf{X}_{\text {test }} & \mathbf{A}_{\text {test }}, \mathbf{X}_{\text {test }} \\
+\hline
+\end{array}
+$$
+
 ## Algo 
+
+- TODO
 
 <img src="imgs/GCOND/gcond-algo.png" alt="drawing" width="600"/>
 
@@ -244,6 +275,31 @@ baselines
 
 # More
 
+## Openreview
+
+- What if A' and X' are treated as **free parameters**? What if A' is independent of X'? For example, we can set 
+ where  is a free parameter to replace equation (7). What's the performance of this approach, in terms of both the optimization efficiency and the test performance?
+  - show more stable performance and significantly improves the performance compare to learning independetly
+
+- **deeper** GNN result comparison
+  - poor result as the layers number increase, they conjecture that when we stack more GNN layers, more nodes are involved during the forward process, and this makes the optimization of condensed graph more difficult. 
+
+-  $\theta_t$ in Section 3.1 clarification
+   -   apply the same GNN on both the synthetic, condensed graph and the original, real graph
+
+- Time complexity of the condensation process
+  - around 2.4 hours - The whole condensation process (1000 epochs) for generating 0.5% condensed graph of Ogbn-arxiv 
+    -  one single A100-SXM4 GPU
+
+- In Section 3.2, the authors claim that GCond-X, which only learns the condensed node features X' and not the condensed graph structure A', also performs well. This observation leads me to wonder if the proposed method is better suited for **dataset condensation** rather than **graph condensation**.
+
+## More investigation
+
+- It may reveal insights into **interpretability** and the nature of **sample-efficient representations**. For example, as shown in Table 5 and Figure 2, the condensed graph provides a plausible interpretation of the original dataset and in some cases it preserves the **homophily property** of the original dataset, though not always.
+- Understanding the importance of **preserving** these **properties** (or good performance albeit not preserving them) is an interesting area of further research.
+- neural architecture search (NAS) and continual learning
+  - observe reliable correlation of performances between condensed dataset training and whole-dataset training
+
 ## Notations
 
 - $\mathcal{T}=\{\textbf{A},\textbf{X},\textbf{Y}\}$ - graph dataset 
@@ -251,3 +307,8 @@ baselines
 - $\textbf{N}$ - number of nodes
 - $\mathcal S=\{\textbf A',\textbf X',\textbf Y'\}$ - synthetic graph dataset
 - $δ$ - sparsification threshold 
+
+## my questions
+
+-  the number of parameters does not grow quadratically with the number of condensed nodes, why?
+   -  model graph i.e. adjacency matrix is of complexity $n^2$

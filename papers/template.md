@@ -8,12 +8,16 @@
 - [Takeaway](#takeaway)
 - [More](#more)
 - [Code Analysis](#code-analysis)
+- [TODO](#todo)
 
 **Keywords**:
 - TODO
 
 **TLDR**
 (my summary of the paper)
+
+- ...
+- contribution
 
 **openreview**
 
@@ -64,3 +68,5 @@ Template based on:
 # Code Analysis
 
 (main file logic and key implementation details)
+
+# TODO
