@@ -25,6 +25,7 @@
   - [More investigation](#more-investigation)
   - [Notations](#notations)
   - [my questions](#my-questions)
+- [TODO](#todo)
 
 **Keywords**:
 - Dataset Distillation (DC), Dataset condensation (DC)
@@ -50,7 +51,12 @@
 </p>
 
 **openreview**
-- The authors claim that it is important to parameterize A' as a function of X'. However, experiments are not conducted to support this very important claim.
+- The paper proposes and addresses the problem of **graph condensation**. 
+- In a nutshell, provided a large graph G, the scope of the paper is to propose a solution able to generate a smaller synthetic graph G’, which effectively allows to train Graph Neural Networks (GNNs) able to achieve similar performance as if they were trained on G. 
+- In order to do that, the authors propose to **match the gradients** produced by a specific GNN on **mini-batches** extracted from G and G’. 
+  - This avoids the need of constructing a **minimization problem** based on an **outer and inner training loop** which would be computationally heavy to handle. 
+- The **node-wise features** X’ of the smaller graph G’ are considered as **free parameters** in the optimization process and the **adjacency matrix** A’ is instead **inferred** from X’ via a learnable **MLP** which is **trained alongside** X’ with an **alternating optimization** schema. 
+- The authors evaluate the quality of their approach on the Cora, Citeseer, OGBN-Arxiv and Reddit datasets, condensing and evaluating the new graphs with a variety of different architectures.
 
 # What did the authors tried to accomplished?
 
@@ -250,7 +256,10 @@ More
 - calculate the gradient matching loss for nodes from different classes separately to further **reduce memory usage and ease optimization**
 - treating **A′ and X′ as independent** parameters overlooks the implicit correlations between graph structure and features
 
-**Remarks.** For the gradient matching method part, very similar to GC paper & Less detailed compare to the DC paper.
+**Emprical**
+- Slight **hyper-parameter tuning** can boost the performance.
+- **Inductive biases** among architectures - models similar to the condenser performs better
+
 
 # Other references to follow
 
@@ -277,6 +286,12 @@ baselines
 
 ## Openreview
 
+- The authors claim that it is important to parameterize A' as a function of X'. However, experiments are not conducted to support this very important claim.
+
+<p align="center">
+  <img src="imgs/GCOND/op_idp_compare.png" width="800"/>
+</p>
+
 - What if A' and X' are treated as **free parameters**? What if A' is independent of X'? For example, we can set 
  where  is a free parameter to replace equation (7). What's the performance of this approach, in terms of both the optimization efficiency and the test performance?
   - show more stable performance and significantly improves the performance compare to learning independetly
@@ -292,6 +307,29 @@ baselines
     -  one single A100-SXM4 GPU
 
 - In Section 3.2, the authors claim that GCond-X, which only learns the condensed node features X' and not the condensed graph structure A', also performs well. This observation leads me to wonder if the proposed method is better suited for **dataset condensation** rather than **graph condensation**.
+
+- **trends not perserved.** if performance of GNN1 are better than GNN2 when trained on the original graph, they should also be better when trained on the synthetic graph), so that we could for instance tune a variety of different architectures on the smaller condensed graphs G’ and then re-train only the best performing one on the original datasets
+
+Reviewer peGb 
+
+- distance formula choice effect questioning 
+  - used: sum of one minus the cosine similarity between the columns of the two different gradients.
+  - **emprically**, it is better than L2
+- In **graph sampling** , why do the authors match gradients on each class separately?
+  - "calculate the gradient matching loss for nodes from different classes separately"
+  - The intuition is that imitating the **mean gradients** w.r.t. the data from a **single class** is easier compared to those of multiple classes as the information is less mixed. This is also the convention adopted in the DC paper [1].
+- In the same subsection as for points 2, the authors also state “For the condensed graph A’, we sample a batch of synthetic nodes of class c but do not sample their neighbors as we need to learn the connections with other nodes.”. Does this imply that their model will **learn connections** only across the **sampled nodes** at each step instead of out of the **entire pool** of available nodes?
+- The statement “do not sample their neighbors” means that we will aggregate information from all other nodes at the forward step. 
+- why no pubmed result
+  - Pubmed in the first place is due to its extremely **low labeling rate** (around 0.3%)
+  - added experiment table as well
+- surprisingly a graph **condensed with GCN** is **not the best** one for **training GCN** (the graph condensed with SGC allows to achieve 10% more in terms of accuracy with GCN). This is quite surprising and I wonder if the authors have a justification for this.
+  - observe that for simpler datasets (e.g., Cora and Citeseer), simpler models (e.g., SGC with one transformation layer) used in condensation greatly ease the optimization of the condensed graph. This is **because** **simpler models** involve **less network parameter**s and thus **smaller** size of **gradients**, which are **less difficult to imitate**. As a result, the graph condensed from SGC shows competitive generalization performance across different architectures compared to the one condensed with GCN (with two transformation layers). To see this more clearly, we show the gradient matching loss change on Cora: loss condensed with SGC can drop 99% while loss condensed with GCN can only drop less than 50%.
+
+- Table 5, the graph condensed with SGC for OGBN-Arxiv loses its original homophily. This is probably the reason for the drop in performance,, why?
+  - intuition is that the optimization process for learning condensed graphs is not constrained with any regularization terms
+  - Hence, it does not provide guarantees on the **preservation of homophily**. Since the **features** are **also learned** along with the condensed graph while using the original training data’s gradient information, it is also possible for some of the homophily in the original context to be made **redundant**/unnecessary in the condensed graph, if the features are learned appropriately
+  - **homophily regularization** improves rsult in some cases
 
 ## More investigation
 
@@ -312,3 +350,8 @@ baselines
 
 -  the number of parameters does not grow quadratically with the number of condensed nodes, why?
    -  model graph i.e. adjacency matrix is of complexity $n^2$
+
+# TODO
+
+- runtime analysis 
+  - openreview
