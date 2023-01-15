@@ -30,10 +30,17 @@
 
 **TLDR;**
 - Adapt DD & DC to graph setting
-- distillation method part is very similar to DC paper except for the formulation of graph setting i.e. what is learnt
+  - Technically, the overall framework follows the **gradient matching** method, but specific **parameterization** is proposed for optimizing the small synthetic graph.
 - different to image setting
   1. batch of **node features** over images
   2. **MLP model** (model graph structure (adjacency matrix) as a function of node features)
+
+<p align="center">
+  <img src="imgs/GCOND/res.png" width="600"/>
+</p>
+
+**openreview**
+- The authors claim that it is important to parameterize A' as a function of X'. However, experiments are not conducted to support this very important claim.
 
 # What did the authors tried to accomplished?
 
@@ -161,6 +168,8 @@ $$
   - **grow** the synthetic graph by adding more synthetic nodes condensed from real graph
     - only need to learn their features
     - the trained MLPΦ can be employed to **infer the connections** of new synthetic nodes
+  
+
 $$
 \operatorname*{min}_{\mathbf{X}^{\prime},\Phi}\operatorname{E}_{\boldsymbol{\theta}_{0}\sim P_{\theta_{0}}}\left[\sum_{t=0}^{T-1}D\left(\nabla_{\boldsymbol{\theta}}\mathcal{L}\left(\mathrm{GNN}_{\boldsymbol{\theta}},(g_{\boldsymbol{\Phi}}(\mathbf{X}^{\prime}),\mathbf{X}^{\prime}),\mathbf{Y}^{\prime}\right),\mathbf{\nabla}_{\boldsymbol{\theta}}\mathcal{L}\left(\mathrm{GNN}_{\boldsymbol{\theta}_{t}}(\mathbf{A},\mathbf{X}),\mathbf{Y}\right)\right)\right]
 $$
@@ -217,6 +226,8 @@ More
 1. dataset distillation (Wang et al., 2018)
 2. dataset condensation (Zhao et al., 2021) 
 3. gradient matching scheme (Zhao et al., 2021)
+
+openreview - https://openreview.net/forum?id=WLEx3Jo4QaB
 
 baselines
 
