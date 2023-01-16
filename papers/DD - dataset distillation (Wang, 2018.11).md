@@ -23,7 +23,9 @@
 
 **TLDR;**
 - First paper explores the possibility of distillating images, inspired by Knowledge distillation
-- Update sythetic data to udpate the model by treat model update as a function of data update (see [Algo](#algo))
+- Update sythetic data to udpate the model (see [Algo](#algo))
+  - no explicit matching to mimic the real data learning behaviour
+  - train on synethic data, evalute on real 
 - To improve the cross-architectures generalisation, it uses different initialisation to train
 - It shows two applications: 
   1. adapting pre-trained models to new datasets with the distilled data 

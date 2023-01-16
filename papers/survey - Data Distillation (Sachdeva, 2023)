@@ -1,20 +1,32 @@
-# Title: TODO
+# Data Distillation: A Survey
 
-- [Title: TODO](#title-todo)
+- [Data Distillation: A Survey](#data-distillation-a-survey)
 - [What did the authors tried to accomplished?](#what-did-the-authors-tried-to-accomplished)
 - [Key elements of the approach](#key-elements-of-the-approach)
+  - [2.1 Data Distillation by Meta-model Matching](#21-data-distillation-by-meta-model-matching)
 - [Results (Good or Bad)](#results-good-or-bad)
 - [Other references to follow](#other-references-to-follow)
 - [Takeaway](#takeaway)
 - [TODO](#todo)
 
 **Keywords**:
-- TODO
+- Data Distillation
+- KD, transfer learning, model compression
+- current DD framework
+  - gradient matching
+  - distribution matching
+  - trajectory matching
+  - meta-model matching
+  - factorisation
 
 **TLDR**
-(my summary of the paper)
 
-- TODO
+- explains
+  - benefits of bringing a **faster model-training procedure**
+  - applications
+  - formal data distillation framework
+  - 
+- Comparison with **knowledge distillation** & **transfer learning**
 - contribution
 
 **openreview**
@@ -28,10 +40,24 @@
 
 # Key elements of the approach
 
-**Steps**.  
-**Presudo code.**   
+## 2.1 Data Distillation by Meta-model Matching
 
-(from method)
+In short
+- the **inner-loop** trains a representative learning algorithm on the data summary until convergence
+- the **outer-loop** subsequently optimizes the data summary for the transferability of the optimized learning algorithm to the original dataset
+- assumption
+  - TODO
+
+
+Wang et al. (2018) (DD)
+  -  **inner-loop**
+     -  local optimization 
+  -  **outer loop**
+     -  Truncated Back-Propagation Through Time (TBPTT)
+        -  unroll a **limited** number of inner-loop optimization steps while optimizing the outer-loop
+
+  - problems - TBPTT 
+    - 
 
 # Results (Good or Bad)
 
