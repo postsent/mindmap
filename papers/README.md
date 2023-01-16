@@ -12,10 +12,10 @@ Note
 
 | Title | Authors | Date | status | Description | Comments |
 | --- | --- | --- | --- | --- |--- |
-| Dataset Distillation (DD) | Tongzhou Wang | 2018 | ☑️ | First formal paper introduces the concept of dataset distillation, inspired by Knowldege distillation | [summary](DD%20-%20dataset%20distillation%20(Wang,%202018.11).md) |
+| Dataset Distillation (DD) | Tongzhou Wang | 2018 | ❎ | First formal paper introduces the concept of dataset distillation, inspired by Knowldege distillation | [summary](DD%20-%20dataset%20distillation%20(Wang,%202018.11).md) |
 | Dataset Condensation with gradient matching (DC) | Bo Zhao |2020, ICLR 2021 | ✅ | Improve DD with Gradient surrogate objective (faster, efficient) | [summary](DC%20-%20dataset%20condensation%20(Zhao,%202020.6).md) |
 | Dataset Condensation with Distribution Matching (DCDM) |  Bo Zhao | 2021, WACV 2023  | 🔲 | Distribution Matching Surrogate Objective | --- |
-| Dataset Condensation with Differentiable Siamese Augmentation (DSM) | Bo Zhao | 2021, ICML 2021 | 🔲 | Improve DC with data augmentation techniques tailored to sythetic data  | Traditional ones give poor performance gain | 
+| Dataset Condensation with Differentiable Siamese Augmentation (DSA) | Bo Zhao | 2021, ICML 2021 | 🔲 | Improve DC with data augmentation techniques tailored to sythetic data  | Traditional ones give poor performance gain | 
 | Dataset Distillation by Matching Training Trajectories | George Cazenavette, Tongzhou Wang (2nd) | 2022, CVPR 2022 | 🔲 | Large-scale datasets, long-range training dynamics, match segments of pre-recorded trajectories from models trained on real data | Prior works either computational expensive or short range (single training step) approximation |
 
 # Graph Distillation

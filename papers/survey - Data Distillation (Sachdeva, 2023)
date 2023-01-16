@@ -6,9 +6,7 @@
 - [Results (Good or Bad)](#results-good-or-bad)
 - [Other references to follow](#other-references-to-follow)
 - [Takeaway](#takeaway)
-- [Code Analysis](#code-analysis)
 - [TODO](#todo)
-- [More](#more)
 
 **Keywords**:
 - TODO
@@ -53,25 +51,8 @@
 
 (what can be used in my part)
 
-# Code Analysis
-
-(main file logic and key implementation details)
-
 # TODO
 
 1. summary
 2. author / others explanation video / article
 3. openreview
-4. code
-
-# More
-
-Template based on:
-- Stanford CS230: Deep Learning | Autumn 2018 | Lecture 8 - Career Advice / Reading Research Papers
-
-**To understand better**
-- openreview
-- author's conference presentation
-- youtube videos from other uni student
-- reddit discussion
-- twitter discussion
