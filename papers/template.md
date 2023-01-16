@@ -70,3 +70,8 @@ Template based on:
 (main file logic and key implementation details)
 
 # TODO
+
+1. summary
+2. author / others explanation video / article
+3. openreview
+4. code
