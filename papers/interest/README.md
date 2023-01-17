@@ -8,7 +8,7 @@ Note
 - Add submitted date if different to conference year
 - Paper list ordered by APA reference date
 
-# Data Distillation
+# Inbox
 
 | Title | Authors | Date | status | Description | Comments |
 | --- | --- | --- | --- | --- | --- |

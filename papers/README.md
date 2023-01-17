@@ -8,6 +8,15 @@ Note
 - Add submitted date if different to conference year
 - Paper list ordered by APA reference date
 
+TOC
+
+- [Data Distillation](#data-distillation)
+- [Graph Distillation](#graph-distillation)
+- [Survey - data distillation](#survey---data-distillation)
+- [GNNs](#gnns)
+- [More](#more)
+- [Inbox](#inbox)
+
 # Data Distillation
 
 | Title | Authors | Date | status | Description | Comments |
@@ -30,8 +39,9 @@ Note
 
 | Title | Authors | Date | status | Description | Comments |
 | --- | --- | --- | --- | --- | --- |
-| Data Distillation: A Survey | Noveen Sachdeva | 2023 | ☑️ | --- | First to summarise the overal framework |
+| Data Distillation: A Survey | Noveen Sachdeva, J.McAuley | 2023 | ☑️ | --- | First to summarise the overal framework |
 | A Review of Dataset Distillation for Deep Learning | Thi-Thu-Huong Le | 2022 | 🔲 | --- | First survey to list previous work out |
+| A Comprehensive Survey to Dataset Distillation | S.Lei & D.Tao | 2023 | --- | --- | Explain with framework & list out previous works |
 
 
 # GNNs
@@ -50,6 +60,8 @@ GNN paper list - https://github.com/GRAND-Lab/Awesome-Graph-Neural-Networks
 
 # Inbox
 
+**Progress**
+
 - [Nguyen et al. NeurIPS 2021]: distillation w.r.t. the infinite-width limit Neural Tangent Kernel.
 - [Kim et al., ICML 2022]: reparametrizing distilled dataset via multi-scale patches.
 - [Lee et al., ICML 2022]: careful scheduling of class-wise and class-collective objectives.
@@ -57,3 +69,6 @@ GNN paper list - https://github.com/GRAND-Lab/Awesome-Graph-Neural-Networks
 - [Deng et al., 2022]: new reparametrization that improves distillation via simple backpropagation through optimization steps, with application in continual learning.
 - Synthesizing Informative Training Samples with GAN - https://openreview.net/forum?id=frAv0jtUMfS
 
+**Survey**
+
+- A Comprehensive Survey to Dataset Distillation - S.Lei & D.Tao
