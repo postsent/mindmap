@@ -6,6 +6,7 @@
 --- | can skip
 
 Note
+- Paper file is named by "id-title-reference"
 - Add submitted date if different to conference year
 - Paper list ordered by APA reference date
 
