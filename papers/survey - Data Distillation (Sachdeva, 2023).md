@@ -4,11 +4,15 @@
 - [What did the authors tried to accomplished?](#what-did-the-authors-tried-to-accomplished)
 - [Key elements of the approach](#key-elements-of-the-approach)
   - [2.1 Data Distillation by Meta-model Matching](#21-data-distillation-by-meta-model-matching)
-    - [DD dataset distillation - Wang et al. (2018)](#dd-dataset-distillation---wang-et-al-2018)
-    - [KIP - (Nguyen et al., 2021a), (Nguyen et al., 2021b)](#kip---nguyen-et-al-2021a-nguyen-et-al-2021b)
-    - [RFAD (Loo et al., 2022)](#rfad-loo-et-al-2022)
+    - [DD dataset distillation (Wang et al., 2018) - bilevel optimisation on synethic and real data](#dd-dataset-distillation-wang-et-al-2018---bilevel-optimisation-on-synethic-and-real-data)
+    - [KIP (Nguyen et al., 2021a, b) - Kernelized Ridge Regression (KRR)](#kip-nguyen-et-al-2021a-b---kernelized-ridge-regression-krr)
+    - [RFAD (Loo et al., 2022) - replace with lightweight kernel](#rfad-loo-et-al-2022---replace-with-lightweight-kernel)
     - [FRePO (Zhou et al., 2022b)](#frepo-zhou-et-al-2022b)
   - [2.2 Data Distillation by Gradient Matching](#22-data-distillation-by-gradient-matching)
+    - [DC (Zhao et al., 2021) - gradient matching objective](#dc-zhao-et-al-2021---gradient-matching-objective)
+    - [DSA (Zhao & Bilen, 2021) - augmentation tailored to synethic data](#dsa-zhao--bilen-2021---augmentation-tailored-to-synethic-data)
+    - [DCC (Lee et al., 2022b) - add class contrastive signals when gradient matching](#dcc-lee-et-al-2022b---add-class-contrastive-signals-when-gradient-matching)
+    - [IDC (Kim et al., 2022) - downsample then upsample to remove spatial redundancies, match on full data over synethic (approx)](#idc-kim-et-al-2022---downsample-then-upsample-to-remove-spatial-redundancies-match-on-full-data-over-synethic-approx)
   - [2.3 Data Distillation by Trajectory Matching](#23-data-distillation-by-trajectory-matching)
   - [2.4 Data Distillation by Distribution Matching](#24-data-distillation-by-distribution-matching)
 - [Results (Good or Bad)](#results-good-or-bad)
@@ -62,7 +66,8 @@ $$
 $$
 
 
-### DD dataset distillation - Wang et al. (2018) 
+### DD dataset distillation (Wang et al., 2018) - bilevel optimisation on synethic and real data
+
 - Methods
   -  **inner-loop**
      -  local optimization 
@@ -76,7 +81,7 @@ $$
      2. **bias** involved with truncated unrolling
      3. **poorly** conditioned **loss landscapes**, particularly with long unrolls
 
-### KIP - (Nguyen et al., 2021a), (Nguyen et al., 2021b)
+### KIP (Nguyen et al., 2021a, b) - Kernelized Ridge Regression (KRR)
 - Methods
   - KIP uses the NTK (Neural Tangent Kernel) of a **fully-connected neural network** (Nguyen et al., 2021a), or a **convolutional network** (Nguyen et al., 2021b) in the inner-loop for efficiency
   - solve the **inner-loop** in **closed form**
@@ -86,7 +91,7 @@ $$
 - problems
   - 
   - not scalable
-### RFAD (Loo et al., 2022)
+### RFAD (Loo et al., 2022) - replace with lightweight kernel
 - **light-weight** Empirical Neural Network Gaussian Process (NNGP) kernel
   - improvement over KIP
 - a **classification loss** (e.g., NLL) instead of the **L2-reconstruction loss** for the **outer-loop**
@@ -99,6 +104,7 @@ $$
 
 ## 2.2 Data Distillation by Gradient Matching
 
+In short
 - Assumption
   1. **inner-loop** optimization of only **T steps**
   2. **local smoothness**: two sets of **model parameters** close to each other (given a distance metric) imply **model similarity**
@@ -106,8 +112,43 @@ $$
        - instead of exactly computing the training trajectory of optimizing θ0 on D
        - perform first-order approximation on the optimization trajectory of θ0 on the much smaller D_syn
        - i.e., approximate θD t as a single gradient-descent update on $\theta_{t-1}^{\mathcal D_{\textsf{syn}}}$ using D rather than $\theta_{t-1}^{\mathcal D}$
- 
+- pros
+  - In contrast to the **meta-model matching** framework, such an approach circumvents the unrolling of the inner-loop, thereby making the overall optimization much more efficient.
+
+Formula
+
+$$
+\underset{\mathcal{D}_{\mathrm{syn}}}{\arg \min } \underset{\substack{\theta_0 \sim \mathbf{P}_\theta \\ c \sim \mathcal{C}}}{\mathbb{E}}\left[\sum_{t=0}^T \mathbf{D}\left(\nabla_\theta \mathcal{L}_{\mathcal{D}^c}\left(\theta_t\right), \nabla_\theta \mathcal{L}_{\mathcal{D}_{\mathrm{syn}}^c}\left(\theta_t\right)\right)\right] \quad \text { s.t. } \quad \theta_{t+1} \leftarrow \theta_t-\eta \cdot \nabla_\theta \mathcal{L}_{\mathcal{D}_{\mathrm{syn}}}\left(\theta_t\right)
+$$
+
+
+### DC (Zhao et al., 2021) - gradient matching objective
+
+pros
+  - data summaries optimized by gradient-matching significantly outperformed heuristic data samplers, principled coreset construction techniques, TBPTT-based data distillation
+  
+
+### DSA (Zhao & Bilen, 2021) - augmentation tailored to synethic data
+
+- improves over **DC** by 
+- performing the same image-augmentations (e.g., crop, rotate, jitter, etc.) on both D and Dsyn while optimizing above formula
+- Since these augmentations are **universal** and are applicable across data distillation frameworks, DSA augmentations have become a **common part** of all methods proposed henceforth
+
+### DCC (Lee et al., 2022b) - add class contrastive signals when gradient matching
+
+- further modifies the **gradient-matching objective** 
+- to incorporate **class contrastive signals** inside each gradient-matching step 
+- improve **stability** as well as **performance**.
+
+### IDC (Kim et al., 2022) - downsample then upsample to remove spatial redundancies, match on full data over synethic (approx)
+
+- extend the **gradient matching** framework by
+- **multi-formation**: to synthesize a **higher amount** of data within the **same memory budget**, store the data summary (e.g., images) in a **lower resolution** to remove **spatial redundancies**, and **upsample** (using e.g., bilinear, FSRCNN (Dong et al., 2016)) to the original scale while usage;
+- matching gradients of the network’s training trajectory over the **full dataset** D rather than the **data summary**
+
 ## 2.3 Data Distillation by Trajectory Matching
+
+
 
 ## 2.4 Data Distillation by Distribution Matching
 
