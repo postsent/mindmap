@@ -1,3 +1,9 @@
+💯 - fully read  
+✅ - Read & Summarised (can skim experiment & supplement)  
+❎ - Read & not fully summarised    
+☑️ - Reading  
+🔲 - TO READ
+
 # GNNs
 
 | Title | Authors | Date | status | Description | Comments |

@@ -1,8 +1,9 @@
-💯 - fully read  
-✅ - Read & Summarised (can skim experiment & supplement)  
-❎ - Read & not fully summarised    
-☑️ - Reading  
-🔲 - TO READ
+💯 | fully read  
+✅ | Read & Summarised (can skim experiment & supplement)  
+❎ | Read & not fully summarised    
+☑️ | Reading  
+🔲 | TO READ  
+--- | can skip
 
 Note
 - Add submitted date if different to conference year
