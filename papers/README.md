@@ -64,4 +64,4 @@ GNN paper list - https://github.com/GRAND-Lab/Awesome-Graph-Neural-Networks
 
 **Survey**
 
-- A Comprehensive Survey to Dataset Distillation - S.Lei & D.Tao
+- ...

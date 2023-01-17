@@ -7,14 +7,20 @@
     - [DD dataset distillation (Wang et al., 2018) - bilevel optimisation on synethic and real data](#dd-dataset-distillation-wang-et-al-2018---bilevel-optimisation-on-synethic-and-real-data)
     - [KIP (Nguyen et al., 2021a, b) - Kernelized Ridge Regression (KRR)](#kip-nguyen-et-al-2021a-b---kernelized-ridge-regression-krr)
     - [RFAD (Loo et al., 2022) - replace with lightweight kernel](#rfad-loo-et-al-2022---replace-with-lightweight-kernel)
-    - [FRePO (Zhou et al., 2022b)](#frepo-zhou-et-al-2022b)
+    - [FRePO (Zhou et al., 2022b) - decouple feature extractor & linear classifier & train alternatively](#frepo-zhou-et-al-2022b---decouple-feature-extractor--linear-classifier--train-alternatively)
   - [2.2 Data Distillation by Gradient Matching](#22-data-distillation-by-gradient-matching)
     - [DC (Zhao et al., 2021) - gradient matching objective](#dc-zhao-et-al-2021---gradient-matching-objective)
     - [DSA (Zhao & Bilen, 2021) - augmentation tailored to synethic data](#dsa-zhao--bilen-2021---augmentation-tailored-to-synethic-data)
     - [DCC (Lee et al., 2022b) - add class contrastive signals when gradient matching](#dcc-lee-et-al-2022b---add-class-contrastive-signals-when-gradient-matching)
-    - [IDC (Kim et al., 2022) - downsample then upsample to remove spatial redundancies, match on full data over synethic (approx)](#idc-kim-et-al-2022---downsample-then-upsample-to-remove-spatial-redundancies-match-on-full-data-over-synethic-approx)
+    - [IDC - efficient synthetic-data parameterization (Kim et al., 2022) - downsample then upsample to remove spatial redundancies, match on full data over synethic (approx)](#idc---efficient-synthetic-data-parameterization-kim-et-al-2022---downsample-then-upsample-to-remove-spatial-redundancies-match-on-full-data-over-synethic-approx)
   - [2.3 Data Distillation by Trajectory Matching](#23-data-distillation-by-trajectory-matching)
+    - [Trajectory Matching (Cazenavette et al., 2022)](#trajectory-matching-cazenavette-et-al-2022)
+    - [TESLA Cui et al. (2022b) - scalable by re-parameterizes the parameter-matching loss of MTT & learnable soft-labels](#tesla-cui-et-al-2022b---scalable-by-re-parameterizes-the-parameter-matching-loss-of-mtt--learnable-soft-labels)
   - [2.4 Data Distillation by Distribution Matching](#24-data-distillation-by-distribution-matching)
+    - [DM Zhao & Bilen (2023) - data distribution in latent space matching](#dm-zhao--bilen-2023---data-distribution-in-latent-space-matching)
+    - [CAFE (Wang et al., 2022) - one encoder & consider intermediate layers](#cafe-wang-et-al-2022---one-encoder--consider-intermediate-layers)
+    - [IT-GAN (Zhao & Bilen, 2022)](#it-gan-zhao--bilen-2022)
+  - [Data Modalities](#data-modalities)
 - [Results (Good or Bad)](#results-good-or-bad)
 - [Other references to follow](#other-references-to-follow)
 - [Takeaway](#takeaway)
@@ -96,10 +102,12 @@ $$
   - improvement over KIP
 - a **classification loss** (e.g., NLL) instead of the **L2-reconstruction loss** for the **outer-loop**
 
-### FRePO (Zhou et al., 2022b)
+### FRePO (Zhou et al., 2022b) - decouple feature extractor & linear classifier & train alternatively
 - Methods
   - decouples the **feature extractor** and a **linear classifier** in $Φ$
-- Problems
+- Pros
+  - more scalable & generalizable
+- Cons
   - TODO
 
 ## 2.2 Data Distillation by Gradient Matching
@@ -140,19 +148,47 @@ pros
 - to incorporate **class contrastive signals** inside each gradient-matching step 
 - improve **stability** as well as **performance**.
 
-### IDC (Kim et al., 2022) - downsample then upsample to remove spatial redundancies, match on full data over synethic (approx)
+### IDC - efficient synthetic-data parameterization (Kim et al., 2022) - downsample then upsample to remove spatial redundancies, match on full data over synethic (approx)
 
 - extend the **gradient matching** framework by
 - **multi-formation**: to synthesize a **higher amount** of data within the **same memory budget**, store the data summary (e.g., images) in a **lower resolution** to remove **spatial redundancies**, and **upsample** (using e.g., bilinear, FSRCNN (Dong et al., 2016)) to the original scale while usage;
 - matching gradients of the network’s training trajectory over the **full dataset** D rather than the **data summary**
+- hypothesis
+  - training models on $D_{syn}$ instead of D in the inner-loop has two major drawbacks:
+    - strong **coupling** of the inner- and outer-loop resulting in a **chicken-egg problem** (McLachlan & Krishnan, 2007)
+    - **vanishing network gradients** due to the small size of $D_{syn}$, leading to an improper outer-loop optimization for gradient-matching based techniques
+
 
 ## 2.3 Data Distillation by Trajectory Matching
 
+### Trajectory Matching (Cazenavette et al., 2022)  
 
+- **long**-horizon **trajectory matching**
+  - optimizing for similar quality models trained with N SGD steps on $D_{syn}$, compared to $M>>N$ steps on D
+- it can be **pre-computed**
+  - trajectory of training Φθ on D is independent of the optimization of $D_{syn}$
+- inheriting the **local smoothness** assumption
+  - first-order distance between parameters
+
+### TESLA Cui et al. (2022b) - scalable by re-parameterizes the parameter-matching loss of MTT & learnable soft-labels
+
+- using linear algebraic manipulations to make the bilevel optimization’s **memory** complexity **independent** of N
+- uses **learnable soft-labels** ($Y_{syn}$) during the optimization for an increased compression efficiency.
 
 ## 2.4 Data Distillation by Distribution Matching
 
+### DM Zhao & Bilen (2023) - data distribution in latent space matching
+- TODO
+- pros
+  - much improved **scalability**
 
+### CAFE (Wang et al., 2022) - one encoder & consider intermediate layers
+
+- TODO
+
+### IT-GAN (Zhao & Bilen, 2022)
+
+## Data Modalities
 
 # Results (Good or Bad)
 
