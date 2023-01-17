@@ -32,7 +32,7 @@ TOC
 
 | Title | Authors | Date | status | Description | Comments |
 | --- | --- | --- |--- | --- | --- |
-| Graph Condensation for Graph Neural Networks (GCOND) | Wei Jin | 2021, ICLR 2022  | ❎ | Adapt DD & DC to graph setting | [summary](GCOND%20(Jin,%202021.10).md) |
+| Graph Condensation for Graph Neural Networks (GCOND/GC) | Wei Jin | 2021, ICLR 2022  | ❎ | Adapt DD & DC to graph setting | [summary](GCOND%20(Jin,%202021.10).md) |
 | Condensing Graphs via One-Step Gradient Matching |  Wei Jin | KDD 2022| ❎ | - Improve GCOND with one step gradient update <br/> - GCOND does not produce discrete graph structures and its condensation process is costly. <br/> - Approximates the overall gradient matching loss for 𝜃𝑡 with the initial matching loss at the first epoch, which they term as one-step matching loss | --- |
 | Graph Condensation via Receptive Field Distribution Matching (GCDM) | Mengyang Liu | 2022| ❎ | Adapt DCDM to graph setting | --- |
 
