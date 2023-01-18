@@ -20,6 +20,7 @@
     - [DM Zhao & Bilen (2023) - data distribution in latent space matching](#dm-zhao--bilen-2023---data-distribution-in-latent-space-matching)
     - [CAFE (Wang et al., 2022) - one encoder & consider intermediate layers](#cafe-wang-et-al-2022---one-encoder--consider-intermediate-layers)
     - [IT-GAN (Zhao & Bilen, 2022)](#it-gan-zhao--bilen-2022)
+  - [Data Distillation vs. Data Compression (Matrix Factorisation)](#data-distillation-vs-data-compression-matrix-factorisation)
   - [Data Modalities](#data-modalities)
 - [Results (Good or Bad)](#results-good-or-bad)
 - [Other references to follow](#other-references-to-follow)
@@ -187,6 +188,27 @@ pros
 - TODO
 
 ### IT-GAN (Zhao & Bilen, 2022)
+
+## Data Distillation vs. Data Compression (Matrix Factorisation)
+
+- can not be compared directly
+- efficiency metric
+  - size of the data summary (n)  
+    - Non-factorised method
+    - Factorised method
+      - poorer
+        - need a much smaller **storage budget** to synthesize the same-sized data summaries
+  - “end-to-end bytes of storage”
+    - Non-factorised method
+      - poorer
+        - perform **no** kind of **data compression**, but focus solely on better understanding the **model-to-data relationship** through the lens of **optimization**
+    - Factorised method
+  
+Side
+- under the same storage budget, MF can provide more images and thus not fair to compare based on number
+- Also cannot just compare based on size of storage because the non-MF techniques do not do data compression but study the data distribution by model hidden dynamic matching.
+- PCA is a form of MF.
+
 
 ## Data Modalities
 
