@@ -26,6 +26,7 @@
 - Update sythetic data to udpate the model (see [Algo](#algo))
   - no explicit matching to mimic the real data learning behaviour
   - train on synethic data, evalute on real 
+  - formulating the network parameters as a function of synthetic data and learning them through the network parameters to minimize the training loss over the original data.
 - To improve the cross-architectures generalisation, it uses different initialisation to train
 - It shows two applications: 
   1. adapting pre-trained models to new datasets with the distilled data 
