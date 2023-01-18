@@ -33,7 +33,7 @@ TOC
 | Title | Authors | Date | status | Description | Comments |
 | --- | --- | --- |--- | --- | --- |
 | Graph Condensation for Graph Neural Networks (GCOND/GC) | Wei Jin | 2021, ICLR 2022  | ❎ | Adapt DD & DC to graph setting | [summary](GCOND%20(Jin,%202021.10).md) |
-| Condensing Graphs via One-Step Gradient Matching |  Wei Jin | KDD 2022| ❎ | - Improve GCOND with one step gradient update <br/> - GCOND does not produce discrete graph structures and its condensation process is costly. <br/> - Approximates the overall gradient matching loss for 𝜃𝑡 with the initial matching loss at the first epoch, which they term as one-step matching loss | --- |
+| Condensing Graphs via One-Step Gradient Matching (DosCond/GC-One) |  Wei Jin | KDD 2022| ❎ | - Improve GCOND with one step gradient update <br/> - GCOND does not produce discrete graph structures and its condensation process is costly. <br/> - Approximates the overall gradient matching loss for 𝜃𝑡 with the initial matching loss at the first epoch, which they term as one-step matching loss | --- |
 | Graph Condensation via Receptive Field Distribution Matching (GCDM) | Mengyang Liu | 2022| ❎ | Adapt DCDM to graph setting | --- |
 
 # Survey - data distillation
@@ -41,7 +41,7 @@ TOC
 | Title | Authors | Date | status | Description | Comments |
 | --- | --- | --- | --- | --- | --- |
 | A Review of Dataset Distillation for Deep Learning | Thi-Thu-Huong Le | 2022 | --- | First survey to list previous work out | --- |
-| Data Distillation: A Survey | Noveen Sachdeva, J.McAuley | 2023 | ☑️ | First to summarise the overal framework | Best so far - formulation, definition, comparison, pros&cons, assumption, discussion |
+| Data Distillation: A Survey | Noveen Sachdeva, J.McAuley | 2023 | ☑️ | First to summarise the overal framework. formulation, definition, comparison, pros&cons, assumption, discussion | [summary](survey%20-%20Data%20Distillation%20(Sachdeva,%202023).md)  |
 | A Comprehensive Survey to Dataset Distillation | S.Lei & D.Tao | 2023 | --- | Explain with framework & list out previous works | --- |
 
 

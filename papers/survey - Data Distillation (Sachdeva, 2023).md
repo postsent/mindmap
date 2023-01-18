@@ -20,10 +20,24 @@
     - [DM Zhao & Bilen (2023) - data distribution in latent space matching](#dm-zhao--bilen-2023---data-distribution-in-latent-space-matching)
     - [CAFE (Wang et al., 2022) - one encoder & consider intermediate layers](#cafe-wang-et-al-2022---one-encoder--consider-intermediate-layers)
     - [IT-GAN (Zhao & Bilen, 2022)](#it-gan-zhao--bilen-2022)
+  - [2.5 Data Distillation by Factorisation](#25-data-distillation-by-factorisation)
+    - [LinBa (Deng & Russakovsky, 2022) - MF with TBPTT](#linba-deng--russakovsky-2022---mf-with-tbptt)
+    - [HaBa (Liu et al., 2022c) - relax hallucinator assumption of LinBa](#haba-liu-et-al-2022c---relax-hallucinator-assumption-of-linba)
+    - [KFS (Lee et al. , 2022a)](#kfs-lee-et-al--2022a)
   - [Data Distillation vs. Data Compression (Matrix Factorisation)](#data-distillation-vs-data-compression-matrix-factorisation)
   - [Data Modalities](#data-modalities)
-- [Results (Good or Bad)](#results-good-or-bad)
-- [Other references to follow](#other-references-to-follow)
+    - [Images](#images)
+    - [Text](#text)
+    - [Graph](#graph)
+      - [GCond (Jin et al., 2022b) - node classification & Gradient Matching](#gcond-jin-et-al-2022b---node-classification--gradient-matching)
+      - [(Liu et al., 2022a) (GCDM) - distribution matching](#liu-et-al-2022a-gcdm---distribution-matching)
+      - [DosCond - Jin et al. (2022a) - dedicated matrix for graph & graph classifcation & single step](#doscond---jin-et-al-2022a---dedicated-matrix-for-graph--graph-classifcation--single-step)
+    - [Recommender Systems](#recommender-systems)
+      - [Distill-CF (Sachdeva et al., 2022a) - implicit-feedback](#distill-cf-sachdeva-et-al-2022a---implicit-feedback)
+  - [5 Challenges & Future Directions](#5-challenges--future-directions)
+    - [New data modalities & settings](#new-data-modalities--settings)
+    - [Better scaling](#better-scaling)
+    - [Improved optimization](#improved-optimization)
 - [Takeaway](#takeaway)
 - [TODO](#todo)
 
@@ -189,6 +203,43 @@ pros
 
 ### IT-GAN (Zhao & Bilen, 2022)
 
+## 2.5 Data Distillation by Factorisation
+
+- previous methods
+  - maintain the synthesized data summary as a large set of **free parameters**, which are in turn optimized
+  - prohibits **knowledge sharing** between synthesized data points (parameters)
+    - introduce data redundancy
+- factorization-based data distillation techniques
+  - parameterize the data summary using two **separate** components (standard MF)
+    1. **bases**: a set of **mutually independent** - **base vectors**
+    2. **hallucinators**: a **mapping** from the bases’ vector space to the joint data- and label-space
+- pros
+  - hallucinator-bases data parameterization can be **optimized** using **any** of the **aforementioned** data optimization **frameworks**
+
+### LinBa (Deng & Russakovsky, 2022) - MF with TBPTT
+
+- assumption
+  - the bases’ vector space (B) to be the same as the task input space (X)
+  - the hallucinator to be linear and additionally conditioned on a given predictand
+- methods
+  - B and H are jointly optimized using the TBPTT framework
+  - crucial modifications
+    - using **momentum-based optimizers** instead of vanilla SGD in the inner-loop
+    - **longer unrolling** (≥ 100 steps) of the inner-loop during TBPTT
+  
+### HaBa (Liu et al., 2022c) - relax hallucinator assumption of LinBa
+
+- relax the linear and predictand-conditional hallucinator assumption of LinBa
+
+### KFS (Lee et al. , 2022a)
+
+- methods
+  - maintaining a different bases’ vector space B from the data domain X , such that dim(B) < dim(X )
+  - optimized using **distribution matching** framework
+    - ensure **fast, single-level optimization**.
+- pros
+  - This parameterization allows KFS to store an even larger number of images, with a comparable storage budget to other methods
+
 ## Data Distillation vs. Data Compression (Matrix Factorisation)
 
 - can not be compared directly
@@ -205,26 +256,75 @@ pros
     - Factorised method
   
 Side
-- under the same storage budget, MF can provide more images and thus not fair to compare based on number
-- Also cannot just compare based on size of storage because the non-MF techniques do not do data compression but study the data distribution by model hidden dynamic matching.
+- under the same **storage budget**, MF can provide more images and thus not fair to compare based on number
+- Also cannot just compare based on size of storage because the non-MF techniques dont have **data compression** techniques but study the data distribution by model hidden dynamic matching.
 - PCA is a form of MF.
 
 
 ## Data Modalities
 
-# Results (Good or Bad)
+### Images
 
-(from conclusion)
+### Text
 
-# Other references to follow
+### Graph
 
-- Deng & Russakovsky, 2022 - using momentum-based optimizers
-- 
+- applications
+  - user-item interactions
+  - social networks
+  - autonomous driving
+- **challenges**: synthesizing tiny, high-fidelity graphs
+  - **data variety.** nodes in a graph can be **highly abstract**, e.g., users, products, text articles, etc. some of which could be discrete, heterogeneous, or even simply numerical IDs
+  - graphs follow a variety of **intrinsic patterns** (e.g., spatial (Kipf & Welling, 2017)) which need to be **retained** in the distilled graphs; 
+  - **quadratic size** of the **adjacency matrix** could be computationally prohibitive even for moderate-sized graphs
 
-**More explanation**
+#### GCond (Jin et al., 2022b) - node classification & Gradient Matching
 
-**More papers**
+- inductive node-classification setting
+- methods
+  - model adjacency matrix as a function of node features
+  - use gradient-matching framework
 
+#### (Liu et al., 2022a) (GCDM) - distribution matching
+
+- methods
+  - shares the same framework as GCond
+  - uses the distribution matching
+
+#### DosCond - Jin et al. (2022a) - dedicated matrix for graph & graph classifcation & single step
+
+- methods
+  - extend to **graph-classification** setting (also have node classification)
+  - improved on GCOND
+    - maintain a **free-parameter matrix** Ω with the same size as the **adjacency matrix**, and sample each Ai,j syn entry through an independent **Bernoulli** draw on Ωi,j as the prior using the **reparameterization trick** (Maddison et al., 2017)
+      -  instead of parameterizing the adjacency matrix using a similarity function on $X_{syn}$
+    - gradient-matching - single-step
+- pros
+  - ensures **differentiability** as well as **discrete matrix** synthesis
+
+### Recommender Systems
+
+- challenges
+  - data in the form of **abstract** and **discrete** (userID, itemID, relevance) tuples, which departs from the typical (features, label) setup;
+  - the distribution of both user- and item-popularity follows a strong **power-law** which leads to **data scarcity** and **unstable optimization**; and (3) the data inherits a variety of **inherent structures**, e.g., **sequential patterns** (Kang & McAuley, 2018; Sachdeva et al., 2019), u**ser-item graph patterns** (Wu et al., 2019), **item-item co-occurrence patterns** (Steck, 2019), **missing-not-at-randomness** (Sachdeva et al., 2020; Schnabel et al., 2016), etc.
+
+#### Distill-CF (Sachdeva et al., 2022a) - implicit-feedback
+
+- aim
+  - distills implicit-feedback recommender systems data, i.e., when the observed user-item relevance is binary (e.g., click or no-click)
+- methods
+  - meta-model matching framework (Nguyen et al. (2021a))
+  - infinite-width autoencoders
+    - suit the task of **item recommendation**
+    - while also leading to **closed-form** computation of the inner-loop in the meta-model matching
+
+## 5 Challenges & Future Directions
+
+### New data modalities & settings
+
+### Better scaling
+
+### Improved optimization
 
 
 # Takeaway
