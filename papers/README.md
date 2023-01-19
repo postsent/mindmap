@@ -32,7 +32,7 @@ Note
 | Dataset Distillation (DD) | Tongzhou Wang | 2018 | ❎ | First formal paper introduces the concept of dataset distillation, inspired by Knowldege distillation | [summary](DD%20-%20dataset%20distillation%20(Wang,%202018.11).md) |
 | Dataset Condensation with gradient matching (DC) | Bo Zhao |2020, ICLR 2021 | ✅ | Improve DD with Gradient surrogate objective (faster, efficient) | [summary](DC%20-%20dataset%20condensation%20(Zhao,%202020.6).md) |
 | Dataset Condensation with Differentiable Siamese Augmentation (DSA) | Bo Zhao | 2021, ICML 2021 | 🔲 | Improve DC with data augmentation techniques tailored to sythetic data  | Traditional ones give poor performance gain | 
-| Dataset Condensation with Distribution Matching (DM) |  Bo Zhao | 2021, WACV 2023  | ✅ | Distribution Matching Surrogate Objective | [summary](DM%20-%20distribution%20matching%20(Zhao%20&%20Bilen,%202021.10).md) |
+| Dataset Condensation with Distribution Matching (DM) |  Bo Zhao | 2021, WACV 2023  | ❎ | Distribution Matching Surrogate Objective | [summary](DM%20-%20distribution%20matching%20(Zhao%20&%20Bilen,%202021.10).md) |
 | Dataset meta-learning from kernel ridge-regression (KIP) | Timothy Nguyen | ICLR 2021 | 🔲 | $∞$-FC, NTK, KRR |--- |
 | Dataset distillation with infinitely wide convolutional networks (KIP) | Timothy Nguyen | NeurIPS 2021 | 🔲 | $∞$-Conv |--- |
 | Dataset Distillation by Matching Training Trajectories | George Cazenavette, Tongzhou Wang (2nd) | 2022, CVPR 2022 | 🔲 | Large-scale datasets, long-range training dynamics, match segments of pre-recorded trajectories from models trained on real data | Prior works either computational expensive or short range (single training step) approximation |

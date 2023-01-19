@@ -2,8 +2,8 @@
 
 - [Dataset Condensation with Distribution Matching](#dataset-condensation-with-distribution-matching)
 - [What did the authors tried to accomplished?](#what-did-the-authors-tried-to-accomplished)
-  - [Algo](#algo)
 - [Key elements of the approach](#key-elements-of-the-approach)
+  - [Algo](#algo)
 - [Results (Good or Bad)](#results-good-or-bad)
 - [Other references to follow](#other-references-to-follow)
 - [Takeaway](#takeaway)
@@ -47,6 +47,10 @@
 - treat each class separately
 - 
 
+
+
+# Key elements of the approach
+
 ## Algo
 
 In words:
@@ -63,13 +67,6 @@ Notes
 <p align="center">
   <img src="imgs/DM/algo.png" width="800"/>
 </p>
-
-# Key elements of the approach
-
-**Steps**.  
-**Presudo code.**   
-
-(from method)
 
 # Results (Good or Bad)
 
@@ -93,6 +90,8 @@ Notes
 (what can be used in my part)
 
 # Code Analysis
+
+**Embedding space distribution matching.**
 
 ```py
 embed = net.module.embed if torch.cuda.device_count() > 1 else net.embed # for GPU parallel
