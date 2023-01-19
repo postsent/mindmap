@@ -104,7 +104,10 @@ $$
 
 ### KIP (Nguyen et al., 2021a, b) - Kernelized Ridge Regression (KRR)
 - Methods
-  - KIP uses the NTK (Neural Tangent Kernel) of a **fully-connected neural network** (Nguyen et al., 2021a), or a **convolutional network** (Nguyen et al., 2021b) in the inner-loop for efficiency
+  - KIP uses the NTK (Neural Tangent Kernel) of {} in the inner-loop for efficiency
+    - a **fully-connected neural network** (Nguyen et al., 2021a), or 
+    - a **convolutional network** (Nguyen et al., 2021b) 
+  
   - solve the **inner-loop** in **closed form**
   - infinite-width correspondence
     - performing Kernelized Ridge Regression (KRR) using the NTK of a given neural network, is equivalent to training the same ∞-width neural network with L2 reconstruction loss for ∞ SGD-steps. 

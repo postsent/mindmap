@@ -1,3 +1,12 @@
+TOC
+
+- [My Reading List](#my-reading-list)
+- [Data Distillation](#data-distillation)
+- [Graph Distillation](#graph-distillation)
+- [Survey - data distillation](#survey---data-distillation)
+- [More](#more)
+- [Inbox](#inbox)
+- [Common key words](#common-key-words)
 # My Reading List
 
 status
@@ -14,14 +23,7 @@ Note
 - Add submitted date if different to conference year
 - Paper list ordered by APA reference date
 
-TOC
 
-- [My Reading List](#my-reading-list)
-- [Data Distillation](#data-distillation)
-- [Graph Distillation](#graph-distillation)
-- [Survey - data distillation](#survey---data-distillation)
-- [More](#more)
-- [Inbox](#inbox)
 
 # Data Distillation
 
@@ -31,6 +33,8 @@ TOC
 | Dataset Condensation with gradient matching (DC) | Bo Zhao |2020, ICLR 2021 | ✅ | Improve DD with Gradient surrogate objective (faster, efficient) | [summary](DC%20-%20dataset%20condensation%20(Zhao,%202020.6).md) |
 | Dataset Condensation with Differentiable Siamese Augmentation (DSA) | Bo Zhao | 2021, ICML 2021 | 🔲 | Improve DC with data augmentation techniques tailored to sythetic data  | Traditional ones give poor performance gain | 
 | Dataset Condensation with Distribution Matching (DCDM) |  Bo Zhao | 2021, WACV 2023  | ☑️ | Distribution Matching Surrogate Objective | --- |
+| Dataset meta-learning from kernel ridge-regression (KIP) | Timothy Nguyen | ICLR 2021 | 🔲 | $∞$-FC, NTK, KRR |--- |
+| Dataset distillation with infinitely wide convolutional networks (KIP) | Timothy Nguyen | NeurIPS 2021 | 🔲 | $∞$-Conv |--- |
 | Dataset Distillation by Matching Training Trajectories | George Cazenavette, Tongzhou Wang (2nd) | 2022, CVPR 2022 | 🔲 | Large-scale datasets, long-range training dynamics, match segments of pre-recorded trajectories from models trained on real data | Prior works either computational expensive or short range (single training step) approximation |
 
 # Graph Distillation
@@ -48,7 +52,6 @@ TOC
 
 | Title | Authors | Date | status | Description | Comments |
 | --- | --- | --- | --- | --- | --- |
-| A Review of Dataset Distillation for Deep Learning | Thi-Thu-Huong Le | 2022 | --- | First survey to list previous work out | --- |
 | Data Distillation: A Survey | Noveen Sachdeva, J.McAuley | 2023 | ❎ | First to summarise the overal framework. formulation, definition, comparison, pros&cons, assumption, discussion | [summary](survey%20-%20Data%20Distillation%20(Sachdeva,%202023).md)  |
 | A Comprehensive Survey to Dataset Distillation | S.Lei & D.Tao | 2023 | --- | Explain with framework & list out previous works | --- |
 
@@ -73,3 +76,25 @@ GNN paper list - https://github.com/GRAND-Lab/Awesome-Graph-Neural-Networks
 **Survey**
 
 - ...
+
+# Common key words
+
+Meta-model matching
+- KIP: Kernel introducing points
+- KRR: Kernelized Ridge Regression
+- NTK: Neural Tangent Kernel 
+- $∞$-width
+- closed-form
+
+Gradient matching
+
+Distribution matching
+
+Trajectory matching
+
+Factorisation
+
+Others
+
+- Data augmentation
+- Label Distillation

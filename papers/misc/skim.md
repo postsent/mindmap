@@ -1,0 +1,1 @@
+| A Review of Dataset Distillation for Deep Learning | Thi-Thu-Huong Le | 2022 | --- | First survey to list previous work out | --- |
