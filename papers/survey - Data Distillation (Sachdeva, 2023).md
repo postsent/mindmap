@@ -5,7 +5,7 @@
 - [Key elements of the approach](#key-elements-of-the-approach)
   - [2.1 Data Distillation by Meta-model Matching](#21-data-distillation-by-meta-model-matching)
     - [DD dataset distillation (Wang et al., 2018) - bilevel optimisation on synethic and real data](#dd-dataset-distillation-wang-et-al-2018---bilevel-optimisation-on-synethic-and-real-data)
-    - [KIP (Nguyen et al., 2021a, b) - Kernelized Ridge Regression (KRR)](#kip-nguyen-et-al-2021a-b---kernelized-ridge-regression-krr)
+    - [KIP (Nguyen et al., 2021a, b) - Kernelized Ridge Regression (KRR) - NTK in the inner loop opt](#kip-nguyen-et-al-2021a-b---kernelized-ridge-regression-krr---ntk-in-the-inner-loop-opt)
     - [RFAD (Loo et al., 2022) - replace with lightweight kernel](#rfad-loo-et-al-2022---replace-with-lightweight-kernel)
     - [FRePO (Zhou et al., 2022b) - decouple feature extractor & linear classifier & train alternatively](#frepo-zhou-et-al-2022b---decouple-feature-extractor--linear-classifier--train-alternatively)
   - [2.2 Data Distillation by Gradient Matching](#22-data-distillation-by-gradient-matching)
@@ -14,16 +14,16 @@
     - [DCC (Lee et al., 2022b) - add class contrastive signals when gradient matching](#dcc-lee-et-al-2022b---add-class-contrastive-signals-when-gradient-matching)
     - [IDC - efficient synthetic-data parameterization (Kim et al., 2022) - downsample then upsample to remove spatial redundancies, match on full data over synethic (approx)](#idc---efficient-synthetic-data-parameterization-kim-et-al-2022---downsample-then-upsample-to-remove-spatial-redundancies-match-on-full-data-over-synethic-approx)
   - [2.3 Data Distillation by Trajectory Matching](#23-data-distillation-by-trajectory-matching)
-    - [Trajectory Matching (Cazenavette et al., 2022)](#trajectory-matching-cazenavette-et-al-2022)
+    - [Trajectory Matching (Cazenavette et al., 2022) - precomputed long-horizon trajectory matching](#trajectory-matching-cazenavette-et-al-2022---precomputed-long-horizon-trajectory-matching)
     - [TESLA Cui et al. (2022b) - scalable by re-parameterizes the parameter-matching loss of MTT & learnable soft-labels](#tesla-cui-et-al-2022b---scalable-by-re-parameterizes-the-parameter-matching-loss-of-mtt--learnable-soft-labels)
   - [2.4 Data Distillation by Distribution Matching](#24-data-distillation-by-distribution-matching)
     - [DM Zhao & Bilen (2023) - data distribution in latent space matching](#dm-zhao--bilen-2023---data-distribution-in-latent-space-matching)
     - [CAFE (Wang et al., 2022) - one encoder & consider intermediate layers](#cafe-wang-et-al-2022---one-encoder--consider-intermediate-layers)
-    - [IT-GAN (Zhao & Bilen, 2022)](#it-gan-zhao--bilen-2022)
+    - [IT-GAN (Zhao & Bilen, 2022) - GAN with DM](#it-gan-zhao--bilen-2022---gan-with-dm)
   - [2.5 Data Distillation by Factorisation](#25-data-distillation-by-factorisation)
     - [LinBa (Deng & Russakovsky, 2022) - MF with TBPTT](#linba-deng--russakovsky-2022---mf-with-tbptt)
     - [HaBa (Liu et al., 2022c) - relax hallucinator assumption of LinBa](#haba-liu-et-al-2022c---relax-hallucinator-assumption-of-linba)
-    - [KFS (Lee et al. , 2022a)](#kfs-lee-et-al--2022a)
+    - [KFS (Lee et al. , 2022a) - different base matrix + DM](#kfs-lee-et-al--2022a---different-base-matrix--dm)
   - [Data Distillation vs. Data Compression (Matrix Factorisation)](#data-distillation-vs-data-compression-matrix-factorisation)
   - [Data Modalities](#data-modalities)
     - [Images](#images)
@@ -33,11 +33,22 @@
       - [(Liu et al., 2022a) (GCDM) - distribution matching](#liu-et-al-2022a-gcdm---distribution-matching)
       - [DosCond - Jin et al. (2022a) - dedicated matrix for graph & graph classifcation & single step](#doscond---jin-et-al-2022a---dedicated-matrix-for-graph--graph-classifcation--single-step)
     - [Recommender Systems](#recommender-systems)
-      - [Distill-CF (Sachdeva et al., 2022a) - implicit-feedback](#distill-cf-sachdeva-et-al-2022a---implicit-feedback)
-  - [5 Challenges & Future Directions](#5-challenges--future-directions)
+      - [Distill-CF (Sachdeva et al., 2022a) - implicit-feedback recommender systems data + KIP](#distill-cf-sachdeva-et-al-2022a---implicit-feedback-recommender-systems-data--kip)
+  - [4 - Application](#4---application)
+    - [Differential Privacy](#differential-privacy)
+      - [Private set generation with discriminative information (Chen et al., 2022) - clipping and adding white noise to the gradients](#private-set-generation-with-discriminative-information-chen-et-al-2022---clipping-and-adding-white-noise-to-the-gradients)
+    - [Neural Architecture Search (NAS)](#neural-architecture-search-nas)
+      - [DC-BENCH: Dataset condensation benchmark (Cui et al, 2022) - data distillation does not perform well when evaluating diverse architectures](#dc-bench-dataset-condensation-benchmark-cui-et-al-2022---data-distillation-does-not-perform-well-when-evaluating-diverse-architectures)
+    - [Continual Learning](#continual-learning)
+      - [distilled data summary in a replay buffer](#distilled-data-summary-in-a-replay-buffer)
+    - [Federated Learning](#federated-learning)
+      - [distil-data-synchronization](#distil-data-synchronization)
+  - [5 - Challenges & Future Directions](#5---challenges--future-directions)
     - [New data modalities & settings](#new-data-modalities--settings)
     - [Better scaling](#better-scaling)
+      - [scale size of syethic](#scale-size-of-syethic)
     - [Improved optimization](#improved-optimization)
+      - [Improve bilevel-opt](#improve-bilevel-opt)
 - [Takeaway](#takeaway)
 - [TODO](#todo)
 
@@ -102,7 +113,8 @@ $$
      2. **bias** involved with truncated unrolling
      3. **poorly** conditioned **loss landscapes**, particularly with long unrolls
 
-### KIP (Nguyen et al., 2021a, b) - Kernelized Ridge Regression (KRR)
+### KIP (Nguyen et al., 2021a, b) - Kernelized Ridge Regression (KRR) - NTK in the inner loop opt
+
 - Methods
   - KIP uses the NTK (Neural Tangent Kernel) of {} in the inner-loop for efficiency
     - a **fully-connected neural network** (Nguyen et al., 2021a), or 
@@ -177,9 +189,9 @@ pros
     - **vanishing network gradients** due to the small size of $D_{syn}$, leading to an improper outer-loop optimization for gradient-matching based techniques
 
 
-## 2.3 Data Distillation by Trajectory Matching
+## 2.3 Data Distillation by Trajectory Matching 
 
-### Trajectory Matching (Cazenavette et al., 2022)  
+### Trajectory Matching (Cazenavette et al., 2022) - precomputed long-horizon trajectory matching
 
 - **long**-horizon **trajectory matching**
   - optimizing for similar quality models trained with N SGD steps on $D_{syn}$, compared to $M>>N$ steps on D
@@ -204,7 +216,7 @@ pros
 
 - TODO
 
-### IT-GAN (Zhao & Bilen, 2022)
+### IT-GAN (Zhao & Bilen, 2022) - GAN with DM 
 
 ## 2.5 Data Distillation by Factorisation
 
@@ -234,7 +246,7 @@ pros
 
 - relax the linear and predictand-conditional hallucinator assumption of LinBa
 
-### KFS (Lee et al. , 2022a)
+### KFS (Lee et al. , 2022a) - different base matrix + DM
 
 - methods
   - maintaining a different bases’ vector space B from the data domain X , such that dim(B) < dim(X )
@@ -311,7 +323,7 @@ Side
   - data in the form of **abstract** and **discrete** (userID, itemID, relevance) tuples, which departs from the typical (features, label) setup;
   - the distribution of both user- and item-popularity follows a strong **power-law** which leads to **data scarcity** and **unstable optimization**; and (3) the data inherits a variety of **inherent structures**, e.g., **sequential patterns** (Kang & McAuley, 2018; Sachdeva et al., 2019), u**ser-item graph patterns** (Wu et al., 2019), **item-item co-occurrence patterns** (Steck, 2019), **missing-not-at-randomness** (Sachdeva et al., 2020; Schnabel et al., 2016), etc.
 
-#### Distill-CF (Sachdeva et al., 2022a) - implicit-feedback
+#### Distill-CF (Sachdeva et al., 2022a) - implicit-feedback recommender systems data + KIP
 
 - aim
   - distills implicit-feedback recommender systems data, i.e., when the observed user-item relevance is binary (e.g., click or no-click)
@@ -321,14 +333,50 @@ Side
     - suit the task of **item recommendation**
     - while also leading to **closed-form** computation of the inner-loop in the meta-model matching
 
-## 5 Challenges & Future Directions
+## 4 - Application
+
+### Differential Privacy
+
+#### Private set generation with discriminative information (Chen et al., 2022) - clipping and adding white noise to the gradients
+
+- modify the gradient matching framework (Equation (7)) by **clipping and adding white noise** to the gradients obtained on the original dataset while optimization
+- better sample utility
+
+### Neural Architecture Search (NAS)
+
+#### DC-BENCH: Dataset condensation benchmark (Cui et al, 2022) - data distillation does not perform well when evaluating diverse architectures
+
+- data distillation does not perform well when evaluating diverse architectures on bigger NAS test-beds, calling for better **rank-preserving** data distillation techniques
+  
+### Continual Learning 
+
+#### distilled data summary in a replay buffer
+
+- catastrophic forgetting
+- distilled data summary in a **replay buffer** that is continually updated and used in subsequent data/task training
+- compress-then-recall strategy
+  - only the data summary is stored for each task, and a new model is trained (from scratch) using all previous data summaries, for each new incoming task
+
+
+### Federated Learning
+
+#### distil-data-synchronization
+- synchronize local parameter updates to a central server
+- synchronizing tiny synthesized data summaries
+  - better than model-synchronization based federated learning approaches, while also requiring multiple orders lesser client-server communication
+
+
+## 5 - Challenges & Future Directions
 
 ### New data modalities & settings
 
 ### Better scaling
 
+#### scale size of syethic
+
 ### Improved optimization
 
+#### Improve bilevel-opt
 
 # Takeaway
 

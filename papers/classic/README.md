@@ -8,4 +8,5 @@
 
 | Title | Authors | Date | status | Description | Comments |
 | --- | --- | --- | --- | --- | --- |
-| The PageRank Citation Ranking: Bringing Order to the Web | Page, Lawrence  | 1998 | 🔲 | --- | Technical Report ... |
+| Deep Residual Learning for Image Recognition | He Kaiming  | CVPR 2015 | --- | ResNet, Skip connection | --- |
+| Representation learning on graphs with jumping knowledge networks | --- | --- | --- | --- | --- |
