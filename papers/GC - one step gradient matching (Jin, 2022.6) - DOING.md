@@ -6,6 +6,10 @@ Performs gradient matching for only one single step without training the network
 
 Previously: GCOND. bi-level problem that is **computationally expensive** to optimize: they require multiple iterations (inner iterations) of updating neural network parameters before updating the synthetic data for multiple iterations (outer iterations) ; it does not produce **discrete graph structures** and its condensation process is **costly**;
 
+- Improve GCOND with one step gradient update 
+- GCOND does not produce discrete graph structures and its condensation process is costly. 
+- Approximates the overall gradient matching loss for 𝜃𝑡 with the initial matching loss at the first epoch, which they term as one-step matching loss 
+
 # Key elements of the approach
 
 To produce **discrete values**, we model the graph structure as a probabilistic graph model and optimize the discrete structures in a differentiable manner

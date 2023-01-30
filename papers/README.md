@@ -23,37 +23,42 @@ Note
 - Add submitted date if different to conference year
 - Paper list ordered by APA reference date
 
+| Title | Authors | Date | status | Description | Comments |
 
 
 # Data Distillation
 
-| Title | Authors | Date | status | Description | Comments |
-| --- | --- | --- | --- | --- |--- |
-| Dataset Distillation (DD) | Tongzhou Wang | 2018 | ✅ | First formal DD paper, inspired by KD, Bi-level Opt | [summary](DD%20-%20dataset%20distillation%20(Wang,%202018.11).md) |
-| Dataset Condensation with gradient matching (DC) | Bo Zhao |2020, ICLR 2021 | ✅ | Improve DD with Gradient surrogate objective (faster, efficient) | [summary](DC%20-%20dataset%20condensation%20(Zhao,%202020.6).md) |
-| Dataset Condensation with Differentiable Siamese Augmentation (DSA) | Bo Zhao | 2021, ICML 2021 | ☑️ | Improve DC with data augmentation techniques tailored to sythetic data  | Traditional ones give poor performance gain | 
-| Dataset Condensation with Distribution Matching (DM) |  Bo Zhao | 2021, WACV 2023  | ❎ | Objective: embedding space dist matching; Fast   | [summary](DM%20-%20distribution%20matching%20(Zhao%20&%20Bilen,%202021.10).md) |
-| Dataset meta-learning from kernel ridge-regression (KIP) | Timothy Nguyen | ICLR 2021 | 🔲 | $∞$-FC, NTK, KRR | --- |
-| Dataset distillation with infinitely wide convolutional networks (KIP) | Timothy Nguyen | NeurIPS 2021 | 🔲 | $∞$-Conv, First to reach 80/84.8% w/ 50 synethic images, c10 |  |
-| Dataset Distillation by Matching Training Trajectories | George Cazenavette, Tongzhou Wang (2nd) | 2022, CVPR 2022 | 🔲 | Large-scale datasets, long-range training dynamics, match segments of pre-recorded trajectories from models trained on real data | Prior works either computational expensive or short range (single training step) approximation |
+* Dataset Distillation (DD) ; Tongzhou Wang ; 2018 ; ✅ ; First formal DD paper, inspired by KD, Bi-level Opt ; [summary](DD%20-%20dataset%20distillation%20(Wang,%202018.11).md) ;
+
+*  Dataset Condensation with gradient matching (DC) ; Bo Zhao ;2020, ICLR 2021 ; ✅ ; Improve DD with Gradient surrogate objective (faster, efficient) ; [summary](DC%20-%20dataset%20condensation%20(Zhao,%202020.6).md) ;
+
+*  Dataset Condensation with Differentiable Siamese Augmentation (DSA) ; Bo Zhao ; 2021, ICML 2021 ; ☑️ ; Improve DC with data augmentation techniques tailored to sythetic data  ; Traditional ones give poor performance gain ; 
+
+*  Dataset Condensation with Distribution Matching (DM) ;  Bo Zhao ; 2021, WACV 2023  ; ❎ ; Objective: embedding space dist matching; Fast   ; [summary](DM%20-%20distribution%20matching%20(Zhao%20&%20Bilen,%202021.10).md) ;
+
+*  Dataset meta-learning from kernel ridge-regression (KIP) ; Timothy Nguyen ; ICLR 2021 ; 🔲 ; $∞$-FC, NTK, KRR ; --- ;
+
+*  Dataset distillation with infinitely wide convolutional networks (KIP) ; Timothy Nguyen ; NeurIPS 2021 ; 🔲 ; $∞$-Conv, First to reach 80/84.8% w/ 50 synethic images, c10 ;  ;
+
+*  Dataset Distillation by Matching Training Trajectories ; George Cazenavette, Tongzhou Wang (2nd) ; 2022, CVPR 2022 ; 🔲 ; Large-scale datasets, long-range training dynamics, match segments of pre-recorded trajectories from models trained on real data ; Prior works either computational expensive or short range (single training step) approximation ;
 
 # Graph Distillation
 
-| Title | Authors | Date | status | Description | Comments |
-| --- | --- | --- | --- | --- | --- |
-| Graph Condensation for Graph Neural Networks (GCOND/GC) | Wei Jin | 2021, ICLR 2022  | ✅ | Adapt DD & DC to graph setting | [summary](GCOND%20(Jin,%202021.10).md) |
-| Condensing Graphs via One-Step Gradient Matching (DosCond/GC-One) |  Wei Jin | KDD 2022| ❎ | - Improve GCOND with one step gradient update <br/> - GCOND does not produce discrete graph structures and its condensation process is costly. <br/> - Approximates the overall gradient matching loss for 𝜃𝑡 with the initial matching loss at the first epoch, which they term as one-step matching loss | --- |
-| Graph Condensation via Receptive Field Distribution Matching (GCDM) | Mengyang Liu | 2022| ❎ | Adapt DM to graph setting | --- |
-| Infinite Recommendation Networks: A Data-Centric Approach | Noveen Sachdeva | NeurIPS 2022 | 🔲 | RecSys, infinite-width | --- |
+*  Graph Condensation for Graph Neural Networks (GCOND/GC) ; Wei Jin ; 2021, ICLR 2022  ; ✅ ; Adapt DD & DC to graph setting ; [summary](GCOND%20(Jin,%202021.10).md) ;
+  
+*  Condensing Graphs via One-Step Gradient Matching (DosCond/GC-One) ;  Wei Jin ; KDD 2022; ❎ ; graph level task ; --- ;
+
+*  Graph Condensation via Receptive Field Distribution Matching (GCDM) ; Mengyang Liu ; 2022; ❎ ; Adapt DM to graph setting ; --- ;
+
+*  Infinite Recommendation Networks: A Data-Centric Approach ; Noveen Sachdeva ; NeurIPS 2022 ; 🔲 ; RecSys, infinite-width ; --- ;
 
 
 
 # Survey - data distillation
 
-| Title | Authors | Date | status | Description | Comments |
-| --- | --- | --- | --- | --- | --- |
-| Data Distillation: A Survey | Noveen Sachdeva, J.McAuley | 2023 | ✅ | First to summarise the overal framework. formulation, definition, comparison, pros&cons, assumption, discussion | [summary](survey%20-%20Data%20Distillation%20(Sachdeva,%202023).md)  |
-| Dataset Distillation: A Comprehensive Review | Ruonan Yu | 2023 | ☑️ | Very comprehensive | --- |
+*  Data Distillation: A Survey ; Noveen Sachdeva, J.McAuley ; 2023 ; ✅ ; First to summarise the overal framework. formulation, definition, comparison, pros&cons, assumption, discussion ; [summary](survey%20-%20Data%20Distillation%20(Sachdeva,%202023).md)  ;
+  
+*  Dataset Distillation: A Comprehensive Review ; Ruonan Yu ; 2023 ; ☑️ ; Very comprehensive ; --- ;
 
 
 # More
