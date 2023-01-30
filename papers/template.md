@@ -20,7 +20,7 @@
 
 **openreview**
 
-Other's summary
+- Other's summary
 
 **Takeaway**
 

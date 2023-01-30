@@ -32,7 +32,7 @@ Note
   
 - [Dataset Condensation with gradient matching (DC)](); Bo Zhao ;2020, ICLR 2021 ; ✅ ; Improve DD with Gradient surrogate objective (faster, efficient) ; [summary](DC%20-%20dataset%20condensation%20(Zhao,%202020.6).md) ;
 
-- [Dataset Condensation with Differentiable Siamese Augmentation (DSA)](); Bo Zhao ; 2021, ICML 2021 ; ☑️ ; Improve DC with data augmentation techniques tailored to sythetic data, Traditional ones give poor performance gain ; --- ; 
+- [Dataset Condensation with Differentiable Siamese Augmentation (DSA)](); Bo Zhao ; 2021, ICML 2021 ; ❎ ; Improve DC with data augmentation techniques tailored to sythetic data, Traditional ones give poor performance gain ; [summary](DSA%20-%20data%20augmentation%20(Zhao,%202021).md) ; 
 
 - [Dataset Condensation with Distribution Matching (DM)]();  Bo Zhao ; 2021, WACV 2023  ; ❎ ; Objective: embedding space dist matching; Fast   ; [summary](DM%20-%20distribution%20matching%20(Zhao%20&%20Bilen,%202021.10).md) ;
 
