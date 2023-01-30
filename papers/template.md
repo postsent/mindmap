@@ -5,7 +5,6 @@
 - [Key elements of the approach](#key-elements-of-the-approach)
 - [Results (Good or Bad)](#results-good-or-bad)
 - [Other references to follow](#other-references-to-follow)
-- [Takeaway](#takeaway)
 - [Code Analysis](#code-analysis)
 - [TODO](#todo)
 - [More](#more)
@@ -20,6 +19,13 @@
 - contribution
 
 **openreview**
+
+Other's summary
+
+**Takeaway**
+
+(what can be used in my part)
+
 
 # What did the authors tried to accomplished?
 
@@ -46,12 +52,6 @@
 **More explanation**
 
 **More papers**
-
-
-
-# Takeaway
-
-(what can be used in my part)
 
 # Code Analysis
 

@@ -270,7 +270,7 @@ def distance_wb(gwr, gws):
 # Takeaway
 
 - Gradient matching loss - **layer-wise**
-- synthetic data for **each class are separately** (or parallelly) updated at each iteration 
+- synthetic data for **each class are separately** (or **parallelly**) updated at each iteration 
   - i) this **reduces memory** use at train time
   - ii) imitating the mean gradients w.r.t. the data from single class is **easier** compared to those of multiple classes.
 
