@@ -29,7 +29,7 @@ Note
 
 | Title | Authors | Date | status | Description | Comments |
 | --- | --- | --- | --- | --- |--- |
-| Dataset Distillation (DD) | Tongzhou Wang | 2018 | ✅ | First formal paper introduces the concept of dataset distillation, inspired by Knowldege distillation | [summary](DD%20-%20dataset%20distillation%20(Wang,%202018.11).md) |
+| Dataset Distillation (DD) | Tongzhou Wang | 2018 | ✅ | First formal DD paper, inspired by KD, Bi-level Opt | [summary](DD%20-%20dataset%20distillation%20(Wang,%202018.11).md) |
 | Dataset Condensation with gradient matching (DC) | Bo Zhao |2020, ICLR 2021 | ✅ | Improve DD with Gradient surrogate objective (faster, efficient) | [summary](DC%20-%20dataset%20condensation%20(Zhao,%202020.6).md) |
 | Dataset Condensation with Differentiable Siamese Augmentation (DSA) | Bo Zhao | 2021, ICML 2021 | ☑️ | Improve DC with data augmentation techniques tailored to sythetic data  | Traditional ones give poor performance gain | 
 | Dataset Condensation with Distribution Matching (DM) |  Bo Zhao | 2021, WACV 2023  | ❎ | Objective: embedding space dist matching; Fast   | [summary](DM%20-%20distribution%20matching%20(Zhao%20&%20Bilen,%202021.10).md) |
