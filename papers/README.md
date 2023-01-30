@@ -16,7 +16,6 @@ status
     ❎ | Read & not fully summarised    
     ☑️ | Reading  
     🔲 | TO READ  
-    --- | can skip / skim
 
 Note
 - Paper file is named by "id-title-reference"

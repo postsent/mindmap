@@ -4,12 +4,12 @@
 ☑️ - Reading  
 🔲 - TO READ
 
+| Title | Authors | Date | status | Description | Comments |
+
 # Inbox
 
-| Title | Authors | Date | status | Description | Comments |
-| --- | --- | --- | --- | --- | --- |
-| Deep Residual Learning for Image Recognition | He Kaiming  | CVPR 2015 | --- | ResNet, Skip connection | --- |
-| Representation learning on graphs with jumping knowledge networks | --- | --- | --- | --- | --- |
+- [Deep Residual Learning for Image Recognition]() ; He Kaiming  ; CVPR 2015 ; 🔲 ; ResNet, Skip connection ; --- ;
+- 
 
 # keywords
 
