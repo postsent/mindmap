@@ -14,6 +14,9 @@ GNNs
 - [Graph Attention Networks (GAT) ; Petar Veličković ; 2017, ICLR 2018]() ; ☑️ ; First popular paper adopt attention mechansim to graph ; --- ;
 - [A Comprehensive Survey on Graph Neural Networks]() ; Zonghan Wu ;  2020, IEEE Trans. Neural Netw 2021  ; ☑️ ; --- ;  --- ;
 
+
+
+
 # Recent
 
 - [Hierarchical Graph Representation Learning with Differentiable Pooling]() ; Rex Ying ... J.Leskovec ; 2020 ; 🔲 ; --- ; --- ;
@@ -26,5 +29,17 @@ GNNs
 
 
 # Inbox 
+
+- deepwalk
+- node2vec
+- SGC - Simplifying Graph Convolutional Networks
+- A Comprehensive Survey on Graph Neural Networks
+- GCNII: Simple and Deep Graph Convolutional Networks
+- benchmark - datasets
+- GraphSage - Inductive Representation Learning on Large Graphs
+
+
+
+
 
 - Geometric Deep Learning: Going beyond Euclidean data

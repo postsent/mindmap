@@ -11,6 +11,7 @@ TOC
 - [My Reading List](#my-reading-list)
 - [Data Distillation](#data-distillation)
 - [Graph Distillation](#graph-distillation)
+  - [Recommender System](#recommender-system)
 - [Survey - data distillation](#survey---data-distillation)
 - [More](#more)
 - [Inbox](#inbox)
@@ -57,7 +58,9 @@ Note
 
 * [GCDM - Graph Condensation via Receptive Field Distribution Matching](); Mengyang Liu ; 2022; ❎ ; Adapt DM to graph setting ; --- ;
 
-* [DISTILL-CF/KIP-RecSys - Infinite Recommendation Networks: A Data-Centric Approach](); Noveen Sachdeva ; NeurIPS 2022 ; ☑️ ; RecSys, infinite-width ; --- ;
+## Recommender System
+
+* [DISTILL-CF/KIP-RecSys - Infinite Recommendation Networks: A Data-Centric Approach](); Noveen Sachdeva ; NeurIPS 2022 ; ☑️ ; $∞$-AE; --- ;
 
 
 
