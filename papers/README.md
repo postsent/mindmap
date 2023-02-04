@@ -54,9 +54,9 @@ Note
 
 # Graph Distillation
 
-* [GCOND/GC - Graph Condensation for Graph Neural Networks]() ; Wei Jin ; 2021, ICLR 2022  ; ✅ ; Adapt DD & DC to graph setting ; [🔖summary](GC%20-%20graph%20condensation%20(Jin,%202021.10).md);
+* [GCOND/GC - Graph Condensation for Graph Neural Networks]() ; Wei Jin ; 2021, ICLR 2022  ; ✅ ; Adapt DD & DC to graph setting, model graph structure as a function (MLP) of node features ; [🔖summary](GC%20-%20graph%20condensation%20(Jin,%202021.10).md);
   
-* [DosCond/GC-One - Condensing Graphs via One-Step Gradient Matching]();  Wei Jin ; KDD 2022; ❎ ; graph level task ; --- ;
+* [DosCond/GC-One - Condensing Graphs via One-Step Gradient Matching]();  Wei Jin ; KDD 2022; ❎ ; one step gradient update, graph level task i.e. model the graph structure with free param, sample /w reparameterization trick  ; [🔖summary](GC%20-%20one%20step%20gradient%20matching%20(Jin,%202022.6)%20-%20DOING.md) ;
 
 * [GCDM - Graph Condensation via Receptive Field Distribution Matching](); Mengyang Liu ; 2022; ❎ ; Adapt DM to graph setting ; --- ;
 
