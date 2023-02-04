@@ -1,5 +1,9 @@
 # Graph Condensation for GNN
 
+<p align="center">
+  <img src="imgs/GCOND/res.png" width="600"/>
+</p>
+
 - [Graph Condensation for GNN](#graph-condensation-for-gnn)
 - [What did the authors tried to accomplished?](#what-did-the-authors-tried-to-accomplished)
 - [Key elements of the approach](#key-elements-of-the-approach)
@@ -46,9 +50,7 @@
     - **sampling** strategies
     - **sparsification** strategy. remove low value entries 
 
-<p align="center">
-  <img src="imgs/GCOND/res.png" width="600"/>
-</p>
+
 
 **openreview**
 - The paper proposes and addresses the problem of **graph condensation**. 

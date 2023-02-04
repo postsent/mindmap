@@ -1,5 +1,9 @@
 # Dataset Distillation
 
+<p align="center">
+  <img src="imgs/misc/DD-result.png" width="600"/>
+</p>
+
 - [Dataset Distillation](#dataset-distillation)
 - [What did the authors tried to accomplished?](#what-did-the-authors-tried-to-accomplished)
 - [Key elements of the approach](#key-elements-of-the-approach)

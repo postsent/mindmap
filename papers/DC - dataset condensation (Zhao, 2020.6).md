@@ -1,5 +1,9 @@
 # Dataset condensation with gradient matching
 
+<p align="center">
+  <img src="imgs/DC/DC-goal.png" width="600"/>
+</p>
+
 - [Dataset condensation with gradient matching](#dataset-condensation-with-gradient-matching)
 - [What did the authors tried to accomplished?](#what-did-the-authors-tried-to-accomplished)
 - [Key elements of the approach](#key-elements-of-the-approach)
@@ -33,10 +37,6 @@
 1. **Compress** large to small in image classiciation
 2. highest **generalization** performance - trained on synethic comparable to the original dataset 
 3. applicable to **different architectures**
-
-<p align="center">
-  <img src="imgs/DC/DC-goal.png" width="600"/>
-</p>
 
 **Previous problems.** Relies on 
 1. **heuristics** (e.g. picking cluster centers) that does not guarantee any optimal solution for the downstream task (e.g. image classification)

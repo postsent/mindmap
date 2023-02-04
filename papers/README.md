@@ -4,9 +4,11 @@
 
 <img src="https://img.shields.io/badge/GNNs-✓-9cf" alt="GNNs"/> <img src="https://img.shields.io/badge/Dataset%20Distillation-✓-9cf" alt="Dataset Distillation"/> <img src="https://img.shields.io/badge/Classic-✓-9cf" alt="Classic"/> <img src="https://img.shields.io/badge/Interests-✓-9cf" alt="Interests"/>
 
-
+<img src="imgs/misc/survey-sachdeva-overview.png" width="600"/>
 
 TOC
+
+
 
 - [My Reading List](#my-reading-list)
 - [Data Distillation](#data-distillation)
@@ -52,7 +54,7 @@ Note
 
 # Graph Distillation
 
-* [GCOND/GC - Graph Condensation for Graph Neural Networks]() ; Wei Jin ; 2021, ICLR 2022  ; ✅ ; Adapt DD & DC to graph setting ; [🔖summary](GCOND%20(Jin,%202021.10).md) ;
+* [GCOND/GC - Graph Condensation for Graph Neural Networks]() ; Wei Jin ; 2021, ICLR 2022  ; ✅ ; Adapt DD & DC to graph setting ; [🔖summary](GC%20-%20graph%20condensation%20(Jin,%202021.10).md);
   
 * [DosCond/GC-One - Condensing Graphs via One-Step Gradient Matching]();  Wei Jin ; KDD 2022; ❎ ; graph level task ; --- ;
 
