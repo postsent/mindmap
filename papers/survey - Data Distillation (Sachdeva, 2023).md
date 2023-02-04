@@ -1,5 +1,7 @@
 # Data Distillation: A Survey
 
+<img src="imgs/misc/survey-sachdeva-overview.png" width="600"/>
+
 - [Data Distillation: A Survey](#data-distillation-a-survey)
 - [What did the authors tried to accomplished?](#what-did-the-authors-tried-to-accomplished)
 - [Key elements of the approach](#key-elements-of-the-approach)

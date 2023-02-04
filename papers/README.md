@@ -4,11 +4,11 @@
 
 <img src="https://img.shields.io/badge/GNNs-✓-9cf" alt="GNNs"/> <img src="https://img.shields.io/badge/Dataset%20Distillation-✓-9cf" alt="Dataset Distillation"/> <img src="https://img.shields.io/badge/Classic-✓-9cf" alt="Classic"/> <img src="https://img.shields.io/badge/Interests-✓-9cf" alt="Interests"/>
 
-<img src="imgs/misc/survey-sachdeva-overview.png" width="600"/>
+<p align="center">
+  <img src="imgs/misc/survey-sachdeva-overview.png" width="600"/>
+</p>
 
 TOC
-
-
 
 - [My Reading List](#my-reading-list)
 - [Data Distillation](#data-distillation)
