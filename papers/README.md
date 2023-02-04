@@ -15,9 +15,9 @@ TOC
 - [Graph Distillation](#graph-distillation)
   - [Recommender System](#recommender-system)
 - [Survey - data distillation](#survey---data-distillation)
-- [More](#more)
+- [Links](#links)
 - [Inbox](#inbox)
-- [Common key words](#common-key-words)
+- [Authors](#authors)
 # My Reading List
 
 status
@@ -73,7 +73,7 @@ Note
 * [Dataset Distillation: A Comprehensive Review](); Ruonan Yu ; 2023 ; ☑️ ; Very comprehensive ; --- ;
 
 
-# More
+# Links
 
 Dataset Distillation paper list - https://github.com/Guang000/Awesome-Dataset-Distillation
 
@@ -97,24 +97,15 @@ GNN paper list - https://github.com/GRAND-Lab/Awesome-Graph-Neural-Networks
 - ...
 
 
-# Common key words
+# Authors
 
-Meta-model matching
-- KIP: Kernel introducing points
-- KRR: Kernelized Ridge Regression
-- NTK: Neural Tangent Kernel 
-- $∞$-width
-- closed-form
+* with * means supervisor
 
-Gradient matching
-
-Distribution matching
-
-Trajectory matching
-
-Factorisation
-
-Others
-
-- Data augmentation
-- Label Distillation
+| Location | Authors | Papers |
+| --- | --- | --- |
+| MIT CSAIL | Tongzhou Wang, George Cazenavette, Alexei Efros* (UC Berkeley) and Antonio Torralba* (MIT) | DD, MTT |
+| Edinburgh | Bo Zhao, Hakan Bilen* | DC, DM, DSA |
+| DeepMind | Timothy Nguyen | KIP |
+| UC San Diego | Noveen Sachdeva, J.McAuley* | Distill-CF |
+| MSU | Wei Jin, Jiliang Tang* | GC, GC-ONE |
+| Georgia Tech | Mengyang Liu, Le Song* | GCDM |
