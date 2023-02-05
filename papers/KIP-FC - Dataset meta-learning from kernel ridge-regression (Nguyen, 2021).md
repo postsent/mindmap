@@ -1,6 +1,6 @@
-# DISTILL-CF/KIP-RecSys - Infinite Recommendation Networks: A Data-Centric Approach
+# KIP-FC - Dataset meta-learning from kernel ridge-regression;
 
-- [DISTILL-CF/KIP-RecSys - Infinite Recommendation Networks: A Data-Centric Approach](#distill-cfkip-recsys---infinite-recommendation-networks-a-data-centric-approach)
+- [KIP-FC - Dataset meta-learning from kernel ridge-regression;](#kip-fc---dataset-meta-learning-from-kernel-ridge-regression)
 - [What did the authors tried to accomplished?](#what-did-the-authors-tried-to-accomplished)
 - [Key elements of the approach](#key-elements-of-the-approach)
 - [Results (Good or Bad)](#results-good-or-bad)
@@ -10,10 +10,10 @@
 - [More](#more)
 
 **Keywords**:
-- TODO
+- KIP
 
 **TLDR**
-- Synethic small, representative **collobrative filtering (CF)**
+(my summary of the paper)
 
 - TODO
 - contribution
@@ -47,8 +47,7 @@
 
 # Other references to follow
 
-* poster - https://nips.cc/media/PosterPDFs/NeurIPS%202022/7d92c08873b4979b544e7fb64fdb1c6c.png?t=1667435206.2723856
-* slides - https://www.noveens.com/data/neurips_22_slides.pdf
+(By category, from introduction, related work)
 
 **More explanation**
 

@@ -18,6 +18,7 @@ TOC
 - [Links](#links)
 - [Inbox](#inbox)
 - [Authors](#authors)
+  
 # My Reading List
 
 status
@@ -38,13 +39,13 @@ Note
 
 # Data Distillation
 
-* [DD - Dataset Distillation]() ; Tongzhou Wang ; 2018 ; ✅ ; First formal DD paper, inspired by KD, Bi-level Opt ; [🔖summary](DD%20-%20dataset%20distillation%20(Wang,%202018.11).md) ;
+* [DD - Dataset Distillation](DD%20-%20dataset%20distillation%20(Wang,%202018.11).md) ; Tongzhou Wang ; 2018 ; ✅ ; First formal DD paper, inspired by KD, Bi-level Opt;
   
-* [DC - Dataset Condensation with gradient matching](); Bo Zhao ;2020, ICLR 2021 ; ✅ ; Improve DD with Gradient surrogate objective (faster, efficient) ; [🔖summary](DC%20-%20dataset%20condensation%20(Zhao,%202020.6).md) ;
+* [DC - Dataset Condensation with gradient matching](DC%20-%20dataset%20condensation%20(Zhao,%202020.6).md); Bo Zhao ;2020, ICLR 2021 ; ✅ ; Improve DD with Gradient surrogate objective (faster, efficient) ;
   
-* [DSA - Dataset Condensation with Differentiable Siamese Augmentation](); Bo Zhao ; 2021, ICML 2021 ; ❎ ; Improve DC with data augmentation techniques tailored to sythetic data, Traditional ones give poor performance gain ; [🔖summary](DSA%20-%20data%20augmentation%20(Zhao,%202021).md) ; 
+* [DSA - Dataset Condensation with Differentiable Siamese Augmentation](DSA%20-%20data%20augmentation%20(Zhao,%202021).md); Bo Zhao ; 2021, ICML 2021 ; ❎ ; Improve DC with data augmentation techniques tailored to sythetic data, Traditional ones give poor performance gain ; 
 
-* [DM - Dataset Condensation with Distribution Matching]();  Bo Zhao ; 2021, WACV 2023  ; ❎ ; Objective: embedding space dist matching; Fast   ; [🔖summary](DM%20-%20distribution%20matching%20(Zhao%20&%20Bilen,%202021.10).md) ;
+* [DM - Dataset Condensation with Distribution Matching](DM%20-%20distribution%20matching%20(Zhao%20&%20Bilen,%202021.10).md);  Bo Zhao ; 2021, WACV 2023  ; ❎ ; Objective: embedding space dist matching; Fast;
 
 * [KIP-FC - Dataset meta-learning from kernel ridge-regression](); Timothy Nguyen ; ICLR 2021 ; ☑️ ; $∞$-FC, NTK, KRR ; --- ;
 
@@ -54,21 +55,21 @@ Note
 
 # Graph Distillation
 
-* [GCOND/GC - Graph Condensation for Graph Neural Networks]() ; Wei Jin ; 2021, ICLR 2022  ; ✅ ; Adapt DD & DC to graph setting, model graph structure as a function (MLP) of node features ; [🔖summary](GC%20-%20graph%20condensation%20(Jin,%202021.10).md);
+* [GCOND/GC - Graph Condensation for Graph Neural Networks](GC%20-%20graph%20condensation%20(Jin,%202021.10).md) ; Wei Jin ; 2021, ICLR 2022  ; ✅ ; Adapt DD & DC to graph setting, model graph structure as a function (MLP) of node features ;
   
-* [DosCond/GC-One - Condensing Graphs via One-Step Gradient Matching]();  Wei Jin ; KDD 2022; ❎ ; one step gradient update, graph level task i.e. model the graph structure with free param, sample /w reparameterization trick  ; [🔖summary](GC%20-%20one%20step%20gradient%20matching%20(Jin,%202022.6)%20-%20DOING.md) ;
+* [DosCond/GC-One - Condensing Graphs via One-Step Gradient Matching](GC%20-%20one%20step%20gradient%20matching%20(Jin,%202022.6)%20-%20DOING.md);  Wei Jin ; KDD 2022; ❎ ; one step gradient update, graph level task i.e. model the graph structure with free param, sample /w reparameterization trick;
 
-* [GCDM - Graph Condensation via Receptive Field Distribution Matching](); Mengyang Liu ; 2022; ❎ ; Adapt DM to graph setting ; --- ;
+* [GCDM - Graph Condensation via Receptive Field Distribution Matching](GCDM%20-%20graph%20DM%20(Liu,%202022.06).md); Mengyang Liu ; 2022; ❎ ; Adapt DM to graph setting ; --- ;
 
 ## Recommender System
 
-* [DISTILL-CF/KIP-RecSys - Infinite Recommendation Networks: A Data-Centric Approach](); Noveen Sachdeva ; NeurIPS 2022 ; ☑️ ; $∞$-AE; --- ;
+* [Distill-CF/KIP-RecSys - Infinite Recommendation Networks: A Data-Centric Approach](); Noveen Sachdeva ; NeurIPS 2022 ; ☑️ ; $∞$-AE; --- ;
 
 
 
 # Survey - data distillation
 
-* [Data Distillation: A Survey](); Noveen Sachdeva, J.McAuley ; 2023 ; ✅ ; First to summarise the overal framework. formulation, definition, comparison, pros&cons, assumption, discussion ; [🔖summary](survey%20-%20Data%20Distillation%20(Sachdeva,%202023).md)  ;
+* [Data Distillation: A Survey](survey%20-%20Data%20Distillation%20(Sachdeva,%202023).md); Noveen Sachdeva, J.McAuley ; 2023 ; ✅ ; First to summarise the overal framework. formulation, definition, comparison, pros&cons, assumption, discussion ;
   
 * [Dataset Distillation: A Comprehensive Review](); Ruonan Yu ; 2023 ; ☑️ ; Very comprehensive ; --- ;
 
@@ -105,7 +106,11 @@ GNN paper list - https://github.com/GRAND-Lab/Awesome-Graph-Neural-Networks
 | --- | --- | --- |
 | MIT CSAIL | Tongzhou Wang, George Cazenavette, Alexei Efros* (UC Berkeley) and Antonio Torralba* (MIT) | DD, MTT |
 | Edinburgh | Bo Zhao, Hakan Bilen* | DC, DM, DSA |
-| DeepMind | Timothy Nguyen | KIP |
+| Google Brain, DeepMind | Timothy Nguyen, Jaehoon Lee* | KIP |
 | UC San Diego | Noveen Sachdeva, J.McAuley* | Distill-CF |
 | MSU | Wei Jin, Jiliang Tang* | GC, GC-ONE |
 | Georgia Tech | Mengyang Liu, Le Song* | GCDM |
+| NUS | Songhua Liu, Xinchao Wang* | HaBa-Dataset Distillation via Factorization |
+| UCLA | | Justin Cui, Cho-Jui Hsieh*(Google) |
+| Seoul National University | Jang-Hyun Kim | IDC (Parameterization) |
+| Princeton University | Zhiwei Deng, Olga Russakovsky*| |
