@@ -111,6 +111,6 @@ GNN paper list - https://github.com/GRAND-Lab/Awesome-Graph-Neural-Networks
 | MSU | Wei Jin, Jiliang Tang* | GC, GC-ONE |
 | Georgia Tech | Mengyang Liu, Le Song* | GCDM |
 | NUS | Songhua Liu, Xinchao Wang* | HaBa-Dataset Distillation via Factorization |
-| UCLA | | Justin Cui, Cho-Jui Hsieh*(Google) |
+| UCLA | Justin Cui, Cho-Jui Hsieh*(Google) | DC-BENCH, TESLA  |
 | Seoul National University | Jang-Hyun Kim | IDC (Parameterization) |
-| Princeton University | Zhiwei Deng, Olga Russakovsky*| |
+| Princeton University | Zhiwei Deng, Olga Russakovsky*| LinBa |
