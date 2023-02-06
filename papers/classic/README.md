@@ -11,6 +11,10 @@
 - [Deep Residual Learning for Image Recognition]() ; He Kaiming  ; CVPR 2015 ; 🔲 ; ResNet, Skip connection ; --- ;
 - 
 
+# More
+
+-  A theory of the learnable; LG Valian; ACM 1984 ; 🔲 ; PAC learning
+
 # keywords
 
 - sparse matrix (one hot vector)

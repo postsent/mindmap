@@ -4,7 +4,7 @@
 - [What did the authors tried to accomplished?](#what-did-the-authors-tried-to-accomplished)
 - [Key elements of the approach](#key-elements-of-the-approach)
 - [Results (Good or Bad)](#results-good-or-bad)
-- [Other references to follow](#other-references-to-follow)
+- [References](#references)
 - [Code Analysis](#code-analysis)
 - [TODO](#todo)
 - [More](#more)
@@ -45,7 +45,7 @@
 
 (from conclusion)
 
-# Other references to follow
+# References
 
 (By category, from introduction, related work)
 

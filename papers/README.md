@@ -47,11 +47,11 @@ Note
 
 * [DM - Dataset Condensation with Distribution Matching](DM%20-%20distribution%20matching%20(Zhao%20&%20Bilen,%202021.10).md);  Bo Zhao ; 2021, WACV 2023  ; ❎ ; Objective: embedding space dist matching; Fast;
 
-* [KIP-FC - Dataset meta-learning from kernel ridge-regression](); Timothy Nguyen ; ICLR 2021 ; ☑️ ; $∞$-FC, NTK, KRR ; --- ;
+* [KIP-FC - Dataset meta-learning from kernel ridge-regression](); Timothy Nguyen ; ICLR 2021 ; ☑️ ; $∞$-FC, NTK, KRR ;
 
-* [KIP-Conv - Dataset distillation with infinitely wide convolutional networks](); Timothy Nguyen ; NeurIPS 2021 ; 🔲 ; $∞$-Conv, First to reach 80/84.8% w/ 50 synethic images, c10 ; --- ;
+* [KIP-Conv - Dataset distillation with infinitely wide convolutional networks](); Timothy Nguyen ; NeurIPS 2021 ; 🔲 ; $∞$-Conv, First to reach 80/84.8% w/ 50 synethic images, c10 ;
 
-* [MTT - Dataset Distillation by Matching Training Trajectories](); George Cazenavette, Tongzhou Wang (2nd) ; 2022, CVPR 2022 ; 🔲 ; Large-scale datasets, long-range training dynamics, match segments of pre-recorded trajectories from models trained on real data, Prior works either computational expensive or short range (single training step) approximation ; --- ;
+* [MTT - Dataset Distillation by Matching Training Trajectories](); George Cazenavette, Tongzhou Wang (2nd) ; 2022, CVPR 2022 ; 🔲 ; Large-scale datasets, long-range training dynamics, match segments of pre-recorded trajectories from models trained on real data, Prior works either computational expensive or short range (single training step) approximation ;
 
 # Graph Distillation
 
@@ -59,11 +59,11 @@ Note
   
 * [DosCond/GC-One - Condensing Graphs via One-Step Gradient Matching](GC%20-%20one%20step%20gradient%20matching%20(Jin,%202022.6)%20-%20DOING.md);  Wei Jin ; KDD 2022; ❎ ; one step gradient update, graph level task i.e. model the graph structure with free param, sample /w reparameterization trick;
 
-* [GCDM - Graph Condensation via Receptive Field Distribution Matching](GCDM%20-%20graph%20DM%20(Liu,%202022.06).md); Mengyang Liu ; 2022; ❎ ; Adapt DM to graph setting ; --- ;
+* [GCDM - Graph Condensation via Receptive Field Distribution Matching](GCDM%20-%20graph%20DM%20(Liu,%202022.06).md); Mengyang Liu ; 2022; ❎ ; Adapt DM to graph setting ;
 
 ## Recommender System
 
-* [Distill-CF/KIP-RecSys - Infinite Recommendation Networks: A Data-Centric Approach](); Noveen Sachdeva ; NeurIPS 2022 ; ☑️ ; $∞$-AE; --- ;
+* [Distill-CF/KIP-RecSys - Infinite Recommendation Networks: A Data-Centric Approach](); Noveen Sachdeva ; NeurIPS 2022 ; ☑️ ; $∞$-AE;
 
 
 
@@ -71,7 +71,7 @@ Note
 
 * [Data Distillation: A Survey](survey%20-%20Data%20Distillation%20(Sachdeva,%202023).md); Noveen Sachdeva, J.McAuley ; 2023 ; ✅ ; First to summarise the overal framework. formulation, definition, comparison, pros&cons, assumption, discussion ;
   
-* [Dataset Distillation: A Comprehensive Review](); Ruonan Yu ; 2023 ; ☑️ ; Very comprehensive ; --- ;
+* [Dataset Distillation: A Comprehensive Review](); Ruonan Yu ; 2023 ; ☑️ ; Very comprehensive ;
 
 
 # Links
