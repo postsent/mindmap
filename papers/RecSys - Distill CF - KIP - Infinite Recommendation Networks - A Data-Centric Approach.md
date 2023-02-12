@@ -41,6 +41,13 @@
 
 (from method)
 
+- ∞-AE scalaility problem
+  - DISTILL-CF
+  - leveraging a simple observation from support vector machines: not all datapoints (users in our case) are important for model learning
+
+**Motivation section**.
+- DISTILL-CF distill data which serves as input for the ∞-AE
+
 # Results (Good or Bad)
 
 (from conclusion)

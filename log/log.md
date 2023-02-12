@@ -28,3 +28,5 @@ Thinking if I cannot make it clear here to summarise the paper then prob I did n
 if the a part of the paper is confusing then blame the poor explanation and move on.
 
 when get very slow on reading e.g. after having food, pick some light works instead of over reading
+
+**2.12** add ppt as attachment in zotero for better file management
