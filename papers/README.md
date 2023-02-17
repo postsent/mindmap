@@ -1,3 +1,5 @@
+<img src="https://img.shields.io/badge/Status-Not Maintained-purple" alt="Goal"/> 
+
 <img src="https://img.shields.io/badge/Inbox-4-red" alt="Inbox"/> <img src="https://img.shields.io/badge/Read-8-green" alt="Read"/> 
 
 <img src="https://img.shields.io/badge/Goal-50-blue" alt="Goal"/> <img src="https://img.shields.io/badge/Weekly %20Minimum-2-green" alt="Weekly Minimum"/> 
@@ -7,6 +9,8 @@
 <p align="center">
   <img src="imgs/misc/survey-sachdeva-overview.png" width="600"/>
 </p>
+
+Not maintain, google doc (notes) + excel (big table collection with TL;DR) turns to be more simple fast and intuitive. As for the motivation part, google doc can be public so its alright.
 
 TOC
 
